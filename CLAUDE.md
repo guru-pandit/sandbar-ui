@@ -64,7 +64,8 @@ Every component implements the relevant WAI-ARIA Authoring Practice: correct rol
 Every component ships with: implementation (full TS types, no `any`), a `<Component>.css.ts` recipe with all variants, unit + interaction tests, an axe a11y test, a Storybook visual regression story, an MDX docs page following the Chakra-UI-style pattern (Usage example with Preview/Code toggle, an `## Examples` section with one live side-by-side gallery per variant axis — not a dropdown-driven single preview, auto-generated props table, keyboard table, data-attributes table, a11y notes, composition recipes, styling section, source links — see `.claude/context/architecture.md` §Every Component Page Requires and `apps/docs/app/components/Example.tsx`/`ComponentDemos.tsx` for the reference pattern), and a changeset entry. Incomplete = not done.
 
 ## How We Work
-- See `.claude/context/architecture.md` before designing anything new (monorepo layout, token tiers, build pipeline, docs site IA, execution order).
+- Work proceeds **phase by phase, files-first**: instruction files (`CLAUDE.md`/`.claude/context/*`) are updated to capture a decision *before* implementing it. One sidebar category = one phase; within a phase, finish one component completely (impl, tests, docs page, QA checklist) before starting the next. Checkpoint before moving to the next component or phase — see `.claude/context/architecture.md` §Execution Order.
+- See `.claude/context/architecture.md` before designing anything new (monorepo layout, token tiers, build pipeline, docs site IA — top nav/sidebar/per-component page structure, component scope table, execution order).
 - See `.claude/context/coding-standards.md` before writing any code.
 - See `.claude/context/react-patterns.md` for compound components, `asChild`, controlled/uncontrolled state, RSC/SSR safety.
 - See `.claude/context/api-conventions.md` before adding or changing any component's public prop API or a docs-site API route.
@@ -94,3 +95,6 @@ Every component ships with: implementation (full TS types, no `any`), a `<Compon
 - Never commit secrets, npm publish tokens, or search (Algolia/Chromatic) API keys
 - Never skip lint, type checks, or tests
 - New component → confirm it is in the approved scope (`.claude/context/architecture.md` §Component Scope) before building it
+- Visual design (docs site and every component) must be original — must NOT visually match Chakra UI, Radix, shadcn/ui, MUI, Mantine, or Ant Design (see `.claude/context/design-system.md` §Originality Requirement)
+- Every code block on the docs site is syntax-highlighted with a custom on-brand theme and a working copy-to-clipboard button — no monochrome code, no copied default highlighter theme
+- Every documented preview is live and interactive — no static images, no dead markup, no console errors

@@ -25,6 +25,9 @@ Deep teal-to-slate accent, `#0F766E` family — deliberately distinct from MUI b
 - **Marketing headings only** (landing page, blog — never component UI): Inter Display
 - Loaded via `next/font` in `apps/docs`; `packages/react` ships font-agnostic components — it sets `font-family` via a semantic token that consumers can override, never hardcodes a font import into a component
 
+## Originality Requirement
+The docs site and every component's visual design must NOT visually match Chakra UI, Radix, shadcn/ui, MUI, Mantine, Ant Design, or any other public component-library docs site — not the color system, not the typography, not the spacing, not the overall layout rhythm. The code-block syntax-highlighting theme is part of this: it must be a custom, on-brand palette built from the tokens below, never a copied default like "GitHub Dark" or "Dracula" verbatim. This is a hard requirement, checked on every component page (see `architecture.md` §Design & Quality Gates).
+
 ## Illustration Style
 Geometric line diagrams and anatomy schematics — **not** 3D renders or gradients. Docs anatomy diagrams (showing a compound component's part structure, e.g. `Dialog.Root > Dialog.Content > Dialog.Title`) are themselves part of the brand and should follow this same line-diagram style consistently across every component page.
 
