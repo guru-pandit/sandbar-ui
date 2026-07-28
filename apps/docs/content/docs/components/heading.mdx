@@ -1,0 +1,30 @@
+---
+title: Heading
+description: Section titles — semantic level (h1–h6) decoupled from visual size.
+---
+
+```tsx
+import { Heading } from '@sandbar-ui/react';
+```
+
+## Playground
+
+<HeadingDemo />
+
+## Example
+
+```tsx
+<Heading level={1} size="xl">
+  Page title
+</Heading>
+```
+
+`level` controls the rendered tag (`h1`–`h6`) — pick it for document structure, not visual size. `size` controls appearance independently, so a document-correct `<h4>` can still be styled as the largest heading on the page without lying about the outline.
+
+## Props
+
+<PropsTable component="Heading" />
+
+## Accessibility notes
+
+Keep heading levels sequential in the surrounding page (don't skip from `h1` to `h4`) — `Heading` renders whatever `level` you pass without validating document order, since that's a page-composition concern, not something a single component can enforce.

@@ -1,0 +1,34 @@
+---
+title: Box
+description: The minimal polymorphic primitive every layout component builds on.
+---
+
+```tsx
+import { Box } from '@sandbar-ui/react';
+```
+
+`Box` renders a `<div>` by default, or any element/component via `as`, or onto its single child via `asChild`. It has no styling of its own — see the Layout components (Phase 5) for the real spacing/sizing token API built on top of it.
+
+## Playground
+
+<BoxDemo />
+
+## Props
+
+<PropsTable component="Box" />
+
+## Data attributes
+
+`Box` sets none of its own — it's a structural primitive, not a stateful component.
+
+## Composition
+
+```tsx
+<Box as="section" data-testid="panel">
+  content
+</Box>
+
+<Box asChild>
+  <a href="/docs">content</a>
+</Box>
+```

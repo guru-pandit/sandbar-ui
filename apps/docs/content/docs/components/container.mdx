@@ -1,0 +1,20 @@
+---
+title: Container
+description: A centered, max-width content wrapper — the standard page/section shell.
+---
+
+```tsx
+import { Container } from '@sandbar-ui/react';
+```
+
+## Playground
+
+<ContainerDemo />
+
+## Props
+
+<PropsTable component="Container" />
+
+## Styling
+
+`size` maps to a `max-width` breakpoint. These are currently literal pixel values, not tokens — `packages/tokens` doesn't have a breakpoint scale yet (see `Container.css.ts`); promoting them to real tokens is tracked for whenever a second component needs the same values.

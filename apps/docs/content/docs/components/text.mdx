@@ -1,0 +1,28 @@
+---
+title: Text
+description: Inline/block text with token-driven size, weight, and color variants.
+---
+
+```tsx
+import { Text } from '@sandbar-ui/react';
+```
+
+## Playground
+
+<TextDemo />
+
+## Example
+
+```tsx
+<Text size="sm" color="muted">
+  Helper text.
+</Text>
+```
+
+## Props
+
+<PropsTable component="Text" />
+
+## Styling
+
+`size`/`weight`/`color` are vanilla-extract recipe variants — see `Text.css.ts`. `color` reads semantic tokens (`fg.default`, `fg.muted`, `accent.text`, `danger.text`), so it automatically follows the active theme (`light`/`dark`/`contrast`).

@@ -1,0 +1,37 @@
+---
+title: Stack
+description: A flex container for laying out children with consistent, token-driven spacing.
+---
+
+```tsx
+import { Stack } from '@sandbar-ui/react';
+```
+
+## Playground
+
+<StackDemo />
+
+## Example
+
+```tsx
+<Stack direction="horizontal" gap="md" align="center">
+  <Avatar />
+  <Text>Name</Text>
+</Stack>
+```
+
+## Props
+
+<PropsTable component="Stack" />
+
+## Keyboard interactions
+
+None — `Stack` is a non-interactive layout primitive.
+
+## Data attributes
+
+None of its own.
+
+## Styling
+
+Every variant (`direction`, `gap`, `align`, `wrap`) is a vanilla-extract recipe variant reading from the static token contract (`packages/tokens`'s `space` scale) — see `Stack.css.ts`. Override with `className` for anything the variants don't cover; there is no `justify` prop yet (added when a real usage need surfaces one, not preemptively).
