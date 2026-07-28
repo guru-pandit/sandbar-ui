@@ -100,10 +100,24 @@ Next.js 15 App Router, statically generated, built with `@sandbar-ui/react` itse
 ```
 
 ### Every Component Page Requires
-Import statement + copy button, anatomy diagram (compound part structure), a live editable primary example, a variant gallery (every `variant`×`size`×`colorScheme` combination), auto-generated props tables per sub-component (including inherited HTML props), a keyboard interactions table, a data attributes table, accessibility notes, composition recipes, a styling section (className/recipes/CSS vars), and links to source + the Storybook story. See `CLAUDE.md` §Per-Component Deliverable Checklist — a component isn't done until its page has all of these.
+Follows the Chakra UI documentation pattern (house standard — see `apps/docs/app/components/Example.tsx` and `ComponentDemos.tsx` for the reference implementation):
+1. Import statement code block, with copy button
+2. **Usage** — one primary example in an `Example` (Preview/Code toggle) block: live rendered output by default, exact source on the Code tab, a Copy button
+3. **Examples** (`## Examples`) — one `### <Axis>` subsection per prop/variant axis (e.g. Sizes, Variants, Colors), each with a one-line description of the prop and a gallery `Example` rendering **every value of that axis side by side, live** — not a single interactive example with a dropdown, and not just prose describing the options
+4. Auto-generated props tables per sub-component (including inherited HTML props — acknowledged via a footer note, not literally enumerated; see `PropsTable.tsx`), never hand-written
+5. A keyboard interactions table (interactive components only)
+6. A data attributes table
+7. Accessibility notes
+8. Composition recipes (real-world usage combining this component with others)
+9. A styling section (className/recipes/CSS vars)
+10. Links to source + the Storybook story
+
+A component isn't done until its page has all of these — see `CLAUDE.md` §Per-Component Deliverable Checklist. When adding a new component's docs page, copy the pattern from an existing one (e.g. `apps/docs/content/docs/components/text.mdx` + its `Example` components in `ComponentDemos.tsx`) rather than inventing a new structure.
 
 ### Docs Site Requirements
-`next/og` per-page OG image generation, `llms.txt` + copy-as-Markdown endpoints, Cmd+K full-text search, live theme switcher (light/dark/high-contrast re-themes examples in place), LTR/RTL toggle, version switcher, "Open in StackBlitz/CodeSandbox" per example. Lighthouse budget enforced in CI: 100 accessibility, 95+ performance. The docs site is held to the **same a11y bar as the library** — axe-clean, keyboard navigable.
+`next/og` per-page OG image generation, `llms.txt` + copy-as-Markdown endpoints, Cmd+K full-text search, a live theme switcher in the **top-right of the top navbar** (Chakra's color-mode-toggle position — wired via Fumadocs' `DocsLayout`'s `themeSwitch.component` slot, not `nav.children`, which renders cramped next to the sidebar title instead) that re-themes every example in place, LTR/RTL toggle, version switcher, "Open in StackBlitz/CodeSandbox" per example. Lighthouse budget enforced in CI: 100 accessibility, 95+ performance. The docs site is held to the **same a11y bar as the library** — axe-clean, keyboard navigable.
+
+Note: `apps/docs` runs on **Next.js 16**, not 15 — the Fumadocs versions compatible with Next 15's peer range have broken internal module paths (discovered empirically, not a preference). This is a docs-tooling-only deviation; `@sandbar-ui/react` itself has no Next.js dependency and targets React 19 regardless of which Next major the docs site runs.
 
 ## Execution Order
 1. Monorepo scaffold, build pipeline, CI

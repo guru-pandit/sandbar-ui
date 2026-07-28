@@ -2,12 +2,19 @@ import { DocsBody, DocsDescription, DocsPage, DocsTitle } from 'fumadocs-ui/page
 import defaultMdxComponents from 'fumadocs-ui/mdx';
 import { notFound } from 'next/navigation';
 import {
-  BoxDemo,
-  CenterDemo,
-  ContainerDemo,
-  HeadingDemo,
-  StackDemo,
-  TextDemo,
+  BoxUsageExample,
+  CenterUsageExample,
+  ContainerUsageExample,
+  HeadingLevelsExample,
+  HeadingSizesExample,
+  HeadingUsageExample,
+  StackDirectionExample,
+  StackGapExample,
+  StackUsageExample,
+  TextColorsExample,
+  TextSizesExample,
+  TextUsageExample,
+  TextWeightsExample,
 } from '../../components/ComponentDemos';
 import { PropsTable } from '../../components/PropsTable';
 import { source } from '../../../lib/source';
@@ -15,12 +22,19 @@ import { source } from '../../../lib/source';
 const mdxComponents = {
   ...defaultMdxComponents,
   PropsTable,
-  BoxDemo,
-  CenterDemo,
-  ContainerDemo,
-  HeadingDemo,
-  StackDemo,
-  TextDemo,
+  BoxUsageExample,
+  CenterUsageExample,
+  ContainerUsageExample,
+  HeadingLevelsExample,
+  HeadingSizesExample,
+  HeadingUsageExample,
+  StackDirectionExample,
+  StackGapExample,
+  StackUsageExample,
+  TextColorsExample,
+  TextSizesExample,
+  TextUsageExample,
+  TextWeightsExample,
 };
 
 interface PageProps {

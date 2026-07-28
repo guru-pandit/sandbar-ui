@@ -7,19 +7,25 @@ description: Section titles — semantic level (h1–h6) decoupled from visual s
 import { Heading } from '@sandbar-ui/react';
 ```
 
-## Playground
+## Usage
 
-<HeadingDemo />
-
-## Example
-
-```tsx
-<Heading level={1} size="xl">
-  Page title
-</Heading>
-```
+<HeadingUsageExample />
 
 `level` controls the rendered tag (`h1`–`h6`) — pick it for document structure, not visual size. `size` controls appearance independently, so a document-correct `<h4>` can still be styled as the largest heading on the page without lying about the outline.
+
+## Examples
+
+### Levels
+
+Use the `level` prop to change the semantic heading tag.
+
+<HeadingLevelsExample />
+
+### Sizes
+
+Use the `size` prop to change the visual size, independent of `level`.
+
+<HeadingSizesExample />
 
 ## Props
 

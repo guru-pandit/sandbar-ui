@@ -7,22 +7,30 @@ description: Inline/block text with token-driven size, weight, and color variant
 import { Text } from '@sandbar-ui/react';
 ```
 
-## Playground
+## Usage
 
-<TextDemo />
+<TextUsageExample />
 
-## Example
+## Examples
 
-```tsx
-<Text size="sm" color="muted">
-  Helper text.
-</Text>
-```
+### Sizes
+
+Use the `size` prop to change the font size of the text.
+
+<TextSizesExample />
+
+### Weights
+
+Use the `weight` prop to change the font weight.
+
+<TextWeightsExample />
+
+### Colors
+
+Use the `color` prop to change the text color. Every value reads a semantic token, so it automatically follows the active theme (`light`/`dark`/`contrast`).
+
+<TextColorsExample />
 
 ## Props
 
 <PropsTable component="Text" />
-
-## Styling
-
-`size`/`weight`/`color` are vanilla-extract recipe variants — see `Text.css.ts`. `color` reads semantic tokens (`fg.default`, `fg.muted`, `accent.text`, `danger.text`), so it automatically follows the active theme (`light`/`dark`/`contrast`).
