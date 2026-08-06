@@ -1,20 +1,20 @@
-# Design System — Sandbar UI Brand & Token Spec
+# Design System — Panux UI Brand & Token Spec
 
 This file is the brand/visual source of truth. For the token *architecture* (tiers, layering, theme engine mechanics), see `architecture.md` §Design Token System — this file covers the actual values, voice, and visual identity that fill that architecture.
 
 ## Identity
 | | |
 |---|---|
-| Name | Sandbar UI |
+| Name | Panux UI |
 | Tagline | *The container for your interface.* |
-| Domain | `sandbar-ui.design` (fallback `sandbarui.com`, `usesandbar.dev`) |
-| npm scope | `@sandbar-ui` |
-| GitHub | `sandbar-ui/sandbar-ui` |
-| CLI binary | `sandbar` |
+| Domain | `panux-ui.design` (fallback `panuxui.com`, `usepanux.dev`) |
+| npm scope | `@panux-ui` |
+| GitHub | `panux-ui/panux-ui` |
+| CLI binary | `panux` |
 
 ## Mark & Wordmark
 - **Mark**: a minimal open container — an outlined rounded-square with an open top edge, readable at 16px favicon size. Has a monogram "S" negative-space variant for social avatars.
-- **Wordmark**: lowercase `sandbar`, geometric grotesque (Inter Display or Geist), tight tracking, no ligature tricks.
+- **Wordmark**: lowercase `panux`, geometric grotesque (Inter Display or Geist), tight tracking, no ligature tricks.
 
 ## Brand Color
 Deep teal-to-slate accent, `#0F766E` family — deliberately distinct from MUI blue, Chakra teal-green, and shadcn neutral-zinc. Neutrals are a **true cool gray**, not blue-tinted (a common tell that a "neutral" scale was derived carelessly from the accent hue). This becomes the `accent` semantic token group's solid step; the full 12-step scale (Radix Colors model) is generated from this seed, not hand-picked per step.
@@ -35,10 +35,10 @@ Geometric line diagrams and anatomy schematics — **not** 3D renders or gradien
 Direct, technical, unhyped. Write like a good API reference: short sentences, concrete nouns, no marketing superlatives. **Never** call anything "beautiful," "blazing fast," or "magical" — state what it does and what it costs. This applies to: docs prose, component descriptions, changeset summaries, CLI output, and error messages. An error message explains the problem and the fix, nothing else — no cute copy.
 
 ## Naming Conventions Recap (full detail in `CLAUDE.md`/`coding-standards.md`)
-- CSS variables: `--sandbar-` prefix
-- Internal DOM hooks: `data-sandbar-*`
-- Theme class: `.sandbar-ui-theme`, mode via `data-theme="light | dark | contrast"`
-- Storybook titles: `SandbarUI/<Category>/<Component>`
+- CSS variables: `--panux-` prefix
+- Internal DOM hooks: `data-panux-*`
+- Theme class: `.panux-ui-theme`, mode via `data-theme="light | dark | contrast"`
+- Storybook titles: `PanuxUI/<Category>/<Component>`
 
 ## Accessibility Baseline — WCAG 2.2 AA (see `testing-strategy.md` for the test gate)
 - Every token *pairing* actually used together (e.g. `fg.default` on `bg.canvas`, `fg.onAccent` on `accent.solid`) must hit 4.5:1 for normal text / 3:1 for large text — verify pairings, not tokens in isolation, since a token can pass against one background and fail against another

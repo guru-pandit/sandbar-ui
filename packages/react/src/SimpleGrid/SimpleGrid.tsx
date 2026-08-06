@@ -1,4 +1,4 @@
-import { Slot } from '@sandbar-ui/core';
+import { Slot } from '@panux-ui/core';
 import { forwardRef, type CSSProperties, type ComponentPropsWithoutRef, type ElementType } from 'react';
 import { simpleGridRecipe, type SimpleGridVariants } from './SimpleGrid.css';
 

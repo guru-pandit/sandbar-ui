@@ -1,7 +1,7 @@
 'use client';
 
-import { invariant, useControllableState } from '@sandbar-ui/core';
-import { themeClassName, type ThemeMode, type ThemeOverride } from '@sandbar-ui/tokens';
+import { invariant, useControllableState } from '@panux-ui/core';
+import { themeClassName, type ThemeMode, type ThemeOverride } from '@panux-ui/tokens';
 import {
   createContext,
   useContext,
@@ -30,7 +30,7 @@ export interface ThemeProviderProps extends ComponentPropsWithoutRef<'div'> {
 }
 
 /**
- * Owns theme state and renders the `.sandbar-ui-theme` root element every
+ * Owns theme state and renders the `.panux-ui-theme` root element every
  * semantic token selector targets (see packages/tokens/src/semantic/colorVars.css.ts).
  * Renders `ThemeScript` internally so nesting `ThemeProvider` anywhere in the
  * tree (not just at the app root) still gets no-FOUC correction scoped to

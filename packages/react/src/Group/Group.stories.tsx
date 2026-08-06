@@ -10,7 +10,7 @@ function Chip({ label }: { label: string }) {
 }
 
 const meta: Meta<typeof Group> = {
-  title: 'SandbarUI/Layout/Group',
+  title: 'PanuxUI/Layout/Group',
   component: Group,
   argTypes: {
     gap: { control: 'radio', options: ['none', 'sm', 'md', 'lg'] },

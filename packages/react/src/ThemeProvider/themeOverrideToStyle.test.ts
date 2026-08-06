@@ -1,4 +1,4 @@
-import { colorVars } from '@sandbar-ui/tokens';
+import { colorVars } from '@panux-ui/tokens';
 import { describe, expect, it } from 'vitest';
 import { themeOverrideToStyle } from './themeOverrideToStyle';
 

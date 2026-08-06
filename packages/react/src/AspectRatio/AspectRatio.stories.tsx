@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { AspectRatio } from './AspectRatio';
 
 const meta: Meta<typeof AspectRatio> = {
-  title: 'SandbarUI/Layout/AspectRatio',
+  title: 'PanuxUI/Layout/AspectRatio',
   component: AspectRatio,
   argTypes: {
     ratio: { control: 'number' },

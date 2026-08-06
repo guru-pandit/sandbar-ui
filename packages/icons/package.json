@@ -1,7 +1,7 @@
 {
-  "name": "@sandbar-ui/icons",
+  "name": "@panux-ui/icons",
   "version": "0.0.0",
-  "description": "Sandbar UI tree-shakeable SVG icon set.",
+  "description": "Panux UI tree-shakeable SVG icon set.",
   "license": "MIT",
   "type": "module",
   "sideEffects": false,

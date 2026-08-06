@@ -22,7 +22,7 @@ describe('Heading', () => {
     );
     const el = screen.getByTestId('h');
     expect(el.tagName).toBe('H4');
-    expect(el).toHaveClass('sandbar-size-xl');
+    expect(el).toHaveClass('panux-size-xl');
   });
 
   it('renders onto the child via asChild', () => {

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Stack } from './Stack';
 
 const meta: Meta<typeof Stack> = {
-  title: 'SandbarUI/Layout/Stack',
+  title: 'PanuxUI/Layout/Stack',
   component: Stack,
   argTypes: {
     direction: { control: 'radio', options: ['vertical', 'horizontal'] },

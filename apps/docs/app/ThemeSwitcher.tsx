@@ -1,7 +1,7 @@
 'use client';
 
-import { useTheme } from '@sandbar-ui/react';
-import type { ThemeMode } from '@sandbar-ui/tokens';
+import { useTheme } from '@panux-ui/react';
+import type { ThemeMode } from '@panux-ui/tokens';
 
 const MODES: { value: ThemeMode; label: string; icon: string }[] = [
   { value: 'light', label: 'Light', icon: '☀' },
@@ -11,8 +11,8 @@ const MODES: { value: ThemeMode; label: string; icon: string }[] = [
 
 /**
  * PROMPT.md's "one theme switcher re-themes all examples in place" — this
- * drives `@sandbar-ui/react`'s `ThemeProvider` directly (the actual
- * `--sandbar-*` tokens every component example/playground on the page
+ * drives `@panux-ui/react`'s `ThemeProvider` directly (the actual
+ * `--panux-*` tokens every component example/playground on the page
  * reads). Fumadocs' own chrome (sidebar/nav background) is intentionally
  * NOT wired to this — its `themeSwitch` is disabled in app/docs/layout.tsx
  * to avoid a second, unrelated toggle. Full unification is tracked as
@@ -20,7 +20,7 @@ const MODES: { value: ThemeMode; label: string; icon: string }[] = [
  *
  * Self-contained opaque background (not transparent) is deliberate: this
  * renders inside Fumadocs' nav, whose background color is independent of
- * `--sandbar-*` (the two theme systems aren't unified yet) — a transparent
+ * `--panux-*` (the two theme systems aren't unified yet) — a transparent
  * background here previously made unselected buttons invisible whenever
  * Fumadocs' chrome happened to be dark.
  */
@@ -36,8 +36,8 @@ export function ThemeSwitcher() {
         gap: 2,
         padding: 2,
         borderRadius: 8,
-        background: 'var(--sandbar-bg-subtle)',
-        border: '1px solid var(--sandbar-border-default)',
+        background: 'var(--panux-bg-subtle)',
+        border: '1px solid var(--panux-border-default)',
         marginRight: 4,
       }}
     >
@@ -58,8 +58,8 @@ export function ThemeSwitcher() {
             height: 28,
             borderRadius: 6,
             border: 'none',
-            background: theme === value ? 'var(--sandbar-accent-solid)' : 'transparent',
-            color: theme === value ? 'var(--sandbar-fg-onAccent)' : 'var(--sandbar-fg-default)',
+            background: theme === value ? 'var(--panux-accent-solid)' : 'transparent',
+            color: theme === value ? 'var(--panux-fg-onAccent)' : 'var(--panux-fg-default)',
             cursor: 'pointer',
             fontSize: 14,
             lineHeight: 1,

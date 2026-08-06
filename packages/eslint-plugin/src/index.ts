@@ -1,5 +1,5 @@
 /**
- * @sandbar-ui/eslint-plugin — misuse detection for consumers of @sandbar-ui/react.
+ * @panux-ui/eslint-plugin — misuse detection for consumers of @panux-ui/react.
  *
  * Phase 1 scaffold placeholder. Real rules (e.g. flagging asChild misuse,
  * missing controlled/uncontrolled pairing) land alongside the components they

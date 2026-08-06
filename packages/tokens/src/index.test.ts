@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { colorVars, staticVars, themeClassName } from './index';
 
-describe('@sandbar-ui/tokens', () => {
+describe('@panux-ui/tokens', () => {
   it('exposes a color contract of CSS var references', () => {
     expect(typeof colorVars.bg.canvas).toBe('string');
     expect(colorVars.bg.canvas).toContain('var(');
@@ -14,6 +14,6 @@ describe('@sandbar-ui/tokens', () => {
   });
 
   it('exposes the literal theme root class name', () => {
-    expect(themeClassName).toBe('sandbar-ui-theme');
+    expect(themeClassName).toBe('panux-ui-theme');
   });
 });

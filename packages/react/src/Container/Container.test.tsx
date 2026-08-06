@@ -11,7 +11,7 @@ describe('Container', () => {
 
   it('applies the lg size by default', () => {
     render(<Container data-testid="c">content</Container>);
-    expect(screen.getByTestId('c')).toHaveClass('sandbar-size-lg');
+    expect(screen.getByTestId('c')).toHaveClass('panux-size-lg');
   });
 
   it('applies an explicit size variant', () => {
@@ -20,7 +20,7 @@ describe('Container', () => {
         content
       </Container>,
     );
-    expect(screen.getByTestId('c')).toHaveClass('sandbar-size-sm');
+    expect(screen.getByTestId('c')).toHaveClass('panux-size-sm');
   });
 
   it('renders as a different element via `as`', () => {

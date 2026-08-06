@@ -1,4 +1,4 @@
-import { staticVars } from '@sandbar-ui/tokens';
+import { staticVars } from '@panux-ui/tokens';
 import { recipe, type RecipeVariants } from '@vanilla-extract/recipes';
 
 type Placement = 'top-start' | 'top-end' | 'bottom-start' | 'bottom-end';

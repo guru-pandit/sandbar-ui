@@ -1,6 +1,6 @@
 import { vanillaExtractPlugin } from '@vanilla-extract/esbuild-plugin';
 import { defineConfig } from 'tsup';
-import { sandbarUiIdentifiers } from './vanilla-extract-identifiers';
+import { panuxUiIdentifiers } from './vanilla-extract-identifiers';
 
 export default defineConfig({
   entry: ['src/index.ts'],
@@ -8,5 +8,5 @@ export default defineConfig({
   dts: true,
   sourcemap: true,
   clean: true,
-  esbuildPlugins: [vanillaExtractPlugin({ identifiers: sandbarUiIdentifiers })],
+  esbuildPlugins: [vanillaExtractPlugin({ identifiers: panuxUiIdentifiers })],
 });

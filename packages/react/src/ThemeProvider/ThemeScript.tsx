@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'sandbar-ui-theme';
+const STORAGE_KEY = 'panux-ui-theme';
 
 /**
  * Static, build-time-authored script source — no dynamic interpolation of

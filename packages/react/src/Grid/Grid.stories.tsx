@@ -10,7 +10,7 @@ function Swatch({ label }: { label: string }) {
 }
 
 const meta: Meta<typeof Grid> = {
-  title: 'SandbarUI/Layout/Grid',
+  title: 'PanuxUI/Layout/Grid',
   component: Grid,
   argTypes: {
     columns: { control: 'number' },

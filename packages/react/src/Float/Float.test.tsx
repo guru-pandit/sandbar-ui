@@ -12,8 +12,8 @@ describe('Float', () => {
   it('applies top-end/sm by default', () => {
     render(<Float data-testid="f">content</Float>);
     const el = screen.getByTestId('f');
-    expect(el).toHaveClass('sandbar-placement-top-end');
-    expect(el).toHaveClass('sandbar-offset-sm');
+    expect(el).toHaveClass('panux-placement-top-end');
+    expect(el).toHaveClass('panux-offset-sm');
   });
 
   it('applies an explicit placement/offset', () => {
@@ -23,8 +23,8 @@ describe('Float', () => {
       </Float>,
     );
     const el = screen.getByTestId('f');
-    expect(el).toHaveClass('sandbar-placement-bottom-start');
-    expect(el).toHaveClass('sandbar-offset-lg');
+    expect(el).toHaveClass('panux-placement-bottom-start');
+    expect(el).toHaveClass('panux-offset-lg');
   });
 
   it('renders as a different element via `as`', () => {

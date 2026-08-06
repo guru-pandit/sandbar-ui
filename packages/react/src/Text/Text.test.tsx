@@ -12,9 +12,9 @@ describe('Text', () => {
   it('applies the default size/weight/color variants', () => {
     render(<Text data-testid="t">content</Text>);
     const el = screen.getByTestId('t');
-    expect(el).toHaveClass('sandbar-size-md');
-    expect(el).toHaveClass('sandbar-weight-regular');
-    expect(el).toHaveClass('sandbar-color-default');
+    expect(el).toHaveClass('panux-size-md');
+    expect(el).toHaveClass('panux-weight-regular');
+    expect(el).toHaveClass('panux-color-default');
   });
 
   it('applies explicit variants', () => {
@@ -24,9 +24,9 @@ describe('Text', () => {
       </Text>,
     );
     const el = screen.getByTestId('t');
-    expect(el).toHaveClass('sandbar-size-lg');
-    expect(el).toHaveClass('sandbar-weight-bold');
-    expect(el).toHaveClass('sandbar-color-danger');
+    expect(el).toHaveClass('panux-size-lg');
+    expect(el).toHaveClass('panux-weight-bold');
+    expect(el).toHaveClass('panux-color-danger');
   });
 
   it('renders as a different element via `as`', () => {

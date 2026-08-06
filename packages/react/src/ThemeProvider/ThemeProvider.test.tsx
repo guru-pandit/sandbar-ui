@@ -19,14 +19,14 @@ describe('ThemeProvider', () => {
     window.localStorage.clear();
   });
 
-  it('renders the sandbar-ui-theme root with the default theme', () => {
+  it('renders the panux-ui-theme root with the default theme', () => {
     render(
       <ThemeProvider>
         <p>content</p>
       </ThemeProvider>,
     );
     const root = screen.getByText('content').parentElement!;
-    expect(root).toHaveClass('sandbar-ui-theme');
+    expect(root).toHaveClass('panux-ui-theme');
     expect(root).toHaveAttribute('data-theme', 'light');
   });
 
@@ -75,7 +75,7 @@ describe('ThemeProvider', () => {
       </ThemeProvider>,
     );
     await user.click(screen.getByText('go dark'));
-    expect(window.localStorage.getItem('sandbar-ui-theme')).toBe('dark');
+    expect(window.localStorage.getItem('panux-ui-theme')).toBe('dark');
   });
 
   it('applies themeOverride as inline CSS custom properties using the real generated var name', () => {
@@ -86,7 +86,7 @@ describe('ThemeProvider', () => {
     );
     const root = screen.getByText('content').parentElement!;
     const value = Array.from(root.style)
-      .filter((prop) => prop.startsWith('--sandbar-'))
+      .filter((prop) => prop.startsWith('--panux-'))
       .map((prop) => root.style.getPropertyValue(prop))
       .find((v) => v === '#ff0000');
     expect(value).toBe('#ff0000');

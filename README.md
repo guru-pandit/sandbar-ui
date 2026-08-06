@@ -1,4 +1,4 @@
-# Sandbar UI
+# Panux UI
 
 *The container for your interface.*
 
@@ -9,14 +9,14 @@ A production-grade, accessible, themeable React 19 / Next.js 15 component librar
 ## Layout
 ```
 packages/
-  core/            @sandbar-ui/core         — headless primitives, hooks, context
-  react/           @sandbar-ui/react        — styled components (main package)
-  tokens/          @sandbar-ui/tokens       — design tokens, theme contract
-  icons/           @sandbar-ui/icons        — tree-shakeable SVG icon set
-  cli/             @sandbar-ui/cli          — scaffolding + codemods (`sandbar` binary)
-  eslint-plugin/   @sandbar-ui/eslint-plugin — misuse detection
+  core/            @panux-ui/core         — headless primitives, hooks, context
+  react/           @panux-ui/react        — styled components (main package)
+  tokens/          @panux-ui/tokens       — design tokens, theme contract
+  icons/           @panux-ui/icons        — tree-shakeable SVG icon set
+  cli/             @panux-ui/cli          — scaffolding + codemods (`panux` binary)
+  eslint-plugin/   @panux-ui/eslint-plugin — misuse detection
 apps/
-  docs/            Next.js documentation site (sandbar-ui.design)
+  docs/            Next.js documentation site (panux-ui.design)
   storybook/       Visual regression surface for packages/react
   playground/      Vite dev sandbox
 docs/adr/          Architecture decision records
@@ -38,7 +38,7 @@ pnpm typecheck    # tsc --noEmit per package, dependency-ordered
 
 Per-package/app commands run the same way via pnpm's `--filter`, e.g.:
 ```bash
-pnpm --filter @sandbar-ui/react build
+pnpm --filter @panux-ui/react build
 pnpm --filter docs dev
 pnpm --filter storybook dev
 ```

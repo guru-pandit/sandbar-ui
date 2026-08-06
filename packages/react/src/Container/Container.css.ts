@@ -1,4 +1,4 @@
-import { staticVars } from '@sandbar-ui/tokens';
+import { staticVars } from '@panux-ui/tokens';
 import { recipe, type RecipeVariants } from '@vanilla-extract/recipes';
 
 // Breakpoint values are literal px strings — packages/tokens has no

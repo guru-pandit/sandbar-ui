@@ -1,5 +1,5 @@
 ---
-"@sandbar-ui/react": minor
+"@panux-ui/react": minor
 ---
 
 Complete the Layout category: add `Bleed`, `Flex`, `Float`, `Grid`, `Group`, `SimpleGrid`, and `Wrap`, each with a vanilla-extract recipe, unit tests, an axe a11y test, a Storybook story, and an MDX docs page with an auto-generated props table.

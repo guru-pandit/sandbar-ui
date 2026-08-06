@@ -27,7 +27,7 @@ You review the implementation diff and ensure critical paths are tested. You wri
 ## Project-specific scenarios
 - Overlay components (Dialog, Drawer, Popover, Menu, Tooltip, etc.): test initial focus placement, focus trap while open, focus restore to trigger on close, and scroll-lock behavior
 - Form components: test both the controlled and uncontrolled path explicitly, not just one with a comment claiming the other "works the same way"
-- Any component change touching `@sandbar-ui/core` hooks (`useControllableState`, `useFocusTrap`, `useDismissable`, `useMergedRefs`, `useId`): test the hook directly in `packages/core`, not only indirectly through a consuming component
+- Any component change touching `@panux-ui/core` hooks (`useControllableState`, `useFocusTrap`, `useDismissable`, `useMergedRefs`, `useId`): test the hook directly in `packages/core`, not only indirectly through a consuming component
 - Bundle-size-sensitive changes: confirm a `size-limit` check exists/passes for the touched entry point
 
 ## Output format

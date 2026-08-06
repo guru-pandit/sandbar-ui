@@ -137,9 +137,9 @@ const contrastValues = {
  * default, so consumers who never set the attribute still get a themed page.
  */
 export const colorVars = createGlobalTheme(
-  '.sandbar-ui-theme[data-theme="light"], .sandbar-ui-theme:not([data-theme])',
+  '.panux-ui-theme[data-theme="light"], .panux-ui-theme:not([data-theme])',
   lightValues,
 );
 
-createGlobalTheme('.sandbar-ui-theme[data-theme="dark"]', colorVars, darkValues);
-createGlobalTheme('.sandbar-ui-theme[data-theme="contrast"]', colorVars, contrastValues);
+createGlobalTheme('.panux-ui-theme[data-theme="dark"]', colorVars, darkValues);
+createGlobalTheme('.panux-ui-theme[data-theme="contrast"]', colorVars, contrastValues);

@@ -7,9 +7,9 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <DocsLayout
       tree={source.pageTree}
-      nav={{ title: <span style={{ whiteSpace: 'nowrap', fontWeight: 600 }}>Sandbar UI</span> }}
+      nav={{ title: <span style={{ whiteSpace: 'nowrap', fontWeight: 600 }}>Panux UI</span> }}
       // Swaps Fumadocs' own theme switch (next-themes, unrelated to
-      // @sandbar-ui/react's ThemeProvider) for ours, in the same top-right
+      // @panux-ui/react's ThemeProvider) for ours, in the same top-right
       // navbar slot — see app/ThemeSwitcher.tsx.
       themeSwitch={{ component: <ThemeSwitcher /> }}
     >

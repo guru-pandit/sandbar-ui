@@ -15,7 +15,7 @@ You write production-ready code based on an approved plan. You do NOT change sco
 
 ## Pre-flight checklist (verify before writing any code)
 - [ ] Approved plan exists — do not invent scope
-- [ ] Component/hook placed in the correct layer: headless behavior in `@sandbar-ui/core`, styled output in `@sandbar-ui/react` — never mix the two in one file
+- [ ] Component/hook placed in the correct layer: headless behavior in `@panux-ui/core`, styled output in `@panux-ui/react` — never mix the two in one file
 - [ ] Anything with sub-parts uses the compound-component pattern (`Component.Root`/`.Part`, context-backed, throws a clear error when a part is used outside `Root`)
 - [ ] Every interactive component supports `asChild` via the shared `Slot` primitive — no ad hoc `cloneElement`
 - [ ] Every stateful component supports controlled + uncontrolled via `useControllableState` — not hand-rolled state
@@ -30,7 +30,7 @@ You write production-ready code based on an approved plan. You do NOT change sco
 ## Hard rules
 - Do NOT change the token contract, the theme engine, or a published component's public prop API unless the plan explicitly approves it as a breaking change (see `api-conventions.md`)
 - Do NOT refactor code outside task scope
-- Do NOT add packages — propose in planning phase, especially any runtime dependency of `@sandbar-ui/core`/`@sandbar-ui/react`
+- Do NOT add packages — propose in planning phase, especially any runtime dependency of `@panux-ui/core`/`@panux-ui/react`
 - Do NOT build a component outside the approved scope list in `architecture.md` without explicit plan approval
 - Do NOT skip the axe a11y test — a component without one is not done
 

@@ -1,6 +1,6 @@
 import { createHighlighterCore, type HighlighterCore } from 'shiki/core';
 import { createJavaScriptRegexEngine } from 'shiki/engine/javascript';
-import { sandbarShikiDark, sandbarShikiLight } from './shiki-theme';
+import { panuxShikiDark, panuxShikiLight } from './shiki-theme';
 
 const LANG_IMPORTS = {
   tsx: () => import('shiki/langs/tsx.mjs'),
@@ -25,7 +25,7 @@ let highlighterPromise: Promise<HighlighterCore> | null = null;
 function getHighlighter(): Promise<HighlighterCore> {
   if (!highlighterPromise) {
     highlighterPromise = createHighlighterCore({
-      themes: [sandbarShikiLight, sandbarShikiDark],
+      themes: [panuxShikiLight, panuxShikiDark],
       langs: Object.values(LANG_IMPORTS).map((load) => load()),
       engine: createJavaScriptRegexEngine(),
     });
@@ -44,7 +44,7 @@ export async function highlightCode(code: string, lang: HighlightLang = 'tsx'): 
   const highlighter = await getHighlighter();
   return highlighter.codeToHtml(code, {
     lang,
-    themes: { light: 'sandbar-light', dark: 'sandbar-dark' },
+    themes: { light: 'panux-light', dark: 'panux-dark' },
     defaultColor: false,
   });
 }

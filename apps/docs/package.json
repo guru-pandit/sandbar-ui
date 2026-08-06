@@ -2,7 +2,7 @@
   "name": "docs",
   "version": "0.0.0",
   "private": true,
-  "description": "Sandbar UI documentation website (sandbar-ui.design).",
+  "description": "Panux UI documentation website (panux-ui.design).",
   "scripts": {
     "predev": "node scripts/generate-props-tables.mjs",
     "dev": "next dev",
@@ -13,8 +13,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@sandbar-ui/react": "workspace:*",
-    "@sandbar-ui/tokens": "workspace:*",
+    "@panux-ui/react": "workspace:*",
+    "@panux-ui/tokens": "workspace:*",
     "fumadocs-core": "^16.12.1",
     "fumadocs-mdx": "^15.2.0",
     "fumadocs-ui": "^16.12.1",

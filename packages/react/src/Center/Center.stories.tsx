@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Center } from './Center';
 
 const meta: Meta<typeof Center> = {
-  title: 'SandbarUI/Layout/Center',
+  title: 'PanuxUI/Layout/Center',
   component: Center,
   argTypes: {
     inline: { control: 'boolean' },

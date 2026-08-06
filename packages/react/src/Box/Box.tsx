@@ -1,8 +1,8 @@
-import { Slot } from '@sandbar-ui/core';
+import { Slot } from '@panux-ui/core';
 import { forwardRef, type ComponentPropsWithoutRef, type ElementType } from 'react';
 
 export interface BoxProps extends ComponentPropsWithoutRef<'div'> {
-  /** Render onto the single child instead of Box's own element — see @sandbar-ui/core's Slot. Takes priority over `as`. */
+  /** Render onto the single child instead of Box's own element — see @panux-ui/core's Slot. Takes priority over `as`. */
   asChild?: boolean;
   /** Element/component to render as. @default 'div' */
   as?: ElementType;

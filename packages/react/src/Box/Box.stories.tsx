@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Box } from './Box';
 
 const meta: Meta<typeof Box> = {
-  title: 'SandbarUI/Layout/Box',
+  title: 'PanuxUI/Layout/Box',
   component: Box,
   argTypes: {
     as: { control: 'text' },

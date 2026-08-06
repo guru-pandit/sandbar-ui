@@ -10,7 +10,7 @@ function Tag({ label }: { label: string }) {
 }
 
 const meta: Meta<typeof Wrap> = {
-  title: 'SandbarUI/Layout/Wrap',
+  title: 'PanuxUI/Layout/Wrap',
   component: Wrap,
   argTypes: {
     gap: { control: 'radio', options: ['none', 'sm', 'md', 'lg'] },

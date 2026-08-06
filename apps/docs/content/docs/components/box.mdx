@@ -4,7 +4,7 @@ description: The minimal polymorphic primitive every layout component builds on.
 ---
 
 ```tsx
-import { Box } from '@sandbar-ui/react';
+import { Box } from '@panux-ui/react';
 ```
 
 `Box` renders a `<div>` by default, or any element/component via `as`, or onto its single child via `asChild`. It has no styling of its own — see `Center`/`Container`/`Stack` for the token-driven spacing/sizing recipes built on top of it.
@@ -23,7 +23,7 @@ Use the `as` prop to change the rendered element.
 
 ## Customization
 
-`Box` has no recipe and no variants — it's a bare `as`/`asChild` primitive by design, not a partial deliverable. There's nothing to extend via `sandbar add box`; styling is entirely the consumer's (`className`/`style`, or a component built on top of `Box`).
+`Box` has no recipe and no variants — it's a bare `as`/`asChild` primitive by design, not a partial deliverable. There's nothing to extend via `panux add box`; styling is entirely the consumer's (`className`/`style`, or a component built on top of `Box`).
 
 ## Props
 
@@ -53,4 +53,4 @@ Use the `as` prop to change the rendered element.
 
 `Box` has no `.css.ts` recipe — it forwards `className`/`style` straight through, so every override is a plain CSS/token decision at the call site, not a variant to pick from.
 
-[Source](https://github.com/sandbar-ui/sandbar-ui/tree/main/packages/react/src/Box) · [Storybook](https://storybook.sandbar-ui.design/?path=/story/sandbarui-layout-box--default)
+[Source](https://github.com/panux-ui/panux-ui/tree/main/packages/react/src/Box) · [Storybook](https://storybook.panux-ui.design/?path=/story/panuxui-layout-box--default)

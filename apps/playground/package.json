@@ -2,15 +2,15 @@
   "name": "playground",
   "version": "0.0.0",
   "private": true,
-  "description": "Sandbar UI dev sandbox.",
+  "description": "Panux UI dev sandbox.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@sandbar-ui/react": "workspace:*",
-    "@sandbar-ui/tokens": "workspace:*",
+    "@panux-ui/react": "workspace:*",
+    "@panux-ui/tokens": "workspace:*",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },

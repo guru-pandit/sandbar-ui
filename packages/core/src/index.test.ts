@@ -12,7 +12,7 @@ import {
   warnOnce,
 } from './index';
 
-describe('@sandbar-ui/core barrel', () => {
+describe('@panux-ui/core barrel', () => {
   it('re-exports every primitive and hook', () => {
     expect(typeof Slot).toBe('object'); // forwardRef component
     expect(typeof Portal).toBe('function');

@@ -1,7 +1,7 @@
 {
-  "name": "@sandbar-ui/react",
+  "name": "@panux-ui/react",
   "version": "0.0.0",
-  "description": "Sandbar UI — the container for your interface. Main styled component package.",
+  "description": "Panux UI — the container for your interface. Main styled component package.",
   "license": "MIT",
   "type": "module",
   "sideEffects": false,
@@ -29,8 +29,8 @@
     "react-dom": "^19.0.0"
   },
   "dependencies": {
-    "@sandbar-ui/core": "workspace:*",
-    "@sandbar-ui/tokens": "workspace:*",
+    "@panux-ui/core": "workspace:*",
+    "@panux-ui/tokens": "workspace:*",
     "@vanilla-extract/recipes": "^0.5.7"
   },
   "devDependencies": {

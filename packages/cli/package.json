@@ -1,12 +1,12 @@
 {
-  "name": "@sandbar-ui/cli",
+  "name": "@panux-ui/cli",
   "version": "0.0.0",
-  "description": "Sandbar UI scaffolding and codemods.",
+  "description": "Panux UI scaffolding and codemods.",
   "license": "MIT",
   "type": "module",
   "sideEffects": false,
   "bin": {
-    "sandbar": "./dist/index.js"
+    "panux": "./dist/index.js"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

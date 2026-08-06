@@ -1,10 +1,10 @@
-import { Placeholder, ThemeProvider, version } from '@sandbar-ui/react';
+import { Placeholder, ThemeProvider, version } from '@panux-ui/react';
 
 export function App() {
   return (
     <ThemeProvider>
-      <h1>Sandbar UI Playground</h1>
-      <p>Phase 1 scaffold — @sandbar-ui/react placeholder version {version}.</p>
+      <h1>Panux UI Playground</h1>
+      <p>Phase 1 scaffold — @panux-ui/react placeholder version {version}.</p>
       <Placeholder />
     </ThemeProvider>
   );

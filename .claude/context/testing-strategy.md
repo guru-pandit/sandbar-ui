@@ -65,7 +65,7 @@ Co-locate test files next to source: `Dialog.test.tsx`, `Dialog.a11y.test.tsx`, 
 | `matchMedia` (theme/`prefers-reduced-motion`) | Mock per-test in jsdom setup — jsdom has no real implementation |
 | MDX/docs content in unit tests | Don't unit-test MDX prose — that's Lighthouse/axe/manual-review territory |
 
-Never mock the module under test. Never mock `@sandbar-ui/core` hooks from within `packages/react` tests — if a hook needs different behavior for a test, that's a sign the test belongs at the hook's own level in `packages/core`.
+Never mock the module under test. Never mock `@panux-ui/core` hooks from within `packages/react` tests — if a hook needs different behavior for a test, that's a sign the test belongs at the hook's own level in `packages/core`.
 
 ## Bundle Size Gate
 `size-limit` runs in CI against every component's per-entry-point bundle. A PR that grows a component's bundle size past its configured budget fails CI — either justify the budget increase explicitly in the PR or find the regression (an accidentally-bundled dependency is the most common cause).

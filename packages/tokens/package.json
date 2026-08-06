@@ -1,7 +1,7 @@
 {
-  "name": "@sandbar-ui/tokens",
+  "name": "@panux-ui/tokens",
   "version": "0.0.0",
-  "description": "Sandbar UI design tokens and theme contract.",
+  "description": "Panux UI design tokens and theme contract.",
   "license": "MIT",
   "type": "module",
   "sideEffects": ["./dist/index.css"],

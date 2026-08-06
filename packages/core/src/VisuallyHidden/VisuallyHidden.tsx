@@ -4,7 +4,7 @@ import { Slot } from '../Slot/Slot';
 /**
  * The standard "visually hidden but present for assistive tech" clip
  * technique. Inline styles are the one legitimate exception to "no inline
- * style" here — this is a headless (@sandbar-ui/core) primitive with no
+ * style" here — this is a headless (@panux-ui/core) primitive with no
  * dependency on the styling engine, and the technique's exact values are
  * part of its correctness, not a themeable concern. See
  * .claude/context/coding-standards.md §Forbidden Patterns.

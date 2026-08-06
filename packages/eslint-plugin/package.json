@@ -1,7 +1,7 @@
 {
-  "name": "@sandbar-ui/eslint-plugin",
+  "name": "@panux-ui/eslint-plugin",
   "version": "0.0.0",
-  "description": "Sandbar UI misuse detection lint rules.",
+  "description": "Panux UI misuse detection lint rules.",
   "license": "MIT",
   "type": "module",
   "sideEffects": false,

@@ -1,5 +1,5 @@
 import { defineConfig, defineDocs } from 'fumadocs-mdx/config';
-import { sandbarShikiDark, sandbarShikiLight } from './lib/shiki-theme';
+import { panuxShikiDark, panuxShikiLight } from './lib/shiki-theme';
 
 export const docs = defineDocs({
   dir: 'content/docs',
@@ -19,7 +19,7 @@ export const docs = defineDocs({
 export default defineConfig({
   mdxOptions: {
     rehypeCodeOptions: {
-      themes: { light: sandbarShikiLight, dark: sandbarShikiDark },
+      themes: { light: panuxShikiLight, dark: panuxShikiDark },
       defaultColor: false,
     },
   },

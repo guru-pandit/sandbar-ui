@@ -1,4 +1,4 @@
-import { colorVars, type ThemeOverride } from '@sandbar-ui/tokens';
+import { colorVars, type ThemeOverride } from '@panux-ui/tokens';
 import type { CSSProperties } from 'react';
 
 const VAR_REF = /var\((--[a-zA-Z0-9-]+)\)/;
@@ -11,7 +11,7 @@ function extractVarName(varRef: string): string | null {
 /**
  * Walks a runtime override object (raw values) alongside the `colorVars`
  * contract (var-reference strings) in lockstep, so a consumer's
- * `{ accent: { solid: '#ff0000' } }` becomes `{ '--sandbar-accent-solid': '#ff0000' }` —
+ * `{ accent: { solid: '#ff0000' } }` becomes `{ '--panux-accent-solid': '#ff0000' }` —
  * the actual generated variable name, not a guessed one. See
  * docs/adr/0001-styling-engine-and-rsc-strategy.md §3 Theming Approach.
  */

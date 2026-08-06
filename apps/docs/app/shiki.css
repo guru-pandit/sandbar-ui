@@ -4,7 +4,7 @@
  * and source.config.ts. Both color AND background must switch off the same
  * signal (our own data-theme attribute), overriding Fumadocs' own
  * next-themes-driven `bg-fd-card` background with `!important` — Fumadocs'
- * site chrome (sidebar/nav) isn't wired to @sandbar-ui/react's
+ * site chrome (sidebar/nav) isn't wired to @panux-ui/react's
  * ThemeProvider (see apps/docs/app/layout.tsx's comment), so leaving the
  * background on Fumadocs' own mechanism let dark-mode (near-white) text
  * land on a background that never actually switched, making it nearly
@@ -15,7 +15,7 @@
 .shiki {
   color: var(--shiki-light);
   background-color: var(--shiki-light-bg) !important;
-  font-family: var(--sandbar-font-family-mono);
+  font-family: var(--panux-font-family-mono);
 }
 
 .shiki span {
@@ -23,11 +23,11 @@
   background-color: transparent !important;
 }
 
-.sandbar-ui-theme[data-theme='dark'] .shiki {
+.panux-ui-theme[data-theme='dark'] .shiki {
   color: var(--shiki-dark);
   background-color: var(--shiki-dark-bg) !important;
 }
 
-.sandbar-ui-theme[data-theme='dark'] .shiki span {
+.panux-ui-theme[data-theme='dark'] .shiki span {
   color: var(--shiki-dark);
 }

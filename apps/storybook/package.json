@@ -2,15 +2,15 @@
   "name": "storybook",
   "version": "0.0.0",
   "private": true,
-  "description": "Sandbar UI Storybook — visual regression surface for @sandbar-ui/react.",
+  "description": "Panux UI Storybook — visual regression surface for @panux-ui/react.",
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build": "storybook build",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@sandbar-ui/react": "workspace:*",
-    "@sandbar-ui/tokens": "workspace:*",
+    "@panux-ui/react": "workspace:*",
+    "@panux-ui/tokens": "workspace:*",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },

@@ -1,4 +1,4 @@
-import { colorVars, staticVars } from '@sandbar-ui/tokens';
+import { colorVars, staticVars } from '@panux-ui/tokens';
 import { recipe, type RecipeVariants } from '@vanilla-extract/recipes';
 
 export const textRecipe = recipe({

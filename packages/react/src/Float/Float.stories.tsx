@@ -23,7 +23,7 @@ function Dot() {
 }
 
 const meta: Meta<typeof Float> = {
-  title: 'SandbarUI/Layout/Float',
+  title: 'PanuxUI/Layout/Float',
   component: Float,
   argTypes: {
     placement: { control: 'radio', options: ['top-start', 'top-end', 'bottom-start', 'bottom-end'] },

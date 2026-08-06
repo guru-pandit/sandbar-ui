@@ -12,8 +12,8 @@ describe('Wrap', () => {
   it('applies the default variants', () => {
     render(<Wrap data-testid="w">content</Wrap>);
     const el = screen.getByTestId('w');
-    expect(el).toHaveClass('sandbar-gap-sm');
-    expect(el).toHaveClass('sandbar-align-start');
+    expect(el).toHaveClass('panux-gap-sm');
+    expect(el).toHaveClass('panux-align-start');
   });
 
   it('applies explicit variants', () => {
@@ -23,8 +23,8 @@ describe('Wrap', () => {
       </Wrap>,
     );
     const el = screen.getByTestId('w');
-    expect(el).toHaveClass('sandbar-gap-lg');
-    expect(el).toHaveClass('sandbar-align-center');
+    expect(el).toHaveClass('panux-gap-lg');
+    expect(el).toHaveClass('panux-align-center');
   });
 
   it('renders as a different element via `as`', () => {

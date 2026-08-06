@@ -4,7 +4,7 @@ description: Absolutely-positions a child at a corner of its parent — e.g. a s
 ---
 
 ```tsx
-import { Float } from '@sandbar-ui/react';
+import { Float } from '@panux-ui/react';
 ```
 
 ## Usage
@@ -47,7 +47,7 @@ A status dot pinned to an `Avatar`'s corner:
 <Box style={{ position: 'relative', width: 'fit-content' }}>
   <Avatar src="/user.jpg" />
   <Float placement="bottom-end" aria-hidden="true">
-    <Box style={{ width: 10, height: 10, borderRadius: '50%', background: 'var(--sandbar-success-solid)' }} />
+    <Box style={{ width: 10, height: 10, borderRadius: '50%', background: 'var(--panux-success-solid)' }} />
   </Float>
 </Box>
 ```
@@ -56,4 +56,4 @@ A status dot pinned to an `Avatar`'s corner:
 
 `placement` and `offset` are vanilla-extract recipe variants — real styles live in `compoundVariants` since the active `inset*` property depends on which corner is selected (see the comment in `Float.css.ts`). Override with `className`/`style` for anything the variants don't cover.
 
-[Source](https://github.com/sandbar-ui/sandbar-ui/tree/main/packages/react/src/Float) · [Storybook](https://storybook.sandbar-ui.design/?path=/story/sandbarui-layout-float--default)
+[Source](https://github.com/panux-ui/panux-ui/tree/main/packages/react/src/Float) · [Storybook](https://storybook.panux-ui.design/?path=/story/panuxui-layout-float--default)

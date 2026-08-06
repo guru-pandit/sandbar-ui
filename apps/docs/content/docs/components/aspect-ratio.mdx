@@ -4,7 +4,7 @@ description: Constrains a single child to a fixed width-to-height ratio — imag
 ---
 
 ```tsx
-import { AspectRatio } from '@sandbar-ui/react';
+import { AspectRatio } from '@panux-ui/react';
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ Use the `ratio` prop to change the width-to-height ratio. Accepts any number —
 
 ## Customization
 
-`AspectRatio` has no discrete variants — `ratio` is a continuous number, not a fixed size/variant scale — so there's no recipe-level `variants` block to extend via `sandbar add aspect-ratio`. To change the *default* ratio for every unstyled usage in your app, wrap it:
+`AspectRatio` has no discrete variants — `ratio` is a continuous number, not a fixed size/variant scale — so there's no recipe-level `variants` block to extend via `panux add aspect-ratio`. To change the *default* ratio for every unstyled usage in your app, wrap it:
 
 ```tsx
 function Thumbnail(props: AspectRatioProps) {
@@ -65,4 +65,4 @@ Wrapping an embedded video:
 
 The ratio itself is applied as an inline `aspectRatio` style (a continuous value, not expressible as a token — see `AspectRatio.css.ts`). Everything else — `position`, child sizing, `object-fit` on media children — comes from the recipe and can be overridden via `className`.
 
-[Source](https://github.com/sandbar-ui/sandbar-ui/tree/main/packages/react/src/AspectRatio) · [Storybook](https://storybook.sandbar-ui.design/?path=/story/sandbarui-layout-aspectratio--default)
+[Source](https://github.com/panux-ui/panux-ui/tree/main/packages/react/src/AspectRatio) · [Storybook](https://storybook.panux-ui.design/?path=/story/panuxui-layout-aspectratio--default)

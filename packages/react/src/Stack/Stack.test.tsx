@@ -11,7 +11,7 @@ describe('Stack', () => {
 
   it('applies the vertical direction by default', () => {
     render(<Stack data-testid="stack">content</Stack>);
-    expect(screen.getByTestId('stack')).toHaveClass('sandbar-direction-vertical');
+    expect(screen.getByTestId('stack')).toHaveClass('panux-direction-vertical');
   });
 
   it('applies the horizontal direction variant', () => {
@@ -20,7 +20,7 @@ describe('Stack', () => {
         content
       </Stack>,
     );
-    expect(screen.getByTestId('stack')).toHaveClass('sandbar-direction-horizontal');
+    expect(screen.getByTestId('stack')).toHaveClass('panux-direction-horizontal');
   });
 
   it('applies gap/align/wrap variants', () => {
@@ -30,9 +30,9 @@ describe('Stack', () => {
       </Stack>,
     );
     const el = screen.getByTestId('stack');
-    expect(el).toHaveClass('sandbar-gap-lg');
-    expect(el).toHaveClass('sandbar-align-center');
-    expect(el).toHaveClass('sandbar-wrap-true');
+    expect(el).toHaveClass('panux-gap-lg');
+    expect(el).toHaveClass('panux-align-center');
+    expect(el).toHaveClass('panux-wrap-true');
   });
 
   it('renders as a different element via `as`', () => {
@@ -63,6 +63,6 @@ describe('Stack', () => {
     );
     const el = screen.getByTestId('stack');
     expect(el).toHaveClass('custom');
-    expect(el).toHaveClass('sandbar-direction-vertical');
+    expect(el).toHaveClass('panux-direction-vertical');
   });
 });

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Heading } from './Heading';
 
 const meta: Meta<typeof Heading> = {
-  title: 'SandbarUI/Typography/Heading',
+  title: 'PanuxUI/Typography/Heading',
   component: Heading,
   argTypes: {
     level: { control: 'radio', options: [1, 2, 3, 4, 5, 6] },

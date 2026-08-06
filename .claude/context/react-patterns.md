@@ -28,7 +28,7 @@ export const Dialog = { Root, Trigger, Content, Close, Title, Description };
 Consumers compose: `<Dialog.Root><Dialog.Trigger asChild><MyButton/></Dialog.Trigger><Dialog.Content>...</Dialog.Content></Dialog.Root>`.
 
 ## `asChild` — the Slot Pattern
-`asChild` merges the component's behavior/props onto the single child element instead of rendering its own DOM node — the primary style/element escape hatch (Radix Slot pattern). Implement via a shared `Slot` primitive in `@sandbar-ui/core`, never ad hoc `cloneElement`:
+`asChild` merges the component's behavior/props onto the single child element instead of rendering its own DOM node — the primary style/element escape hatch (Radix Slot pattern). Implement via a shared `Slot` primitive in `@panux-ui/core`, never ad hoc `cloneElement`:
 ```tsx
 // packages/core/src/Slot/Slot.tsx
 export const Slot = forwardRef<HTMLElement, SlotProps>(({ children, ...slotProps }, ref) => {

@@ -1,4 +1,4 @@
-import { Slot } from '@sandbar-ui/core';
+import { Slot } from '@panux-ui/core';
 import { forwardRef, type ComponentPropsWithoutRef, type ElementType } from 'react';
 import { flexRecipe, type FlexVariants } from './Flex.css';
 

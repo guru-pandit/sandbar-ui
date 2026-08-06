@@ -10,7 +10,7 @@ function Swatch({ label }: { label: string }) {
 }
 
 const meta: Meta<typeof SimpleGrid> = {
-  title: 'SandbarUI/Layout/SimpleGrid',
+  title: 'PanuxUI/Layout/SimpleGrid',
   component: SimpleGrid,
   argTypes: {
     columns: { control: 'number' },

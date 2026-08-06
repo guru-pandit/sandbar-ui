@@ -12,8 +12,8 @@ describe('Bleed', () => {
   it('applies inline=md and block=none by default', () => {
     render(<Bleed data-testid="b">content</Bleed>);
     const el = screen.getByTestId('b');
-    expect(el).toHaveClass('sandbar-inline-md');
-    expect(el).toHaveClass('sandbar-block-none');
+    expect(el).toHaveClass('panux-inline-md');
+    expect(el).toHaveClass('panux-block-none');
   });
 
   it('applies explicit inline/block variants', () => {
@@ -23,8 +23,8 @@ describe('Bleed', () => {
       </Bleed>,
     );
     const el = screen.getByTestId('b');
-    expect(el).toHaveClass('sandbar-inline-lg');
-    expect(el).toHaveClass('sandbar-block-sm');
+    expect(el).toHaveClass('panux-inline-lg');
+    expect(el).toHaveClass('panux-block-sm');
   });
 
   it('renders as a different element via `as`', () => {

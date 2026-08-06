@@ -12,8 +12,8 @@ describe('Grid', () => {
   it('applies gap=md and align=stretch by default', () => {
     render(<Grid data-testid="g">content</Grid>);
     const el = screen.getByTestId('g');
-    expect(el).toHaveClass('sandbar-gap-md');
-    expect(el).toHaveClass('sandbar-align-stretch');
+    expect(el).toHaveClass('panux-gap-md');
+    expect(el).toHaveClass('panux-align-stretch');
   });
 
   it('applies explicit gap/align variants', () => {
@@ -23,8 +23,8 @@ describe('Grid', () => {
       </Grid>,
     );
     const el = screen.getByTestId('g');
-    expect(el).toHaveClass('sandbar-gap-lg');
-    expect(el).toHaveClass('sandbar-align-center');
+    expect(el).toHaveClass('panux-gap-lg');
+    expect(el).toHaveClass('panux-align-center');
   });
 
   it('applies `columns` as an inline gridTemplateColumns style', () => {

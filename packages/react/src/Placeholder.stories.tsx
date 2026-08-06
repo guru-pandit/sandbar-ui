@@ -7,7 +7,7 @@ import { Placeholder } from './Placeholder';
  * land (Phase 5).
  */
 const meta: Meta<typeof Placeholder> = {
-  title: 'SandbarUI/_Scaffold/Placeholder',
+  title: 'PanuxUI/_Scaffold/Placeholder',
   component: Placeholder,
 };
 

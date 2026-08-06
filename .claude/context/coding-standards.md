@@ -8,8 +8,8 @@
 | Component file | PascalCase, `.tsx` | `Dialog.tsx` |
 | Recipe/style file | `<Component>.css.ts` | `Dialog.css.ts` |
 | Public hook | `use` + PascalCase suffix | `useControllableState`, `useFocusTrap` |
-| CSS variable | `--sandbar-` prefix, kebab-case | `--sandbar-color-bg-canvas`, `--sandbar-space-4` |
-| Internal data attribute | `data-sandbar-*` | `data-sandbar-focus-scope` |
+| CSS variable | `--panux-` prefix, kebab-case | `--panux-color-bg-canvas`, `--panux-space-4` |
+| Internal data attribute | `data-panux-*` | `data-panux-focus-scope` |
 | State data attribute | `data-<state>` | `data-state="open"`, `data-disabled` |
 | Token export | camelCase, tier-scoped | `semanticTokens.bg.canvas` |
 | Constant value | SCREAMING_SNAKE_CASE | `DEFAULT_ANIMATION_DURATION` |
@@ -38,11 +38,11 @@ apps/docs/content/                  MDX per the information architecture in arch
 - Dev-only warnings are gated by `process.env.NODE_ENV !== 'production'` so they strip from production builds entirely — never ship a `console.warn` that survives tree-shaking into a consumer's prod bundle
 
 ## Logging
-- No `console.log` anywhere in `packages/*` source — use the shared dev-only `warn()`/`invariant()` utils from `@sandbar-ui/core`
+- No `console.log` anywhere in `packages/*` source — use the shared dev-only `warn()`/`invariant()` utils from `@panux-ui/core`
 - `apps/docs`/`apps/playground` may log for their own debugging but nothing ships to a published package
 
 ## Async Patterns
-- `async/await` over `.then()/.catch()` chains — mainly relevant in `@sandbar-ui/cli` (codemods, scaffolding) and `apps/docs` (MDX/data loading)
+- `async/await` over `.then()/.catch()` chains — mainly relevant in `@panux-ui/cli` (codemods, scaffolding) and `apps/docs` (MDX/data loading)
 - Components themselves are almost entirely synchronous render logic; async state (e.g. `Combobox` remote options) is the consumer's responsibility via props, not baked into the component
 
 ## Forbidden Patterns

@@ -8,9 +8,9 @@ const tabButtonStyle = (active: boolean): CSSProperties => ({
   fontSize: 13,
   fontWeight: 500,
   border: 'none',
-  borderBottom: active ? '2px solid var(--sandbar-accent-solid)' : '2px solid transparent',
+  borderBottom: active ? '2px solid var(--panux-accent-solid)' : '2px solid transparent',
   background: 'transparent',
-  color: active ? 'var(--sandbar-fg-default)' : 'var(--sandbar-fg-muted)',
+  color: active ? 'var(--panux-fg-default)' : 'var(--panux-fg-muted)',
   cursor: 'pointer',
 });
 
@@ -67,11 +67,11 @@ export function Example({
       // regardless of which variant was passed.
       className="not-prose"
       style={{
-        border: '1px solid var(--sandbar-border-default)',
-        borderRadius: 'var(--sandbar-radius-md)',
+        border: '1px solid var(--panux-border-default)',
+        borderRadius: 'var(--panux-radius-md)',
         overflow: 'hidden',
         margin: '16px 0',
-        background: 'var(--sandbar-bg-canvas)',
+        background: 'var(--panux-bg-canvas)',
       }}
     >
       <div
@@ -79,8 +79,8 @@ export function Example({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          borderBottom: '1px solid var(--sandbar-border-default)',
-          background: 'var(--sandbar-bg-subtle)',
+          borderBottom: '1px solid var(--panux-border-default)',
+          background: 'var(--panux-bg-subtle)',
         }}
       >
         <div style={{ display: 'flex' }}>
@@ -98,10 +98,10 @@ export function Example({
             marginRight: 8,
             padding: '4px 10px',
             fontSize: 12,
-            borderRadius: 'var(--sandbar-radius-sm)',
-            border: '1px solid var(--sandbar-border-default)',
-            background: 'var(--sandbar-bg-canvas)',
-            color: 'var(--sandbar-fg-muted)',
+            borderRadius: 'var(--panux-radius-sm)',
+            border: '1px solid var(--panux-border-default)',
+            background: 'var(--panux-bg-canvas)',
+            color: 'var(--panux-fg-muted)',
             cursor: 'pointer',
           }}
         >
@@ -134,9 +134,9 @@ export function Example({
             margin: 0,
             padding: 16,
             overflow: 'auto',
-            background: 'var(--sandbar-bg-subtle)',
+            background: 'var(--panux-bg-subtle)',
             fontSize: 13,
-            fontFamily: 'var(--sandbar-font-family-mono)',
+            fontFamily: 'var(--panux-font-family-mono)',
           }}
         >
           <code>{code}</code>

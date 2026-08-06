@@ -14,22 +14,22 @@ Do not silently default to one option mid-task. If `docs/adr/0001-*.md` doesn't 
 
 ## Monorepo Layout
 ```
-sandbar-ui/
+panux-ui/
 ├─ packages/
-│  ├─ core/           @sandbar-ui/core    — headless primitives, hooks, context
-│  ├─ react/           @sandbar-ui/react   — styled components (main package)
-│  ├─ tokens/          @sandbar-ui/tokens  — design tokens, theme contract
-│  ├─ icons/           @sandbar-ui/icons   — SVG icon set, tree-shakeable
-│  ├─ cli/             @sandbar-ui/cli     — scaffolding + codemods
-│  └─ eslint-plugin/   @sandbar-ui/eslint-plugin
+│  ├─ core/           @panux-ui/core    — headless primitives, hooks, context
+│  ├─ react/           @panux-ui/react   — styled components (main package)
+│  ├─ tokens/          @panux-ui/tokens  — design tokens, theme contract
+│  ├─ icons/           @panux-ui/icons   — SVG icon set, tree-shakeable
+│  ├─ cli/             @panux-ui/cli     — scaffolding + codemods
+│  └─ eslint-plugin/   @panux-ui/eslint-plugin
 └─ apps/
-   ├─ docs/            Next.js documentation website (sandbar-ui.design)
+   ├─ docs/            Next.js documentation website (panux-ui.design)
    ├─ playground/       dev sandbox
    └─ storybook/
 ```
 
 ## Build Pipeline
-Every publishable package builds with tsup to ESM + CJS + `.d.ts`. `"sideEffects": false` in every `package.json` so consumers get real tree-shaking. `packages/react` exposes **per-component entry points** (e.g. `@sandbar-ui/react/dialog`) in addition to the barrel, so importing one component doesn't drag the whole library into a bundle-analysis report. `"use client"` is added only at the top of files that actually need it (state, effects, event handlers, portals) — never at a package or barrel level.
+Every publishable package builds with tsup to ESM + CJS + `.d.ts`. `"sideEffects": false` in every `package.json` so consumers get real tree-shaking. `packages/react` exposes **per-component entry points** (e.g. `@panux-ui/react/dialog`) in addition to the barrel, so importing one component doesn't drag the whole library into a bundle-analysis report. `"use client"` is added only at the top of files that actually need it (state, effects, event handlers, portals) — never at a package or barrel level.
 
 ## Design Token System (three tiers)
 ```
@@ -37,22 +37,22 @@ Primitive   raw scales — blue.50–blue.950, space.1–space.24, type scale, r
 Semantic    role-based aliases — bg.canvas, bg.subtle, fg.default, fg.muted, border.default, accent.solid, danger.solid
 Component   per-component overrides consuming semantic tokens only, never primitives directly
 ```
-12-step color scales follow the Radix Colors model. Light/dark/high-contrast switch via `data-theme` on `.sandbar-ui-theme`; an inline theme script in `<head>` (before hydration) prevents FOUC by reading `localStorage`/`prefers-color-scheme` and setting the attribute synchronously. The theme contract is a typed object (`packages/tokens/src/contract.ts`) so consumers get autocomplete on token names, and supports a runtime override for custom themes. **Component tokens must reference semantic tokens, never primitives directly** — so a semantic remap re-themes every component without per-component edits.
+12-step color scales follow the Radix Colors model. Light/dark/high-contrast switch via `data-theme` on `.panux-ui-theme`; an inline theme script in `<head>` (before hydration) prevents FOUC by reading `localStorage`/`prefers-color-scheme` and setting the attribute synchronously. The theme contract is a typed object (`packages/tokens/src/contract.ts`) so consumers get autocomplete on token names, and supports a runtime override for custom themes. **Component tokens must reference semantic tokens, never primitives directly** — so a semantic remap re-themes every component without per-component edits.
 
 ## Layers (top → bottom, no upward imports)
 ```
 apps/docs, apps/storybook, apps/playground
         │
-   @sandbar-ui/react     (styled components; compound parts, recipes)
+   @panux-ui/react     (styled components; compound parts, recipes)
         │
-   @sandbar-ui/core       (headless primitives — useControllableState, useFocusTrap, useDismissable, useId, useMergedRefs)
+   @panux-ui/core       (headless primitives — useControllableState, useFocusTrap, useDismissable, useId, useMergedRefs)
         │
-   @sandbar-ui/tokens      (design tokens, theme contract)
+   @panux-ui/tokens      (design tokens, theme contract)
 
-@sandbar-ui/icons and @sandbar-ui/cli are standalone — no dependency on @sandbar-ui/react.
-@sandbar-ui/eslint-plugin ships lint rules for consumers of @sandbar-ui/react — no runtime dependency on it.
+@panux-ui/icons and @panux-ui/cli are standalone — no dependency on @panux-ui/react.
+@panux-ui/eslint-plugin ships lint rules for consumers of @panux-ui/react — no runtime dependency on it.
 ```
-`@sandbar-ui/react` never reaches into `apps/docs`. `apps/docs` is a **consumer** of the published (or workspace-linked, in dev) packages — deliberate, since the docs site is the primary dogfooding surface and must exercise the real public API, not internal shortcuts.
+`@panux-ui/react` never reaches into `apps/docs`. `apps/docs` is a **consumer** of the published (or workspace-linked, in dev) packages — deliberate, since the docs site is the primary dogfooding surface and must exercise the real public API, not internal shortcuts.
 
 ## Component Scope
 Matches the docs-site sidebar exactly (see Docs Site Architecture → Sidebar IA below) — this is the authoritative list, supersedes any prior scope draft.
@@ -87,7 +87,7 @@ Building outside this list needs explicit scope approval in the plan first.
 | Component doc page | `apps/docs/content/components/<slug>.mdx` — required alongside any new component |
 
 ## Docs Site Architecture
-Next.js 15 App Router, statically generated, built with `@sandbar-ui/react` itself (dogfooding). MDX via the chosen pipeline (see Open Decisions). Every example is live, runnable, and forkable. Props tables generate from TypeScript source via `react-docgen-typescript` at build time — never hand-written, never drifts.
+Next.js 15 App Router, statically generated, built with `@panux-ui/react` itself (dogfooding). MDX via the chosen pipeline (see Open Decisions). Every example is live, runnable, and forkable. Props tables generate from TypeScript source via `react-docgen-typescript` at build time — never hand-written, never drifts.
 
 ### Information Architecture
 ```
@@ -139,7 +139,7 @@ A component isn't done until its page has all of these — see `CLAUDE.md` §Per
 ### Docs Site Requirements
 `next/og` per-page OG image generation, `llms.txt` + copy-as-Markdown endpoints, Cmd+K full-text search, a live theme switcher in the **top-right of the top navbar** (Chakra's color-mode-toggle position — wired via Fumadocs' `DocsLayout`'s `themeSwitch.component` slot, not `nav.children`, which renders cramped next to the sidebar title instead) that re-themes every example in place, LTR/RTL toggle, version switcher, "Open in StackBlitz/CodeSandbox" per example. Lighthouse budget enforced in CI: 100 accessibility, 95+ performance. The docs site is held to the **same a11y bar as the library** — axe-clean, keyboard navigable.
 
-Note: `apps/docs` runs on **Next.js 16**, not 15 — the Fumadocs versions compatible with Next 15's peer range have broken internal module paths (discovered empirically, not a preference). This is a docs-tooling-only deviation; `@sandbar-ui/react` itself has no Next.js dependency and targets React 19 regardless of which Next major the docs site runs.
+Note: `apps/docs` runs on **Next.js 16**, not 15 — the Fumadocs versions compatible with Next 15's peer range have broken internal module paths (discovered empirically, not a preference). This is a docs-tooling-only deviation; `@panux-ui/react` itself has no Next.js dependency and targets React 19 regardless of which Next major the docs site runs.
 
 ## Execution Order
 

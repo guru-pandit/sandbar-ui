@@ -4,7 +4,7 @@ description: Pulls content past a padded parent's edge via negative margin.
 ---
 
 ```tsx
-import { Bleed } from '@sandbar-ui/react';
+import { Bleed } from '@panux-ui/react';
 ```
 
 ## Usage
@@ -55,4 +55,4 @@ A full-bleed image inside an otherwise-padded card:
 
 Both `inline` and `block` are vanilla-extract recipe variants reading from the static token contract (`packages/tokens`'s `space` scale) via `calc(token * -1)` — see `Bleed.css.ts`. Override with `className`/`style` for anything the variants don't cover.
 
-[Source](https://github.com/sandbar-ui/sandbar-ui/tree/main/packages/react/src/Bleed) · [Storybook](https://storybook.sandbar-ui.design/?path=/story/sandbarui-layout-bleed--default)
+[Source](https://github.com/panux-ui/panux-ui/tree/main/packages/react/src/Bleed) · [Storybook](https://storybook.panux-ui.design/?path=/story/panuxui-layout-bleed--default)

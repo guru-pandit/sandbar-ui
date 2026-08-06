@@ -11,7 +11,7 @@ describe('SimpleGrid', () => {
 
   it('applies gap=md by default', () => {
     render(<SimpleGrid data-testid="g">content</SimpleGrid>);
-    expect(screen.getByTestId('g')).toHaveClass('sandbar-gap-md');
+    expect(screen.getByTestId('g')).toHaveClass('panux-gap-md');
   });
 
   it('applies `columns` as an inline gridTemplateColumns style', () => {

@@ -1,8 +1,8 @@
 /**
- * @sandbar-ui/core — headless primitives, hooks, and context.
+ * @panux-ui/core — headless primitives, hooks, and context.
  *
  * See .claude/context/architecture.md §Layers — every styled component in
- * @sandbar-ui/react is built on these.
+ * @panux-ui/react is built on these.
  */
 export { Slot, type SlotProps } from './Slot/Slot';
 export { Portal, type PortalProps } from './Portal/Portal';

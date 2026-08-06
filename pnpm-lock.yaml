@@ -38,10 +38,10 @@ importers:
 
   apps/docs:
     dependencies:
-      '@sandbar-ui/react':
+      '@panux-ui/react':
         specifier: workspace:*
         version: link:../../packages/react
-      '@sandbar-ui/tokens':
+      '@panux-ui/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
       fumadocs-core:
@@ -84,10 +84,10 @@ importers:
 
   apps/playground:
     dependencies:
-      '@sandbar-ui/react':
+      '@panux-ui/react':
         specifier: workspace:*
         version: link:../../packages/react
-      '@sandbar-ui/tokens':
+      '@panux-ui/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
       react:
@@ -115,10 +115,10 @@ importers:
 
   apps/storybook:
     dependencies:
-      '@sandbar-ui/react':
+      '@panux-ui/react':
         specifier: workspace:*
         version: link:../../packages/react
-      '@sandbar-ui/tokens':
+      '@panux-ui/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
       react:
@@ -227,10 +227,10 @@ importers:
 
   packages/react:
     dependencies:
-      '@sandbar-ui/core':
+      '@panux-ui/core':
         specifier: workspace:*
         version: link:../core
-      '@sandbar-ui/tokens':
+      '@panux-ui/tokens':
         specifier: workspace:*
         version: link:../tokens
       '@vanilla-extract/recipes':

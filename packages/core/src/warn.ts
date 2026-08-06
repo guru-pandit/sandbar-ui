@@ -9,12 +9,12 @@ export function warnOnce(key: string, message: string): void {
   if (process.env.NODE_ENV === 'production') return;
   if (warned.has(key)) return;
   warned.add(key);
-  console.warn(`[sandbar-ui] ${message}`);
+  console.warn(`[panux-ui] ${message}`);
 }
 
 /** Throws in every environment — a broken compound-component tree isn't a dev-only concern. */
 export function invariant(condition: unknown, message: string): asserts condition {
   if (!condition) {
-    throw new Error(`[sandbar-ui] ${message}`);
+    throw new Error(`[panux-ui] ${message}`);
   }
 }

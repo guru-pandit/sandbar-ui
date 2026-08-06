@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Bleed } from './Bleed';
 
 const meta: Meta<typeof Bleed> = {
-  title: 'SandbarUI/Layout/Bleed',
+  title: 'PanuxUI/Layout/Bleed',
   component: Bleed,
   argTypes: {
     inline: { control: 'radio', options: ['none', 'sm', 'md', 'lg'] },

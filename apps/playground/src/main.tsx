@@ -1,4 +1,4 @@
-import '@sandbar-ui/tokens/styles.css';
+import '@panux-ui/tokens/styles.css';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './App';

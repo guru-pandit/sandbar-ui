@@ -30,7 +30,7 @@ You review implementation diffs for code quality. You do NOT rewrite features.
 
 **Code Quality**
 - Dead code, unused imports, `console.log`
-- Duplicate logic across components that should be a shared `@sandbar-ui/core` hook or util instead
+- Duplicate logic across components that should be a shared `@panux-ui/core` hook or util instead
 - Deeply nested ternaries or complex inline JSX
 - Comments explaining WHAT — only WHY comments allowed
 - Dev-only warnings (`warn()`/`invariant()`) properly gated by `NODE_ENV` so they strip from production builds

@@ -10,7 +10,7 @@ function Swatch({ label }: { label: string }) {
 }
 
 const meta: Meta<typeof Flex> = {
-  title: 'SandbarUI/Layout/Flex',
+  title: 'PanuxUI/Layout/Flex',
   component: Flex,
   argTypes: {
     direction: { control: 'radio', options: ['row', 'column', 'row-reverse', 'column-reverse'] },

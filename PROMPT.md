@@ -1,8 +1,8 @@
-# Prompt: Build **Sandbar** — A Complete React / Next.js Design System
+# Prompt: Build **Panux** — A Complete React / Next.js Design System
 
-You are a senior frontend architect, design-systems engineer, and technical writer. Build **Sandbar**: a complete, accessible, deeply themeable component library and design system for **React 19** and **Next.js 15 (App Router)**, with a documentation site as thorough as Material UI's and Ant Design's.
+You are a senior frontend architect, design-systems engineer, and technical writer. Build **Panux**: a complete, accessible, deeply themeable component library and design system for **React 19** and **Next.js 15 (App Router)**, with a documentation site as thorough as Material UI's and Ant Design's.
 
-Sandbar should be as capable and complete as MUI, Ant Design, Chakra, and Radix — but it is **its own system**. Do not copy any library's component API, theme shape, class names, prop names, visual language, or docs layout. Where those libraries converge on a good idea (compound components, design tokens, controlled/uncontrolled state), adopt the *idea*, not the *implementation*. Sandbar's conventions (`--sb-` variables, `data-sandbar-*` attributes, recipe-based styling, the token tiers below) are the source of truth. If a request would make Sandbar resemble another library's surface, choose Sandbar's own convention instead.
+Panux should be as capable and complete as MUI, Ant Design, Chakra, and Radix — but it is **its own system**. Do not copy any library's component API, theme shape, class names, prop names, visual language, or docs layout. Where those libraries converge on a good idea (compound components, design tokens, controlled/uncontrolled state), adopt the *idea*, not the *implementation*. Panux's conventions (`--sb-` variables, `data-panux-*` attributes, recipe-based styling, the token tiers below) are the source of truth. If a request would make Panux resemble another library's surface, choose Panux's own convention instead.
 
 ---
 
@@ -10,31 +10,31 @@ Sandbar should be as capable and complete as MUI, Ant Design, Chakra, and Radix 
 
 | Field | Value |
 |---|---|
-| **Name** | Sandbar |
+| **Name** | Panux |
 | **Tagline** | *The container for your interface.* |
-| **Domain** | `sandbar-ui.dev` (fallbacks: `sandbar-ui.com`, `usesandbar.dev`) |
-| **npm scope** | `@sandbar-ui` |
-| **GitHub** | `sandbar-ui/sandbar-ui` |
+| **Domain** | `panux-ui.dev` (fallbacks: `panux-ui.com`, `usepanux.dev`) |
+| **npm scope** | `@panux-ui` |
+| **GitHub** | `panux-ui/panux-ui` |
 
 ### Packages
 
 | Package | Purpose |
 |---|---|
-| `@sandbar-ui/react` | Main styled component package |
-| `@sandbar-ui/core` | Headless primitives, hooks, context (no styles) |
-| `@sandbar-ui/tokens` | Design tokens, theme contract, color scales |
-| `@sandbar-ui/icons` | Tree-shakeable SVG icon set |
-| `@sandbar-ui/themes` | Prebuilt themes + theme-builder logic |
-| `@sandbar-ui/cli` | Scaffolding, `add`, codemods, theme export |
-| `@sandbar-ui/eslint-plugin` | Misuse detection + a11y lint rules |
-| `@sandbar-ui/test-utils` | Render helpers, a11y assertions, user-event wrappers |
+| `@panux-ui/react` | Main styled component package |
+| `@panux-ui/core` | Headless primitives, hooks, context (no styles) |
+| `@panux-ui/tokens` | Design tokens, theme contract, color scales |
+| `@panux-ui/icons` | Tree-shakeable SVG icon set |
+| `@panux-ui/themes` | Prebuilt themes + theme-builder logic |
+| `@panux-ui/cli` | Scaffolding, `add`, codemods, theme export |
+| `@panux-ui/eslint-plugin` | Misuse detection + a11y lint rules |
+| `@panux-ui/test-utils` | Render helpers, a11y assertions, user-event wrappers |
 
-CLI binary is `sandbar`: `npx sandbar init`, `npx sandbar add dialog`, `npx sandbar theme`, `npx sandbar migrate`.
+CLI binary is `panux`: `npx panux init`, `npx panux add dialog`, `npx panux theme`, `npx panux migrate`.
 
 ### Visual Identity
 
-- **Mark:** a minimal sandbar glyph — two stacked horizontal strokes (a bar above a wave line) inside a rounded square, legible at 16px. A negative-space "S" variant serves as the social avatar.
-- **Wordmark:** lowercase `sandbar`, geometric grotesque (Geist or Inter Display), tight tracking.
+- **Mark:** a minimal panux glyph — two stacked horizontal strokes (a bar above a wave line) inside a rounded square, legible at 16px. A negative-space "S" variant serves as the social avatar.
+- **Wordmark:** lowercase `panux`, geometric grotesque (Geist or Inter Display), tight tracking.
 - **Brand accent:** deep teal-slate (`#0F766E` family) — deliberately unlike MUI blue, Ant blue, Chakra green, shadcn zinc. Neutrals are a true cool gray.
 - **Typography:** Inter (UI), Geist Mono / JetBrains Mono (code), Inter Display (marketing headings only).
 - **Illustration:** geometric line diagrams and component-anatomy schematics, never 3D renders or stock gradients.
@@ -46,10 +46,10 @@ Direct, technical, unhyped. Write like a good API reference: short sentences, co
 ### Reserved Namespaces (never collide with these)
 
 - CSS variables: `--sb-*` (e.g. `--sb-color-bg-canvas`, `--sb-space-4`, `--sb-radius-md`)
-- Data attributes: `data-sandbar-*` for internals; state hooks use `data-state`, `data-disabled`, `data-side`, `data-orientation`, `data-highlighted`, `data-selected`
-- Theme root: `.sandbar-theme` with `data-theme="light | dark | contrast"` and `data-accent="<scale>"`
+- Data attributes: `data-panux-*` for internals; state hooks use `data-state`, `data-disabled`, `data-side`, `data-orientation`, `data-highlighted`, `data-selected`
+- Theme root: `.panux-theme` with `data-theme="light | dark | contrast"` and `data-accent="<scale>"`
 - Recipe class prefix: `sb-<component>` (e.g. `sb-button`, `sb-button--solid`)
-- Storybook titles: `Sandbar/<Category>/<Component>`
+- Storybook titles: `Panux/<Category>/<Component>`
 
 ---
 
@@ -58,18 +58,18 @@ Direct, technical, unhyped. Write like a good API reference: short sentences, co
 **Monorepo:** pnpm workspaces + Turborepo + Changesets.
 
 ```
-sandbar/
+panux/
 ├─ packages/
-│  ├─ core/           # @sandbar-ui/core          — headless primitives, hooks, context
-│  ├─ react/          # @sandbar-ui/react         — styled components (main package)
-│  ├─ tokens/         # @sandbar-ui/tokens        — design tokens, theme contract
-│  ├─ icons/          # @sandbar-ui/icons         — SVG icon set
-│  ├─ themes/         # @sandbar-ui/themes        — prebuilt themes + builder
-│  ├─ cli/            # @sandbar-ui/cli
-│  ├─ eslint-plugin/  # @sandbar-ui/eslint-plugin
-│  └─ test-utils/     # @sandbar-ui/test-utils
+│  ├─ core/           # @panux-ui/core          — headless primitives, hooks, context
+│  ├─ react/          # @panux-ui/react         — styled components (main package)
+│  ├─ tokens/         # @panux-ui/tokens        — design tokens, theme contract
+│  ├─ icons/          # @panux-ui/icons         — SVG icon set
+│  ├─ themes/         # @panux-ui/themes        — prebuilt themes + builder
+│  ├─ cli/            # @panux-ui/cli
+│  ├─ eslint-plugin/  # @panux-ui/eslint-plugin
+│  └─ test-utils/     # @panux-ui/test-utils
 └─ apps/
-   ├─ docs/           # Next.js docs site (sandbar-ui.dev)
+   ├─ docs/           # Next.js docs site (panux-ui.dev)
    ├─ playground/     # dev sandbox
    └─ storybook/
 ```
@@ -105,10 +105,10 @@ Four-tier token architecture (deeper than the previous draft):
 
 Ship a complete, self-owned color system — do not reuse another library's palette values.
 
-- **12-step scales** (Radix Colors *model*, Sandbar's *own* hue values), each in light and dark, plus **alpha** variants of every scale for overlays.
+- **12-step scales** (Radix Colors *model*, Panux's *own* hue values), each in light and dark, plus **alpha** variants of every scale for overlays.
 - **Scales to ship:** `gray, mauve, slate, sage` (neutrals) + `teal (brand), blue, indigo, violet, purple, pink, crimson, red, orange, amber, yellow, lime, green, cyan, sky, bronze, gold` and semantic aliases `accent, success, warning, danger, info`.
 - **Step semantics documented** (1–2 backgrounds, 3–5 component backgrounds, 6–8 borders, 9–10 solid, 11–12 text) so consumers know which step to use where.
-- **Contrast:** every foreground/background pairing that Sandbar emits must pass WCAG 2.2 AA; document the pass/fail matrix.
+- **Contrast:** every foreground/background pairing that Panux emits must pass WCAG 2.2 AA; document the pass/fail matrix.
 - **Utilities:** a `createScale(hue)` generator, `getContrastText(bg)`, alpha-compositing helpers, and a P3 wide-gamut variant behind `@media (color-gamut: p3)`.
 - **Accent swap:** changing `data-accent="violet"` re-skins the whole system from one attribute — every component reads `accent.*`, never a hardcoded hue.
 
@@ -118,7 +118,7 @@ Deliver a **color reference page** in docs: interactive swatches for all scales 
 
 ## 4. Component Catalog
 
-Ship every component below. Each is a compound component where it has sub-parts. `†` marks components that are headless-first in `@sandbar-ui/core` and styled in `@sandbar-ui/react`.
+Ship every component below. Each is a compound component where it has sub-parts. `†` marks components that are headless-first in `@panux-ui/core` and styled in `@panux-ui/react`.
 
 ### Layout & Primitives
 Box, Flex, Grid, SimpleGrid, Stack (HStack/VStack), Wrap, Container, Section, Center, Circle, Square, Spacer, AspectRatio, Bleed, Divider, Separator, ScrollArea†, Portal†, VisuallyHidden, Show/Hide (responsive), ClientOnly, Slot†, For (list helper).
@@ -148,7 +148,7 @@ FocusTrap†, Presence† (mount/unmount animation), Transition, Collapse, Porta
 
 ---
 
-## 5. Hooks (`@sandbar-ui/core`)
+## 5. Hooks (`@panux-ui/core`)
 
 Export a robust hook layer. Each hook is documented on its own docs page with signature, params, return shape, and a live example.
 
@@ -166,7 +166,7 @@ Export a robust hook layer. Each hook is documented on its own docs page with si
 
 **Utility:** `useId`, `useUncontrolled`, `useClipboard`, `useCounter`, `useForceUpdate`, `useFirstRender`, `useDidUpdate`, `useShallowEffect`, `useQueue`, `usePagination`, `useDisclosure`.
 
-Also expose per-component "state hooks" (e.g. `useDialogState`, `useComboboxState`) so advanced users can build fully custom UIs on Sandbar's behavior without its markup.
+Also expose per-component "state hooks" (e.g. `useDialogState`, `useComboboxState`) so advanced users can build fully custom UIs on Panux's behavior without its markup.
 
 ---
 
@@ -175,9 +175,9 @@ Also expose per-component "state hooks" (e.g. `useDialogState`, `useComboboxStat
 - `<ThemeProvider theme={...} defaultMode="system" defaultAccent="teal" density="comfortable">` — nestable, each provider scopes a CSS-var subtree.
 - `createTheme(overrides)` — deep-merges into the base contract; type-checked against it.
 - `createScale(hue)` and `defineRecipe(config)` for extending components.
-- **Prebuilt themes** in `@sandbar-ui/themes`: `sandbar` (default), `minimal`, `contrast`, `warm`, `dusk`, plus a `radius`/`scaling` preset set.
+- **Prebuilt themes** in `@panux-ui/themes`: `panux` (default), `minimal`, `contrast`, `warm`, `dusk`, plus a `radius`/`scaling` preset set.
 - `useTheme()`, `useColorMode()` (`{ mode, setMode, toggle, resolvedMode }`), `useToken(path)`.
-- **Theme builder** (docs `/themes`): live controls for accent, gray, radius, density, font, scaling → live preview across a component board → export as `theme.ts`, CSS variables, or a `sandbar add`-compatible config.
+- **Theme builder** (docs `/themes`): live controls for accent, gray, radius, density, font, scaling → live preview across a component board → export as `theme.ts`, CSS variables, or a `panux add`-compatible config.
 
 ---
 
@@ -196,15 +196,15 @@ Also expose per-component "state hooks" (e.g. `useDialogState`, `useComboboxStat
 
 ## 8. Documentation Website (MUI / Ant-Design depth)
 
-`apps/docs` — Next.js 15 App Router, statically generated, built entirely with Sandbar (primary dogfooding surface), and held to the same a11y and performance bar as the library.
+`apps/docs` — Next.js 15 App Router, statically generated, built entirely with Panux (primary dogfooding surface), and held to the same a11y and performance bar as the library.
 
 ### Stack
-Next.js 15 + MDX (Fumadocs or Contentlayer) · live editable playgrounds (Sandpack) · Shiki highlighting (dual theme, line/word highlight) · **auto-generated props tables** from TS source via `react-docgen-typescript` (never hand-written) · full-text search + `Cmd+K` (Sandbar's own CommandPalette) · per-page OG images via `next/og`.
+Next.js 15 + MDX (Fumadocs or Contentlayer) · live editable playgrounds (Sandpack) · Shiki highlighting (dual theme, line/word highlight) · **auto-generated props tables** from TS source via `react-docgen-typescript` (never hand-written) · full-text search + `Cmd+K` (Panux's own CommandPalette) · per-page OG images via `next/og`.
 
 ### Information Architecture
 ```
 /                          Landing page (hero, feature grid, live demo board)
-/docs/overview             What Sandbar is, philosophy, when to use it
+/docs/overview             What Panux is, philosophy, when to use it
 /docs/getting-started      Install; setup for Next.js App Router, Vite, Remix, Astro; ThemeProvider wiring; first component
 /docs/styling              Recipes, className, CSS vars, style overrides, cx helper
 /docs/theming              Contract, createTheme, dark mode, density/scaling, per-subtree themes
@@ -218,7 +218,7 @@ Next.js 15 + MDX (Fumadocs or Contentlayer) · live editable playgrounds (Sandpa
 /docs/guides              SSR & RSC, TypeScript, testing, animation, performance & bundle size, i18n & RTL, forms & validation, virtualization
 /docs/migration          From MUI, from Ant Design, from Chakra (codemods + mapping tables)
 /docs/accessibility       Philosophy, keyboard conventions, focus management, screen-reader matrix, testing method
-/docs/cli                 sandbar init / add / theme / migrate reference
+/docs/cli                 panux init / add / theme / migrate reference
 /docs/figma               Design-kit parity notes
 /docs/changelog           Generated from Changesets
 /docs/roadmap
@@ -258,19 +258,19 @@ WAI-ARIA Authoring Practices for every component: correct roles/states/propertie
 ---
 
 ## 10. Testing & Quality Gates
-- Unit + interaction tests (Vitest + Testing Library + `@sandbar-ui/test-utils`) per component.
+- Unit + interaction tests (Vitest + Testing Library + `@panux-ui/test-utils`) per component.
 - a11y test (axe) per component and per docs page.
 - Visual regression (Storybook + Chromatic) — approval required to merge.
 - Type tests (`tsd` or `expect-type`) for public generics.
 - Bundle budget per component (`size-limit`) — regression blocks merge.
-- Coverage: 90%+ on `@sandbar-ui/core`.
+- Coverage: 90%+ on `@panux-ui/core`.
 - Matrix: Node 18/20/22 × React 18/19.
 - Semantic versioning via Changesets; every change ships a changeset.
 
 ---
 
 ## 11. DX
-- `npx sandbar init` (framework detection, theme setup, provider wiring), `sandbar add <component>` (shadcn-style source copy), `sandbar theme` (builder → export), `sandbar migrate <mui|antd|chakra>` (codemods).
+- `npx panux init` (framework detection, theme setup, provider wiring), `panux add <component>` (shadcn-style source copy), `panux theme` (builder → export), `panux migrate <mui|antd|chakra>` (codemods).
 - Two consumption models: installed npm package **and** copy-in source.
 - ESLint plugin: misuse + a11y rules. Codemods for every breaking change.
 - SSR-safe by default: no module-scope `window`, `useIsomorphicLayoutEffect`, `useId` for deterministic IDs.
@@ -280,8 +280,8 @@ WAI-ARIA Authoring Practices for every component: correct roles/states/propertie
 
 ## 12. Execution Order
 1. Monorepo scaffold, build pipeline, CI, Changesets.
-2. `@sandbar-ui/tokens` + color system + theme engine + `ThemeProvider` (§2, §3, §6).
-3. `@sandbar-ui/core` primitives (Box, Slot, Portal, VisuallyHidden, DismissableLayer, RovingFocusGroup) + the hook layer (§5).
+2. `@panux-ui/tokens` + color system + theme engine + `ThemeProvider` (§2, §3, §6).
+3. `@panux-ui/core` primitives (Box, Slot, Portal, VisuallyHidden, DismissableLayer, RovingFocusGroup) + the hook layer (§5).
 4. **Docs site skeleton** — MDX pipeline, live playground, auto props tables, theme + accent switchers, color/token reference (§8). Build early so every later component ships fully documented.
 5. Typography + Layout.
 6. Forms (Button → Input family → Checkbox/Radio/Switch → Select/Combobox → Date/Time → Field/Form).
@@ -289,13 +289,13 @@ WAI-ARIA Authoring Practices for every component: correct roles/states/propertie
 8. Navigation + Disclosure.
 9. Data Display (Card/Avatar/Badge → Table → DataTable → Tree/Timeline/Carousel).
 10. Feedback + Utilities.
-11. `@sandbar-ui/themes` prebuilt themes + theme builder + `@sandbar-ui/icons`.
+11. `@panux-ui/themes` prebuilt themes + theme builder + `@panux-ui/icons`.
 12. CLI, migration codemods + mapping tables, guides, `llms.txt`, v1.0 release.
 
 ---
 
 ## Output Format
-Begin with a written **Architecture Decision Record** covering: styling-engine choice (vanilla-extract vs Panda) with rationale, RSC/hydration strategy, theming approach, color-system generation, and docs stack. Apply the Sandbar brand, package names, and reserved namespaces from §0 consistently in every file, token, class, and page — and ensure nothing mirrors another library's public surface.
+Begin with a written **Architecture Decision Record** covering: styling-engine choice (vanilla-extract vs Panda) with rationale, RSC/hydration strategy, theming approach, color-system generation, and docs stack. Apply the Panux brand, package names, and reserved namespaces from §0 consistently in every file, token, class, and page — and ensure nothing mirrors another library's public surface.
 
 Then implement in the order in §12. For each component, hook, and docs page, output **complete file trees with full source** — no placeholders, no `// TODO`, no truncation. Explain non-obvious trade-offs inline as comments. When a design choice diverges from MUI/Ant/Chakra on purpose, note why in a one-line comment so the distinction is intentional and documented.
 
@@ -306,7 +306,7 @@ Then implement in the order in §12. For each component, hook, and docs page, ou
 Maintain project memory in a `.claude/` directory at the repo root, and **update it whenever the project changes** — treat it as a living contract, not a one-time file. Specifically:
 
 - Create/maintain `CLAUDE.md` (repo root) and `.claude/` with: the brand and reserved namespaces from §0, the package map, the styling-engine decision, the token/color conventions, the component and hook catalogs, and the conventions any contributor (human or AI) must follow.
-- After **every** meaningful change, update `.claude` in the same commit: when a package, component, hook, token, CSS variable, or CLI command is added, renamed, or removed; when the styling engine, theme contract, or folder structure changes; when a convention (naming, `--sb-` prefix, `data-sandbar-*`, recipe prefix) is introduced or revised; and when the execution order in §12 advances.
+- After **every** meaningful change, update `.claude` in the same commit: when a package, component, hook, token, CSS variable, or CLI command is added, renamed, or removed; when the styling engine, theme contract, or folder structure changes; when a convention (naming, `--sb-` prefix, `data-panux-*`, recipe prefix) is introduced or revised; and when the execution order in §12 advances.
 - Keep a short **changelog / decisions log** inside `.claude` (or link the ADR) so the current state of the system is always reconstructable from it alone.
-- If the library name, scope (`@sandbar-ui`), domain, or any reserved namespace ever changes again, update `.claude` first, then propagate the rename across the codebase — `.claude` is the source of truth for these values.
+- If the library name, scope (`@panux-ui`), domain, or any reserved namespace ever changes again, update `.claude` first, then propagate the rename across the codebase — `.claude` is the source of truth for these values.
 - Add a repo check (lint or CI note) reminding contributors that PRs touching public API, tokens, or structure must also update `.claude`.

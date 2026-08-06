@@ -1,8 +1,8 @@
-import { primitiveColors } from '@sandbar-ui/tokens';
+import { primitiveColors } from '@panux-ui/tokens';
 import type { ThemeRegistrationRaw } from 'shiki';
 
 /**
- * Custom on-brand Shiki theme built from @sandbar-ui/tokens' own primitive
+ * Custom on-brand Shiki theme built from @panux-ui/tokens' own primitive
  * color scales (deep teal accent + true cool gray + green/amber) — never a
  * copied default like "GitHub Dark"/"Dracula", per
  * .claude/context/design-system.md §Originality Requirement. Deliberately
@@ -75,5 +75,5 @@ function buildTheme(
   };
 }
 
-export const sandbarShikiLight = buildTheme('sandbar-light', 'light', primitiveColors.light);
-export const sandbarShikiDark = buildTheme('sandbar-dark', 'dark', primitiveColors.dark);
+export const panuxShikiLight = buildTheme('panux-light', 'light', primitiveColors.light);
+export const panuxShikiDark = buildTheme('panux-dark', 'dark', primitiveColors.dark);

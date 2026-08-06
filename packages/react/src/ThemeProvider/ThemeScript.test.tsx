@@ -14,7 +14,7 @@ describe('ThemeScript', () => {
     const script = container.querySelector('script');
     expect(script).not.toBeNull();
     const source = script!.innerHTML;
-    expect(source).toContain('sandbar-ui-theme');
+    expect(source).toContain('panux-ui-theme');
     expect(source).toContain('document.currentScript');
     expect(source).toContain('prefers-color-scheme: dark');
   });

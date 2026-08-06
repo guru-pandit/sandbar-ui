@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Text } from './Text';
 
 const meta: Meta<typeof Text> = {
-  title: 'SandbarUI/Typography/Text',
+  title: 'PanuxUI/Typography/Text',
   component: Text,
   argTypes: {
     size: { control: 'radio', options: ['xs', 'sm', 'md', 'lg', 'xl'] },

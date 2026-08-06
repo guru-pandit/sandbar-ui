@@ -1,31 +1,31 @@
-# Project: Sandbar UI
+# Project: Panux UI
 
-Sandbar UI is a production-grade, accessible, themeable **React 19 / Next.js 15** component library — comparable in scope and quality to Material UI, Chakra UI, and Radix Themes — plus its documentation website. This is a **monorepo**, not a single app.
+Panux UI is a production-grade, accessible, themeable **React 19 / Next.js 15** component library — comparable in scope and quality to Material UI, Chakra UI, and Radix Themes — plus its documentation website. This is a **monorepo**, not a single app.
 
-**Tagline:** *The container for your interface.* **npm scope:** `@sandbar-ui` **CLI binary:** `sandbar`
+**Tagline:** *The container for your interface.* **npm scope:** `@panux-ui` **CLI binary:** `panux`
 
-This is a **library + docs product**. There is no customer-facing business logic, no database, no backend auth. Every deliverable is either a package published to npm or a page on the docs site (`apps/docs`, `sandbar-ui.design`).
+This is a **library + docs product**. There is no customer-facing business logic, no database, no backend auth. Every deliverable is either a package published to npm or a page on the docs site (`apps/docs`, `panux-ui.design`).
 
 ## Tech Stack
 - **Monorepo**: pnpm workspaces + Turborepo
 - **Build**: tsup (ESM + CJS + `.d.ts`), `"sideEffects": false`, per-component entry points for tree-shaking, `"use client"` only on components that need it
 - **Styling**: Zero-runtime CSS via CSS variables + a compile-time engine (vanilla-extract or Panda CSS — final choice recorded in the project's first ADR, see `.claude/context/architecture.md`). No runtime CSS-in-JS — must work in RSC with zero hydration cost.
-- **Components**: React 19, TypeScript strict mode, headless/styled split (`@sandbar-ui/core` / `@sandbar-ui/react`)
+- **Components**: React 19, TypeScript strict mode, headless/styled split (`@panux-ui/core` / `@panux-ui/react`)
 - **Docs site**: Next.js 15 App Router, MDX (Fumadocs or Contentlayer), live playgrounds (Sandpack or `react-live`), Shiki, Orama/Algolia DocSearch
 - **Testing**: Vitest + Testing Library (unit/interaction), axe-core (a11y gate), Storybook + Chromatic (visual regression)
 - **Versioning**: Changesets, semantic versioning, Node 18/20/22 + React 18/19 CI matrix
 - **Package manager**: pnpm (`pnpm install`, `pnpm dev`, `pnpm build`, `pnpm test`)
-- **Deployment**: docs site → Vercel; packages → npm under `@sandbar-ui/*`
+- **Deployment**: docs site → Vercel; packages → npm under `@panux-ui/*`
 
 ## Packages
 | Package | Purpose |
 |---|---|
-| `@sandbar-ui/react` | Main styled component package |
-| `@sandbar-ui/core` | Headless primitives, hooks, context |
-| `@sandbar-ui/tokens` | Design tokens, theme contract |
-| `@sandbar-ui/icons` | Tree-shakeable SVG icon set |
-| `@sandbar-ui/cli` | Scaffolding and codemods (`sandbar init`, `sandbar add <component>`, `sandbar theme`) |
-| `@sandbar-ui/eslint-plugin` | Misuse detection |
+| `@panux-ui/react` | Main styled component package |
+| `@panux-ui/core` | Headless primitives, hooks, context |
+| `@panux-ui/tokens` | Design tokens, theme contract |
+| `@panux-ui/icons` | Tree-shakeable SVG icon set |
+| `@panux-ui/cli` | Scaffolding and codemods (`panux init`, `panux add <component>`, `panux theme`) |
+| `@panux-ui/eslint-plugin` | Misuse detection |
 
 ## Key Paths
 | What | Where |
@@ -43,11 +43,11 @@ This is a **library + docs product**. There is no customer-facing business logic
 | Component stories | `packages/react/src/<Component>/<Component>.stories.tsx` |
 
 ## Naming Conventions (full brand spec in `.claude/context/design-system.md`)
-- CSS variables: `--sandbar-` prefix (e.g. `--sandbar-color-bg-canvas`, `--sandbar-space-4`)
-- Internal DOM hooks: `data-sandbar-*` reserved namespace
-- Theme class `.sandbar-ui-theme`, mode via `data-theme="light | dark | contrast"`
+- CSS variables: `--panux-` prefix (e.g. `--panux-color-bg-canvas`, `--panux-space-4`)
+- Internal DOM hooks: `data-panux-*` reserved namespace
+- Theme class `.panux-ui-theme`, mode via `data-theme="light | dark | contrast"`
 - State styling via data attributes (`data-state="open"`, `data-disabled`) — never one-off conditional class names
-- Storybook titles: `SandbarUI/<Category>/<Component>`
+- Storybook titles: `PanuxUI/<Category>/<Component>`
 
 ## Component API Contract (non-negotiable — see `.claude/context/react-patterns.md`)
 - Compound components for anything with sub-parts: `<Dialog.Root><Dialog.Trigger/><Dialog.Content/></Dialog.Root>`

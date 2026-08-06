@@ -15,7 +15,7 @@ import {
   Stack,
   Text,
   Wrap,
-} from '@sandbar-ui/react';
+} from '@panux-ui/react';
 import { Example } from './Example';
 
 function Swatch({ label }: { label: string }) {
@@ -23,9 +23,9 @@ function Swatch({ label }: { label: string }) {
     <div
       style={{
         padding: '10px 16px',
-        background: 'var(--sandbar-accent-solid)',
-        color: 'var(--sandbar-fg-onAccent)',
-        borderRadius: 'var(--sandbar-radius-sm)',
+        background: 'var(--panux-accent-solid)',
+        color: 'var(--panux-fg-onAccent)',
+        borderRadius: 'var(--panux-radius-sm)',
         fontSize: 13,
       }}
     >
@@ -47,8 +47,8 @@ function AspectRatioSwatch() {
         justifyContent: 'center',
         width: '100%',
         height: '100%',
-        background: 'var(--sandbar-accent-bg)',
-        border: '1px dashed var(--sandbar-accent-border)',
+        background: 'var(--panux-accent-bg)',
+        border: '1px dashed var(--panux-accent-border)',
         fontSize: 13,
       }}
     >
@@ -297,8 +297,8 @@ export function ContainerUsageExample() {
             key={size}
             size={size}
             style={{
-              background: 'var(--sandbar-accent-bg)',
-              border: '1px dashed var(--sandbar-accent-border)',
+              background: 'var(--panux-accent-bg)',
+              border: '1px dashed var(--panux-accent-border)',
               padding: 12,
               fontSize: 13,
             }}
@@ -318,7 +318,7 @@ export function ContainerUsageExample() {
 export function CenterUsageExample() {
   return (
     <Example code={`<Center style={{ width: 200, height: 100 }}>\n  <Swatch />\n</Center>`}>
-      <Center style={{ width: 200, height: 100, background: 'var(--sandbar-accent-bg)', borderRadius: 'var(--sandbar-radius-sm)' }}>
+      <Center style={{ width: 200, height: 100, background: 'var(--panux-accent-bg)', borderRadius: 'var(--panux-radius-sm)' }}>
         <Swatch label="centered" />
       </Center>
     </Example>
@@ -336,9 +336,9 @@ export function BoxUsageExample() {
         as="section"
         style={{
           padding: 16,
-          background: 'var(--sandbar-accent-bg)',
-          border: '1px solid var(--sandbar-accent-border)',
-          borderRadius: 'var(--sandbar-radius-sm)',
+          background: 'var(--panux-accent-bg)',
+          border: '1px solid var(--panux-accent-border)',
+          borderRadius: 'var(--panux-radius-sm)',
           fontSize: 13,
         }}
       >
@@ -361,9 +361,9 @@ export function BoxAsExample() {
           as={tag}
           style={{
             padding: 16,
-            background: 'var(--sandbar-accent-bg)',
-            border: '1px solid var(--sandbar-accent-border)',
-            borderRadius: 'var(--sandbar-radius-sm)',
+            background: 'var(--panux-accent-bg)',
+            border: '1px solid var(--panux-accent-border)',
+            borderRadius: 'var(--panux-radius-sm)',
             fontSize: 13,
           }}
         >
@@ -426,7 +426,7 @@ export function FlexJustifyExample() {
           <Flex
             key={justify}
             justify={justify}
-            style={{ width: '100%', background: 'var(--sandbar-bg-subtle)', padding: 8 }}
+            style={{ width: '100%', background: 'var(--panux-bg-subtle)', padding: 8 }}
           >
             <Swatch label="One" />
             <Swatch label="Two" />
@@ -447,8 +447,8 @@ function GridCell({ label }: { label: string }) {
       style={{
         padding: 12,
         textAlign: 'center',
-        background: 'var(--sandbar-accent-bg)',
-        border: '1px dashed var(--sandbar-accent-border)',
+        background: 'var(--panux-accent-bg)',
+        border: '1px dashed var(--panux-accent-border)',
         fontSize: 13,
       }}
     >
@@ -532,8 +532,8 @@ function Chip({ label }: { label: string }) {
     <div
       style={{
         padding: '6px 12px',
-        background: 'var(--sandbar-accent-solid)',
-        color: 'var(--sandbar-fg-onAccent)',
+        background: 'var(--panux-accent-solid)',
+        color: 'var(--panux-fg-onAccent)',
         borderRadius: 999,
         fontSize: 13,
       }}
@@ -610,8 +610,8 @@ export function WrapGapExample() {
 export function BleedUsageExample() {
   return (
     <Example code={`<Box style={{ padding: 24 }}>\n  <Bleed>Full-bleed content</Bleed>\n</Box>`}>
-      <Box style={{ padding: 24, background: 'var(--sandbar-bg-subtle)', width: '100%' }}>
-        <Bleed style={{ background: 'var(--sandbar-accent-solid)', color: 'var(--sandbar-fg-onAccent)', padding: 12, fontSize: 13 }}>
+      <Box style={{ padding: 24, background: 'var(--panux-bg-subtle)', width: '100%' }}>
+        <Bleed style={{ background: 'var(--panux-accent-solid)', color: 'var(--panux-fg-onAccent)', padding: 12, fontSize: 13 }}>
           Full-bleed content
         </Bleed>
       </Box>
@@ -626,10 +626,10 @@ export function BleedInlineExample() {
     >
       <Stack gap="md" style={{ width: '100%' }}>
         {(['none', 'sm', 'md', 'lg'] as const).map((inline) => (
-          <Box key={inline} style={{ padding: 24, background: 'var(--sandbar-bg-subtle)', width: '100%' }}>
+          <Box key={inline} style={{ padding: 24, background: 'var(--panux-bg-subtle)', width: '100%' }}>
             <Bleed
               inline={inline}
-              style={{ background: 'var(--sandbar-accent-solid)', color: 'var(--sandbar-fg-onAccent)', padding: 12, fontSize: 13 }}
+              style={{ background: 'var(--panux-accent-solid)', color: 'var(--panux-fg-onAccent)', padding: 12, fontSize: 13 }}
             >
               inline=&quot;{inline}&quot;
             </Bleed>
@@ -652,8 +652,8 @@ function FloatAnchor({ children }: { children: React.ReactNode }) {
         width: 56,
         height: 56,
         borderRadius: '50%',
-        background: 'var(--sandbar-accent-bg)',
-        border: '1px dashed var(--sandbar-accent-border)',
+        background: 'var(--panux-accent-bg)',
+        border: '1px dashed var(--panux-accent-border)',
       }}
     >
       {children}
@@ -668,8 +668,8 @@ function FloatDot() {
         width: 12,
         height: 12,
         borderRadius: '50%',
-        background: 'var(--sandbar-accent-solid)',
-        border: '2px solid var(--sandbar-bg-canvas)',
+        background: 'var(--panux-accent-solid)',
+        border: '2px solid var(--panux-bg-canvas)',
       }}
     />
   );

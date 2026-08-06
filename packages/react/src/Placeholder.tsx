@@ -1,6 +1,6 @@
 /**
- * Scaffold-only wiring proof — not a real Sandbar UI component. See index.ts.
+ * Scaffold-only wiring proof — not a real Panux UI component. See index.ts.
  */
 export function Placeholder() {
-  return <div data-sandbar-placeholder="">Sandbar UI scaffold — real components start Phase 5.</div>;
+  return <div data-panux-placeholder="">Panux UI scaffold — real components start Phase 5.</div>;
 }

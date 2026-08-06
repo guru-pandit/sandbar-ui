@@ -4,7 +4,7 @@ description: A CSS grid container — the general escape hatch for template area
 ---
 
 ```tsx
-import { Grid } from '@sandbar-ui/react';
+import { Grid } from '@panux-ui/react';
 ```
 
 Reach for `SimpleGrid` instead for the common "N equal-width columns" case — `Grid` is for layouts that need template areas, explicit row tracks, or child `gridColumn`/`gridRow` spans.
@@ -61,4 +61,4 @@ A dashboard layout combining `Grid`'s explicit tracks with `SimpleGrid`'s equal-
 
 `gap`/`align` are vanilla-extract recipe variants reading from the static token contract; `columns` is a dynamic inline style — see `Grid.css.ts`/`Grid.tsx`. Override with `className`/`style` for template areas, row tracks, and child spans.
 
-[Source](https://github.com/sandbar-ui/sandbar-ui/tree/main/packages/react/src/Grid) · [Storybook](https://storybook.sandbar-ui.design/?path=/story/sandbarui-layout-grid--default)
+[Source](https://github.com/panux-ui/panux-ui/tree/main/packages/react/src/Grid) · [Storybook](https://storybook.panux-ui.design/?path=/story/panuxui-layout-grid--default)

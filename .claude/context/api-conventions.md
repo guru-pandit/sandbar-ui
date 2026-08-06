@@ -25,11 +25,11 @@ Never introduce a component-specific synonym for one of these (no `color` on one
 A change is breaking if it: renames/removes a prop, changes a prop's accepted values or default, changes rendered output in a way that breaks a consumer's CSS override (e.g. a different `data-*` attribute name or DOM structure), or removes a compound sub-part. Breaking changes require:
 1. Explicit approval in the plan (flag it — don't let it slip in as a side effect of an unrelated fix)
 2. A major changeset with a migration note
-3. A codemod in `@sandbar-ui/cli` if the fix is mechanical (e.g. a prop rename)
+3. A codemod in `@panux-ui/cli` if the fix is mechanical (e.g. a prop rename)
 4. An entry in the relevant `/docs/guides/migration-*` page
 
 ### Package Export Conventions
-Each publishable package's `package.json` uses the `"exports"` field for subpath exports (`@sandbar-ui/react/dialog`) alongside the barrel (`@sandbar-ui/react`), with `"sideEffects": false`. New components must add their subpath export — don't rely on the barrel alone, or tree-shaking claims in the docs become false.
+Each publishable package's `package.json` uses the `"exports"` field for subpath exports (`@panux-ui/react/dialog`) alongside the barrel (`@panux-ui/react`), with `"sideEffects": false`. New components must add their subpath export — don't rely on the barrel alone, or tree-shaking claims in the docs become false.
 
 ## Docs Site API Routes (`apps/docs/app/api/`)
 Real Next.js Route Handlers, used only for the docs site's own features — never a backend for the component library itself.

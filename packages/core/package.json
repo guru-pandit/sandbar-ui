@@ -1,7 +1,7 @@
 {
-  "name": "@sandbar-ui/core",
+  "name": "@panux-ui/core",
   "version": "0.0.0",
-  "description": "Sandbar UI headless primitives, hooks, and context.",
+  "description": "Panux UI headless primitives, hooks, and context.",
   "license": "MIT",
   "type": "module",
   "sideEffects": false,

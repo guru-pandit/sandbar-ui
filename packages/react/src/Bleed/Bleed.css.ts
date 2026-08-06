@@ -1,10 +1,10 @@
-import { staticVars } from '@sandbar-ui/tokens';
+import { staticVars } from '@panux-ui/tokens';
 import { recipe, type RecipeVariants } from '@vanilla-extract/recipes';
 
 /**
  * Component-tier tokens reference semantic/static tokens only, never
  * primitives directly — see .claude/context/architecture.md §Design Token
- * System. `staticVars.space[n]` is a `var(--sandbar-space-n)` reference (from
+ * System. `staticVars.space[n]` is a `var(--panux-space-n)` reference (from
  * vanilla-extract's `createGlobalTheme`), so negating it needs `calc(...* -1)`
  * — a bare `-var(...)` isn't valid CSS. `none` is a literal `0`, matching the
  * `gap` scale's convention elsewhere in Layout (no `space.0` primitive).

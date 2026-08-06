@@ -12,9 +12,9 @@ describe('Group', () => {
   it('applies the default variants', () => {
     render(<Group data-testid="g">content</Group>);
     const el = screen.getByTestId('g');
-    expect(el).toHaveClass('sandbar-gap-sm');
-    expect(el).toHaveClass('sandbar-align-center');
-    expect(el).toHaveClass('sandbar-wrap-false');
+    expect(el).toHaveClass('panux-gap-sm');
+    expect(el).toHaveClass('panux-align-center');
+    expect(el).toHaveClass('panux-wrap-false');
   });
 
   it('applies explicit variants', () => {
@@ -24,9 +24,9 @@ describe('Group', () => {
       </Group>,
     );
     const el = screen.getByTestId('g');
-    expect(el).toHaveClass('sandbar-gap-lg');
-    expect(el).toHaveClass('sandbar-align-start');
-    expect(el).toHaveClass('sandbar-wrap-true');
+    expect(el).toHaveClass('panux-gap-lg');
+    expect(el).toHaveClass('panux-align-start');
+    expect(el).toHaveClass('panux-wrap-true');
   });
 
   it('renders as a different element via `as`', () => {

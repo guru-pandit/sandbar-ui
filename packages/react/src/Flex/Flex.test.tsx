@@ -12,11 +12,11 @@ describe('Flex', () => {
   it('applies the default variants', () => {
     render(<Flex data-testid="f">content</Flex>);
     const el = screen.getByTestId('f');
-    expect(el).toHaveClass('sandbar-direction-row');
-    expect(el).toHaveClass('sandbar-align-stretch');
-    expect(el).toHaveClass('sandbar-justify-start');
-    expect(el).toHaveClass('sandbar-gap-none');
-    expect(el).toHaveClass('sandbar-wrap-false');
+    expect(el).toHaveClass('panux-direction-row');
+    expect(el).toHaveClass('panux-align-stretch');
+    expect(el).toHaveClass('panux-justify-start');
+    expect(el).toHaveClass('panux-gap-none');
+    expect(el).toHaveClass('panux-wrap-false');
   });
 
   it('applies explicit variants', () => {
@@ -26,11 +26,11 @@ describe('Flex', () => {
       </Flex>,
     );
     const el = screen.getByTestId('f');
-    expect(el).toHaveClass('sandbar-direction-column');
-    expect(el).toHaveClass('sandbar-align-center');
-    expect(el).toHaveClass('sandbar-justify-between');
-    expect(el).toHaveClass('sandbar-gap-lg');
-    expect(el).toHaveClass('sandbar-wrap-true');
+    expect(el).toHaveClass('panux-direction-column');
+    expect(el).toHaveClass('panux-align-center');
+    expect(el).toHaveClass('panux-justify-between');
+    expect(el).toHaveClass('panux-gap-lg');
+    expect(el).toHaveClass('panux-wrap-true');
   });
 
   it('renders as a different element via `as`', () => {

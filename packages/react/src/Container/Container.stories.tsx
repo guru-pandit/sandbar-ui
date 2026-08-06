@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Container } from './Container';
 
 const meta: Meta<typeof Container> = {
-  title: 'SandbarUI/Layout/Container',
+  title: 'PanuxUI/Layout/Container',
   component: Container,
   argTypes: {
     size: { control: 'radio', options: ['sm', 'md', 'lg', 'xl', 'full'] },

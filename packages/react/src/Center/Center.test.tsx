@@ -11,7 +11,7 @@ describe('Center', () => {
 
   it('applies the block (non-inline) variant by default', () => {
     render(<Center data-testid="c">content</Center>);
-    expect(screen.getByTestId('c')).toHaveClass('sandbar-inline-false');
+    expect(screen.getByTestId('c')).toHaveClass('panux-inline-false');
   });
 
   it('applies the inline variant', () => {
@@ -20,7 +20,7 @@ describe('Center', () => {
         content
       </Center>,
     );
-    expect(screen.getByTestId('c')).toHaveClass('sandbar-inline-true');
+    expect(screen.getByTestId('c')).toHaveClass('panux-inline-true');
   });
 
   it('renders as a different element via `as`', () => {
