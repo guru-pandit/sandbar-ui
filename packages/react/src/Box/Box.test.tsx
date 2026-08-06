@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { createRef } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import { Box } from './Box';
 
@@ -34,5 +35,9 @@ describe('Box', () => {
   it('spreads DOM props', () => {
     render(<Box data-testid="box" id="my-box">content</Box>);
     expect(screen.getByTestId('box')).toHaveAttribute('id', 'my-box');
+  });
+
+  it('renders to a static string on the server without throwing', () => {
+    expect(() => renderToStaticMarkup(<Box as="section">content</Box>)).not.toThrow();
   });
 });

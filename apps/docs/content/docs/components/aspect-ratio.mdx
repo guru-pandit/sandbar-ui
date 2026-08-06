@@ -1,0 +1,68 @@
+---
+title: Aspect Ratio
+description: Constrains a single child to a fixed width-to-height ratio — images, video, embeds.
+---
+
+```tsx
+import { AspectRatio } from '@sandbar-ui/react';
+```
+
+## Usage
+
+Wrap a single child (an image, video, or iframe) in `AspectRatio` and set `ratio` — the child fills the box via `object-fit: cover`.
+
+<AspectRatioUsageExample />
+
+## Examples
+
+### Ratio
+
+Use the `ratio` prop to change the width-to-height ratio. Accepts any number — `16 / 9`, `4 / 3`, `1`, `21 / 9`, or a custom value.
+
+<AspectRatioRatioExample />
+
+## Customization
+
+`AspectRatio` has no discrete variants — `ratio` is a continuous number, not a fixed size/variant scale — so there's no recipe-level `variants` block to extend via `sandbar add aspect-ratio`. To change the *default* ratio for every unstyled usage in your app, wrap it:
+
+```tsx
+function Thumbnail(props: AspectRatioProps) {
+  return <AspectRatio ratio={4 / 3} {...props} />;
+}
+```
+
+## Props
+
+<PropsTable component="AspectRatio" />
+
+## Data Attributes
+
+`AspectRatio` has no interactive/open-closed state, so it exposes no `data-*` state attributes.
+
+## Accessibility
+
+`AspectRatio` is a layout-only wrapper — it has no ARIA role of its own and doesn't participate in the accessibility tree beyond its child. The accessibility of the content is the child's responsibility: an `<img>` child still needs a meaningful `alt` (or `alt=""` if purely decorative); an `<iframe>` child still needs a `title`.
+
+## Composition
+
+Wrapping a responsive image so it never distorts, regardless of the container width:
+
+```tsx
+<AspectRatio ratio={16 / 9}>
+  <img src="/cover.jpg" alt="Product cover art" />
+</AspectRatio>
+```
+
+Wrapping an embedded video:
+
+```tsx
+<AspectRatio ratio={16 / 9}>
+  <iframe src="https://player.example.com/embed/1" title="Product demo" />
+</AspectRatio>
+```
+
+## Styling
+
+The ratio itself is applied as an inline `aspectRatio` style (a continuous value, not expressible as a token — see `AspectRatio.css.ts`). Everything else — `position`, child sizing, `object-fit` on media children — comes from the recipe and can be overridden via `className`.
+
+[Source](https://github.com/sandbar-ui/sandbar-ui/tree/main/packages/react/src/AspectRatio) · [Storybook](https://storybook.sandbar-ui.design/?path=/story/sandbarui-layout-aspectratio--default)

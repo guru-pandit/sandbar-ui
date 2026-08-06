@@ -11,15 +11,12 @@ export interface BoxProps extends ComponentPropsWithoutRef<'div'> {
 /**
  * The minimal polymorphic primitive every layout component builds on —
  * `as`/`asChild`, full ref forwarding, full DOM prop spreading, no styling
- * of its own. This is a Phase 3 foundation only: the real Layout deliverable
- * (spacing/sizing tokens via the recipe system, variant gallery, a11y test,
- * story, MDX docs, changeset) lands in Phase 5 per
- * .claude/context/architecture.md §Execution Order — don't treat this as a
- * "done" component yet.
+ * of its own by design (see the Box docs page's Customization section) —
+ * not a partial deliverable, this is the complete component.
  *
  * `ref` is typed as `HTMLDivElement` regardless of `as` — a fully precise
- * polymorphic ref/prop type (varying with `as`) is deferred to the Phase 5
- * pass rather than solved here.
+ * polymorphic ref/prop type (varying with `as`) is out of scope; every other
+ * Layout component built on this same skeleton follows the same convention.
  */
 export const Box = forwardRef<HTMLDivElement, BoxProps>(function Box({ asChild, as: As = 'div', ...props }, ref) {
   const Comp = asChild ? Slot : As;
