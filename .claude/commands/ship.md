@@ -14,10 +14,10 @@ Confirm before running:
 If any phase is FAIL — stop and report which phase needs re-review.
 
 ## What happens
-Load `.claude/agents/documenter.md` and produce handoff documentation.
+Use the documenter subagent, in `/ship` mode (conversation output only — no file writes), to produce handoff documentation.
 
 ## Steps
-1. Load `.claude/context/architecture.md` — verify new packages/components/docs pages are consistent with the monorepo layout and IA
+1. The documenter subagent loads `.claude/context/architecture.md` — verify new packages/components/docs pages are consistent with the monorepo layout and IA
 2. Produce all sections from `documenter.md`:
    - **Summary** — 2–3 sentences
    - **Technical Notes** — non-obvious decisions only

@@ -75,12 +75,17 @@ Every component ships with: implementation (full TS types, no `any`), a `<Compon
 - See `.claude/context/design-system.md` before touching brand, tokens, or the theme engine.
 
 ## Agents & Commands
-| Command | Agent | Purpose |
-|---------|-------|---------|
-| `/create-plan` | Planner | Analyse requirement, produce plan — no code |
-| `/implement` | Implementer | Write production code from approved plan |
-| `/review-implementation` | Test → Security → Code Reviewer | Three-phase review |
-| `/ship` | Documenter | Changeset, docs, PR body draft |
+| Command | Agent (model) | Purpose |
+|---------|----------------|---------|
+| `/create-plan` | Planner (opus) | Analyse requirement, produce plan — no code |
+| `/implement` | Implementer (sonnet) | Write production code from approved plan |
+| `/review-implementation` | Test Engineer (sonnet) → Security Reviewer (opus) → Code Reviewer (opus) | Three-phase review |
+| `/e2e-qa` | E2E QA (sonnet) | Playwright-driven end-to-end QA of docs site + Storybook: rendering, interaction, keyboard, a11y; records, doesn't fix |
+| `/issues` | — (main conversation) | Compile review + e2e-qa findings into `issues.md` |
+| `/docs` | Documenter (haiku) | Create/update MDX docs pages, README, changelog/changeset summary |
+| `/ship` | Documenter (haiku) | Changeset, docs, PR body draft (no file writes) |
+
+Suggested order for a full component build: `/create-plan` → `/implement` → `/review-implementation` → `/e2e-qa` → `/issues` (if anything's open, fix and re-run the failed phase) → `/docs` → `/ship`.
 
 ## Hard Rules
 - No runtime CSS-in-JS — styling is CSS variables + the compile-time engine only; must work in RSC with zero hydration cost

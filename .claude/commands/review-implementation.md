@@ -11,7 +11,7 @@ Three agents run sequentially. Each stops and waits for acknowledgement before t
 ---
 
 ### Phase 3 — Test Engineer
-Load `.claude/agents/test-engineer.md` + `.claude/context/testing-strategy.md`
+Use the test-engineer subagent (loads `.claude/context/testing-strategy.md`)
 
 Review the diff and output:
 - Test cases (Given/When/Then, controlled vs uncontrolled, automated yes/no)
@@ -24,7 +24,7 @@ Review the diff and output:
 ---
 
 ### Phase 4 — Security Reviewer
-Load `.claude/agents/security-reviewer.md` + `.claude/context/security-baseline.md`
+Use the security-reviewer subagent (loads `.claude/context/security-baseline.md`)
 
 Review the diff and output findings table:
 | Severity | File : Line | Description | Suggested Fix |
@@ -38,7 +38,7 @@ Verdict: **PASS** / **PASS WITH NOTES** / **FAIL**
 ---
 
 ### Phase 5 — Code Reviewer
-Load `.claude/agents/code-reviewer.md` + `.claude/context/coding-standards.md`
+Use the code-reviewer subagent (loads `.claude/context/coding-standards.md`)
 
 Review the diff and output findings table:
 | Severity | File : Line | Description | Suggested Fix |

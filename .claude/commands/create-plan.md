@@ -6,11 +6,11 @@
 Run when a new requirement, component request, bug report, or design reference has been provided.
 
 ## What happens
-Load `.claude/agents/planner.md` and produce an implementation plan. No code.
+Use the planner subagent to produce an implementation plan. No code.
 
 ## Steps
 1. Read the user's input (problem statement / requirement / error)
-2. Load context:
+2. The planner subagent loads context:
    - `.claude/context/architecture.md`
    - `.claude/context/coding-standards.md`
    - `.claude/context/api-conventions.md`

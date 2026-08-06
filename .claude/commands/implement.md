@@ -6,11 +6,11 @@
 Run after `/create-plan` has been explicitly approved by the developer.
 
 ## What happens
-Load `.claude/agents/implementer.md` and write production-ready code.
+Use the implementer subagent to write production-ready code.
 
 ## Steps
-1. Re-read the approved plan from the conversation
-2. Load context:
+1. Pass the approved plan from the conversation to the subagent
+2. The implementer subagent loads context:
    - `.claude/context/architecture.md`
    - `.claude/context/coding-standards.md`
    - `.claude/context/react-patterns.md`
