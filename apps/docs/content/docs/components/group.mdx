@@ -1,0 +1,67 @@
+---
+title: Group
+description: A horizontal cluster of related controls — buttons, tags, filter chips.
+---
+
+```tsx
+import { Group } from '@sandbar-ui/react';
+```
+
+`Group` is row-only by design — no `direction` prop. Reach for `Flex`/`Stack` when a layout needs to switch axis.
+
+## Usage
+
+<GroupUsageExample />
+
+## Examples
+
+### Gap
+
+`Group` defaults to a tighter `gap` (`sm`) than `Stack`'s `md`, matching an action cluster's denser spacing convention.
+
+<GroupGapExample />
+
+## Customization
+
+- **Adding a new `gap`/`align` step**: add a step to the relevant `variants` block in `Group.css.ts`'s `groupRecipe`.
+- **Changing the default**: set `defaultVariants` in the recipe (currently `gap: 'sm'`, `align: 'center'`, `wrap: false`).
+
+## Props
+
+<PropsTable component="Group" />
+
+## Keyboard interactions
+
+None — `Group` is a non-interactive layout primitive. If the buttons inside represent a single logical control (e.g. a segmented toggle), use `SegmentedControl` instead, which owns the correct `role="group"`/roving-tabindex behavior.
+
+## Data attributes
+
+None of its own.
+
+## Accessibility
+
+`Group` has no semantics of its own. If its children form a labeled set of controls, wrap with a native `role="group"` and `aria-label` (or use `Fieldset` for form controls) rather than relying on `Group` to imply one.
+
+## Composition
+
+A dialog footer's action cluster:
+
+```tsx
+<Dialog.Content>
+  <Dialog.Title>Delete item?</Dialog.Title>
+  <Group style={{ marginTop: 16, justifyContent: 'flex-end' }}>
+    <Dialog.Close asChild>
+      <Button variant="ghost">Cancel</Button>
+    </Dialog.Close>
+    <Button colorScheme="danger">Delete</Button>
+  </Group>
+</Dialog.Content>
+```
+
+`Group` has no `justify` prop of its own (that's `Flex`'s vocabulary) — use plain `style`/`className` for main-axis distribution.
+
+## Styling
+
+`gap`, `align`, and `wrap` are vanilla-extract recipe variants reading from the static token contract — see `Group.css.ts`. Override with `className`/`style` for anything the variants don't cover.
+
+[Source](https://github.com/sandbar-ui/sandbar-ui/tree/main/packages/react/src/Group) · [Storybook](https://storybook.sandbar-ui.design/?path=/story/sandbarui-layout-group--default)
