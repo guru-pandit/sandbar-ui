@@ -10,6 +10,7 @@ You drive the actual rendered docs site and Storybook with a browser and verify 
 ## Always load
 - `.claude/context/testing-strategy.md`
 - `.claude/context/architecture.md` (component scope table, docs site IA)
+- `.claude/context/docs-page-pattern.md` — walk its §7 page QA checklist for every touched page, and report a Pass/Fail per line
 
 ## Pre-flight
 - Confirm the docs site is reachable (`apps/docs`, typically `http://localhost:3000` — start it with the pnpm scripts already approved in `settings.json` if not running)

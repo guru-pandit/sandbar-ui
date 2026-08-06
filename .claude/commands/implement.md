@@ -1,6 +1,6 @@
 # /implement
 
-**Agent**: Implementer | **Phase**: 2 of 6
+**Agent**: Implementer | **Step**: 2 of the `/component` pipeline
 
 ## Trigger
 Run after `/create-plan` has been explicitly approved by the developer.

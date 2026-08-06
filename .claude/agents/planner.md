@@ -11,6 +11,8 @@ You analyse requirements and produce an implementation plan. You do NOT write co
 - `.claude/context/architecture.md`
 - `.claude/context/coding-standards.md`
 - `.claude/context/api-conventions.md`
+- `.claude/context/docs-page-pattern.md` (the docs deliverable is part of the plan — name the `### ` axis subsections the component's page will need)
+- The approved `/phase-plan` for this component's category — your plan refines its brief, it does not contradict or expand it
 - `.claude/context/design-system.md` (if the task touches tokens, theme engine, or brand)
 
 ## Inputs

@@ -228,21 +228,35 @@ Next.js 15 + MDX (Fumadocs or Contentlayer) · live editable playgrounds (Sandpa
 /llms.txt                 Machine-readable docs index for AI tools
 ```
 
+### Docs Shell (every `/docs/*` page)
+- **Top nav** — mark + `panux` wordmark, primary links (Docs, Blog, Guides); right side: `⌘K` search, version dropdown, GitHub, theme switcher (top-right of the navbar).
+- **Section tabs** under the top nav: **Get Started · Components · Styling · Theming**; switching a tab swaps the sidebar tree.
+- **Sidebar** — one non-link group heading per component category (Layout, Typography, Buttons, Forms, …) in canonical order, each listing its components; active item highlighted, sticky, own scroll container.
+- **Right rail** — `On this page` TOC auto-generated from the page's headings, active section tracked on scroll, plus "Edit this page on GitHub" and "Scroll to top".
+
+### Components Index (`/docs/components`)
+A searchable, filterable **card grid** — 4 columns at desktop, one card per component. Each card is a single link containing: a **live miniature render of the real component** in a muted thumbnail (never a screenshot, icon, or placeholder), the component name, and its one-line description (the same sentence as the page's frontmatter — written once, reused). A component with no card is not shipped.
+
 ### Every Component Page Must Contain (in order)
-1. Title, one-line description, status badge (stable/beta), and category.
-2. Import statement with copy button + package name.
-3. **Anatomy** — labeled diagram of every compound part with its data attributes.
-4. **Usage** — primary live editable example.
-5. **Variants gallery** — every `variant` × `size` × `colorScheme` × `radius`, each live.
-6. **Feature sections** — one runnable example per capability (states, disabled, loading, with icons, controlled, async, etc.).
-7. **Props tables** — auto-generated for the root and *every* sub-component, including inherited HTML props, defaults, and types; deep-linkable rows.
+1. Title, one-line description, status badge (stable/beta), category, and top-right controls: Source, Recipe, Storybook, Copy Page.
+2. **Anatomy** — labeled diagram of every compound part with its data attributes.
+3. **Usage** — import statement with copy button, base markup, and the primary live editable example.
+4. **`## Examples`** — one `###` subsection **per prop/capability axis**, each opening with a one-line sentence naming the prop and then a gallery rendering **every value of that axis side by side, live**. Standard axes in order: Sizes, Variants, Colors (`colorScheme` × `variant` grid), Radius, With Icon, Disabled, Loading (+ spinner placement / custom spinner), Grouped, Controlled/Uncontrolled, Responsive, As Link / `asChild`, then component-specific capabilities. **Never** a dropdown-driven single preview, never prose in place of a gallery, never a static image.
+5. **Ref** — how to take a ref and what element it resolves to.
+6. **Customization** — the CLI line that ejects the recipe, then: Adding a new variant · Adding a new size · Changing the default size (`defaultVariants.size`) · Changing the default variant (`defaultVariants.variant`) — each with a complete recipe file and a usage snippet.
+7. **Props tables** — auto-generated for the root and *every* sub-component (Prop / Default / Type + description), inherited HTML props acknowledged in a footer note; deep-linkable rows; never hand-written.
 8. **Data attributes** table (styling hooks) and **CSS variables** table (component tokens).
-9. **Keyboard interactions** table.
+9. **Keyboard interactions** table — matching the component's keyboard tests 1:1.
 10. **Accessibility** notes — ARIA pattern implemented, roles/states, SR behavior, caveats.
 11. **Composition recipes** — real-world combinations (e.g. Combobox inside Dialog inside Form).
 12. **Styling** — override via className, recipe extension, and CSS vars, with examples.
 13. **API differences from other libraries** callout where relevant (so migrators aren't surprised).
-14. Source link (GitHub) + Storybook story link + "Open in Sandbox."
+14. Source link (GitHub) + Storybook story link + "Open in Sandbox" + Previous/Next footer in sidebar order.
+
+**Reference standard:** Chakra UI's and Ant Design's component docs set the bar for *structure and completeness*. Their **visual design is never copied** — colors, typography, spacing, card shape, and the code-block theme are Panux's own (§0). Matching their look is a failure even when the sections are right.
+
+### Example Block Contract
+Preview tab (default) with the live interactive component · Code tab with the *exact* source, not a paraphrase · working copy button · "Open in StackBlitz/CodeSandbox" · custom on-brand Shiki theme in light and dark. No monochrome code blocks, no stock highlighter theme used verbatim.
 
 ### Every Hook Page Must Contain
 Signature, parameter table, return-shape table, one minimal + one real-world live example, SSR notes, and related hooks.
@@ -297,7 +311,7 @@ WAI-ARIA Authoring Practices for every component: correct roles/states/propertie
 ## Output Format
 Begin with a written **Architecture Decision Record** covering: styling-engine choice (vanilla-extract vs Panda) with rationale, RSC/hydration strategy, theming approach, color-system generation, and docs stack. Apply the Panux brand, package names, and reserved namespaces from §0 consistently in every file, token, class, and page — and ensure nothing mirrors another library's public surface.
 
-Then implement in the order in §12. For each component, hook, and docs page, output **complete file trees with full source** — no placeholders, no `// TODO`, no truncation. Explain non-obvious trade-offs inline as comments. When a design choice diverges from MUI/Ant/Chakra on purpose, note why in a one-line comment so the distinction is intentional and documented.
+Then implement in the order in §12, under the operating model in §14 — plan the phase, build one component at a time, gate each one before the next. For each component, hook, and docs page, output **complete file trees with full source** — no placeholders, no `// TODO`, no truncation. Explain non-obvious trade-offs inline as comments. When a design choice diverges from MUI/Ant/Chakra on purpose, note why in a one-line comment so the distinction is intentional and documented.
 
 ---
 
@@ -310,3 +324,53 @@ Maintain project memory in a `.claude/` directory at the repo root, and **update
 - Keep a short **changelog / decisions log** inside `.claude` (or link the ADR) so the current state of the system is always reconstructable from it alone.
 - If the library name, scope (`@panux-ui`), domain, or any reserved namespace ever changes again, update `.claude` first, then propagate the rename across the codebase — `.claude` is the source of truth for these values.
 - Add a repo check (lint or CI note) reminding contributors that PRs touching public API, tokens, or structure must also update `.claude`.
+---
+
+## 14. Agentic Operating Model — How This Gets Built
+
+Work as a **senior architect running a team**, not as a code generator. Nothing is built ad hoc; every line of code traces back to an approved plan and forward to a passed gate. The full definitions live in `.claude/agents/*` and `.claude/commands/*`; this is the contract they implement.
+
+### Roles
+
+| Role | Model | Owns | Never does |
+|---|---|---|---|
+| **Architect** | opus | ADRs, phase plans, go/no-go gates | Writes code |
+| **Planner** | opus | Per-component implementation + test plan | Writes code |
+| **Implementer** | sonnet | Production code strictly from the approved plan | Changes scope |
+| **Test Engineer** | sonnet | Coverage review, writes the missing tests | Adds features |
+| **Security Reviewer** | opus | Sandbox isolation, unsafe HTML/eval, dependency & token hygiene | Writes features |
+| **Code Reviewer** | opus | API correctness, styling/bundling discipline, deliverable completeness | Rewrites features |
+| **Docs Engineer** | sonnet | MDX pages, live demo components, index cards, props-table wiring | Invents props |
+| **E2E QA** | sonnet | Real-browser verification of the docs site and Storybook | Fixes what it finds |
+| **Documenter** | haiku | PR body and handoff notes | Writes files |
+
+### The loop
+
+```
+/phase-plan  (architect — once per sidebar category)
+      │  approve
+      ▼
+build the phase's shared foundations once (tokens / hooks / recipe fragments)
+      │
+      ▼
+for each component, in canonical order:
+      /component <Name>
+        /create-plan → approve → /implement
+        → /review-implementation (tests → security → code)
+        → /docs → /e2e-qa → /issues
+        → /checkpoint  ⇒  GO | NO-GO
+      │
+      ▼
+/checkpoint (phase gate)  →  update .claude/PROGRESS.md  →  /ship  →  next /phase-plan
+```
+
+### Rules that make it work
+
+1. **Plan before code, always.** A phase opens with an approved `/phase-plan`; a component opens with an approved `/create-plan`. Implementation ahead of an approved plan is the single failure mode this model exists to prevent.
+2. **Phase by phase.** One sidebar category is one phase. The next phase does not start until the current one gates GO.
+3. **One component at a time, fully.** All nine deliverables (implementation, recipe, tests, a11y test, story, export, docs page + index card, changeset, GO) before the next component is touched. There is no "mostly done".
+4. **Test phase by phase.** `/checkpoint` runs after every component and again at the end of every phase, on **real command output** — typecheck, lint, test, build, docs QA. Tests are never batched to the end of the project.
+5. **Unverified is failed.** A gate item without evidence is `Not verified`, which is a NO-GO — never an assumed pass. A NO-GO stops the line.
+6. **Files first.** The instruction files (`CLAUDE.md`, `.claude/context/*`) record a decision *before* it is implemented (§13), and `.claude/PROGRESS.md` is updated in the same pass that closes a component or a phase.
+7. **Production-ready or not shipped.** No `TODO`, no placeholder, no dead example, no hand-written props table, no skipped test, no `any`. Every preview on the docs site is live and interactive; every code block is highlighted and copyable.
+8. **Scope is fixed inside a phase.** A newly discovered need becomes an input to the *next* `/phase-plan`, not an in-flight expansion of the current component.

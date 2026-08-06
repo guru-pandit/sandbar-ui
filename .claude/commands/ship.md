@@ -1,6 +1,6 @@
 # /ship
 
-**Agent**: Documenter | **Phase**: 6 of 6
+**Agent**: Documenter | **Step**: last — after a phase gates **GO** at `/checkpoint`
 
 ## Trigger
 Run after `/review-implementation` completes with all phases PASS or PASS WITH NOTES.

@@ -1,6 +1,6 @@
 # /create-plan
 
-**Agent**: Planner | **Phase**: 1 of 6
+**Agent**: Planner | **Step**: 1 of the `/component` pipeline (runs after `/phase-plan` is approved)
 
 ## Trigger
 Run when a new requirement, component request, bug report, or design reference has been provided.

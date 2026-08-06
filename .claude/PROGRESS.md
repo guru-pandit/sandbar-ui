@@ -50,7 +50,31 @@ contradicted its own MDX page's "bare by design" documentation.
 titles `SandbarUI/...` → `PanuxUI/...`, CLI binary, docs strings, changesets. Mechanical,
 no behavioral changes. All naming in this log and in the codebase now uses Panux.
 
+**Instruction-file upgrade (2026-08-06, this pass):** the docs standard and the agentic
+workflow were both raised, files-first, before any further component work:
+
+- New `.claude/context/docs-page-pattern.md` — authoritative spec for the docs shell,
+  the `/docs/components` card-grid index, the component page section catalog (Usage →
+  Examples → Ref → Customization → Props → Data Attributes → CSS Variables → Keyboard →
+  Accessibility → Composition → Styling → prev/next), the `Example` block contract, hook
+  pages, and a per-page QA checklist. Structure matches Chakra/Ant depth; visual design
+  stays original per `design-system.md`.
+- New agents: **architect** (opus — phase plans + GO/NO-GO gates) and **docs-engineer**
+  (sonnet — builds MDX pages and live demo components). `documenter` narrowed to `/ship`
+  PR-body output only, no file writes.
+- New commands: `/phase-plan`, `/component <Name>` (full per-component pipeline),
+  `/checkpoint` (evidence-based gate). `/docs` re-pointed at docs-engineer.
+- `CLAUDE.md`, `PROMPT.md` (§8 docs anatomy, new §14 operating model), `architecture.md`,
+  and `testing-strategy.md` updated to match.
+
 ## Open items / known follow-ups
+
+- **Docs backfill owed.** Every Layout page plus `text`/`heading` predate
+  `docs-page-pattern.md` and stop after `## Props` — missing Data Attributes, CSS
+  Variables, Accessibility, Composition, Styling, Ref, the four-part Customization
+  section, index cards, and prev/next. There is also **no `/docs/components` index page
+  yet**. Backfill to spec before Phase 2 (Typography) is called complete; do not carry
+  the shortfall into new pages.
 
 - **No breakpoint token scale** in `@panux-ui/tokens` yet — `Container.css.ts` uses
   literal px `maxWidth` values with a comment flagging this. Promote to a real token
@@ -59,19 +83,24 @@ no behavioral changes. All naming in this log and in the codebase now uses Panux
   numeric props (dynamic value pattern), not tokens; revisit only if a preset step
   vocabulary turns out to be genuinely needed.
 
-## Next up: Phase 2 — Typography
+## Next up
 
-Per `.claude/context/architecture.md`'s Execution Order, Typography is next. `Heading`
-and `Text` are already done (see above). Remaining, in canonical scope order:
+**First: the docs-platform work the new standard requires** — the `/docs/components`
+card-grid index, the section-tab row, and the backfill of the existing Layout/Typography
+pages to `docs-page-pattern.md`. New component pages must not be written against the old
+shorter shape.
+
+**Then: Phase 2 — Typography.** `Heading` and `Text` are already implemented (see above,
+though their pages need the backfill). Remaining, in canonical scope order:
 **Blockquote, Code, Em, Highlight, Link, Mark, Prose.**
 
-Follow the same pattern as every Layout component (skeleton in `Container.tsx`/`.css.ts`,
-tests in `Container.test.tsx`/`.a11y.test.tsx`, story in `Container.stories.tsx`, MDX
-pattern in `apps/docs/content/docs/components/container.mdx` + `ComponentDemos.tsx` +
-`apps/docs/app/docs/[[...slug]]/page.tsx`'s `mdxComponents` registration) — that pattern
-is stable and doesn't need re-deriving. Checkpoint (typecheck + test + build) after each
-component, one batched changeset at the end of the phase, per `CLAUDE.md`'s "checkpoint
-after each component, phase" rule.
+Run `/phase-plan` (architect) to open the phase before building any of them, then
+`/component <Name>` per component. Implementation pattern is stable and doesn't need
+re-deriving: skeleton in `Container.tsx`/`.css.ts`, tests in `Container.test.tsx`/
+`.a11y.test.tsx`, story in `Container.stories.tsx`, MDX in
+`apps/docs/content/docs/components/container.mdx` + `ComponentDemos.tsx` +
+`apps/docs/app/docs/[[...slug]]/page.tsx`'s `mdxComponents` registration. `/checkpoint`
+after each component and again at the end of the phase; one batched changeset at the end.
 
 Don't start Buttons or any later phase before Typography is complete, even though an
 empty scaffold pattern might tempt jumping ahead — that's exactly what happened before

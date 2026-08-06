@@ -39,7 +39,9 @@ This is a **library + docs product**. There is no customer-facing business logic
 | Docs site | `apps/docs/` |
 | Storybook | `apps/storybook/` |
 | Dev sandbox | `apps/playground/` |
-| Per-component MDX docs | `apps/docs/content/components/<slug>.mdx` |
+| Per-component MDX docs | `apps/docs/content/docs/components/<slug>.mdx` |
+| Docs page spec | `.claude/context/docs-page-pattern.md` |
+| Live demo components | `apps/docs/app/components/ComponentDemos.tsx` |
 | Component stories | `packages/react/src/<Component>/<Component>.stories.tsx` |
 
 ## Naming Conventions (full brand spec in `.claude/context/design-system.md`)
@@ -61,11 +63,31 @@ This is a **library + docs product**. There is no customer-facing business logic
 Every component implements the relevant WAI-ARIA Authoring Practice: correct roles/states, full keyboard interaction, focus management (trap/restore/initial focus), scroll locking without layout shift, RTL support, `prefers-reduced-motion` respect, live-region announcements, WCAG 2.2 AA contrast on every token pairing. **Gate: zero axe-core violations in CI, for both the library and the docs site.**
 
 ## Per-Component Deliverable Checklist
-Every component ships with: implementation (full TS types, no `any`), a `<Component>.css.ts` recipe with all variants, unit + interaction tests, an axe a11y test, a Storybook visual regression story, an MDX docs page following the Chakra-UI-style pattern (Usage example with Preview/Code toggle, an `## Examples` section with one live side-by-side gallery per variant axis — not a dropdown-driven single preview, auto-generated props table, keyboard table, data-attributes table, a11y notes, composition recipes, styling section, source links — see `.claude/context/architecture.md` §Every Component Page Requires and `apps/docs/app/components/Example.tsx`/`ComponentDemos.tsx` for the reference pattern), and a changeset entry. Incomplete = not done.
+Every component ships with **all** of the following. Anything less is not done — there is no "mostly shipped".
+
+1. Implementation — full TS types, no `any`, compound parts, `asChild`, controlled + uncontrolled, ref + DOM prop forwarding
+2. `<Component>.css.ts` recipe — every variant axis, `defaultVariants` set in the recipe (not as a prop default)
+3. `<Component>.test.tsx` — unit + interaction, including keyboard, `asChild`, ref, compound misuse
+4. `<Component>.a11y.test.tsx` — zero axe violations in every documented state
+5. `<Component>.stories.tsx` — `PanuxUI/<Category>/<Component>`, variant gallery for visual regression
+6. Export from `packages/react/src/index.ts`
+7. **Docs page** — `apps/docs/content/docs/components/<slug>.mdx` with every section of `.claude/context/docs-page-pattern.md` §3, its live demo components in `ComponentDemos.tsx`, and its card on the `/docs/components` index with a real live thumbnail
+8. Changeset entry (batched per phase is fine)
+9. A **GO** verdict from `/checkpoint`
+
+## Documentation Standard
+The docs site is a first-class deliverable, held to the depth of Chakra UI's and Ant Design's component docs: a searchable index of live preview cards, a category sidebar, and per-component pages with Usage, an `## Examples` section whose every axis renders **all** its values side by side live (never a dropdown demo, never prose instead of a gallery), Ref, a four-part Customization section, auto-generated props tables, data-attribute and CSS-variable tables, keyboard table, a11y notes, composition, styling, and a right-rail TOC with prev/next.
+
+**Full spec: `.claude/context/docs-page-pattern.md` — read it before writing or editing any docs page.** We match those libraries' *information structure*; we never match their visual design (`design-system.md` §Originality Requirement).
 
 ## How We Work
-- Work proceeds **phase by phase, files-first**: instruction files (`CLAUDE.md`/`.claude/context/*`) are updated to capture a decision *before* implementing it. One sidebar category = one phase; within a phase, finish one component completely (impl, tests, docs page, QA checklist) before starting the next. Checkpoint before moving to the next component or phase — see `.claude/context/architecture.md` §Execution Order.
-- See `.claude/context/architecture.md` before designing anything new (monorepo layout, token tiers, build pipeline, docs site IA — top nav/sidebar/per-component page structure, component scope table, execution order).
+- **Plan first, always.** No implementation starts without an approved plan: `/phase-plan` (architect) opens a category, `/create-plan` (planner) opens each component. Building ahead of an approved plan is the one habit that breaks this project.
+- **Phase by phase.** One sidebar category = one phase, in `.claude/context/architecture.md` §Execution Order. Don't start the next phase before the current one gates GO.
+- **One component at a time.** Inside a phase, finish a component completely (all 9 checklist items) before touching the next.
+- **Test and gate phase by phase.** `/checkpoint` runs after every component and again at the end of every phase, and returns GO / NO-GO on real command output. Unverified counts as failed.
+- **Files first.** Instruction files (`CLAUDE.md` / `.claude/context/*`) capture a decision *before* it is implemented; `.claude/PROGRESS.md` is updated as part of the same pass that closes a component or phase.
+- See `.claude/context/docs-page-pattern.md` before writing or editing any docs page.
+- See `.claude/context/architecture.md` before designing anything new (monorepo layout, token tiers, build pipeline, docs site IA, component scope table, execution order).
 - See `.claude/context/coding-standards.md` before writing any code.
 - See `.claude/context/react-patterns.md` for compound components, `asChild`, controlled/uncontrolled state, RSC/SSR safety.
 - See `.claude/context/api-conventions.md` before adding or changing any component's public prop API or a docs-site API route.
@@ -77,15 +99,30 @@ Every component ships with: implementation (full TS types, no `any`), a `<Compon
 ## Agents & Commands
 | Command | Agent (model) | Purpose |
 |---------|----------------|---------|
-| `/create-plan` | Planner (opus) | Analyse requirement, produce plan — no code |
+| `/phase-plan` | Architect (opus) | Open a phase: component build order, shared foundations, per-component briefs, exit criteria — no code |
+| `/component <Name>` | orchestrates the pipeline below | Build one component end to end, plan → gate, no step skipped |
+| `/create-plan` | Planner (opus) | Analyse one component/bug/reference, produce plan — no code |
 | `/implement` | Implementer (sonnet) | Write production code from approved plan |
 | `/review-implementation` | Test Engineer (sonnet) → Security Reviewer (opus) → Code Reviewer (opus) | Three-phase review |
-| `/e2e-qa` | E2E QA (sonnet) | Playwright-driven end-to-end QA of docs site + Storybook: rendering, interaction, keyboard, a11y; records, doesn't fix |
+| `/docs` | Docs Engineer (sonnet) | Build the MDX page, live demos, index card, props-table wiring to `docs-page-pattern.md` |
+| `/e2e-qa` | E2E QA (sonnet) | Playwright-driven QA of docs site + Storybook: rendering, interaction, keyboard, a11y; records, doesn't fix |
 | `/issues` | — (main conversation) | Compile review + e2e-qa findings into `issues.md` |
-| `/docs` | Documenter (haiku) | Create/update MDX docs pages, README, changelog/changeset summary |
-| `/ship` | Documenter (haiku) | Changeset, docs, PR body draft (no file writes) |
+| `/checkpoint` | Architect (opus) | Gate a component or a phase on real command output: **GO / NO-GO** |
+| `/ship` | Documenter (haiku) | PR body draft + handoff notes (no file writes) |
 
-Suggested order for a full component build: `/create-plan` → `/implement` → `/review-implementation` → `/e2e-qa` → `/issues` (if anything's open, fix and re-run the failed phase) → `/docs` → `/ship`.
+**The loop:**
+
+```
+/phase-plan  ──►  per component:  /component <Name>
+(once per category)                 └─ /create-plan → approve → /implement
+                                       → /review-implementation (tests → security → code)
+                                       → /docs → /e2e-qa → /issues (if open)
+                                       → /checkpoint  ⇒ GO / NO-GO
+                                    repeat for each component in the phase
+                 ──►  /checkpoint (phase gate)  ──►  /ship  ──►  next /phase-plan
+```
+
+A **NO-GO** stops the line: fix, re-run the failed step, re-gate. Never start the next component or phase on a NO-GO.
 
 ## Hard Rules
 - No runtime CSS-in-JS — styling is CSS variables + the compile-time engine only; must work in RSC with zero hydration cost
@@ -103,3 +140,6 @@ Suggested order for a full component build: `/create-plan` → `/implement` → 
 - Visual design (docs site and every component) must be original — must NOT visually match Chakra UI, Radix, shadcn/ui, MUI, Mantine, or Ant Design (see `.claude/context/design-system.md` §Originality Requirement)
 - Every code block on the docs site is syntax-highlighted with a custom on-brand theme and a working copy-to-clipboard button — no monochrome code, no copied default highlighter theme
 - Every documented preview is live and interactive — no static images, no dead markup, no console errors
+- Every docs `### ` axis subsection renders **all** values of that axis side by side, live — never a dropdown-driven single preview, never prose in place of a gallery
+- Every component has a card with a live miniature preview on the `/docs/components` index — a component missing from the index is not shipped
+- No implementation without an approved plan; no next component or phase without a **GO** from `/checkpoint`; an unverified gate item is a failed gate item

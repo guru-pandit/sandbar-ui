@@ -84,7 +84,8 @@ Building outside this list needs explicit scope approval in the plan first.
 | New CLI command/codemod | `packages/cli/src/commands/` |
 | New lint rule | `packages/eslint-plugin/src/rules/` |
 | New docs page | `apps/docs/content/...` per the IA below |
-| Component doc page | `apps/docs/content/components/<slug>.mdx` — required alongside any new component |
+| Component doc page | `apps/docs/content/docs/components/<slug>.mdx` — required alongside any new component, per `docs-page-pattern.md` |
+| Live demo component | `apps/docs/app/components/ComponentDemos.tsx` + registration in `app/docs/[[...slug]]/page.tsx` |
 
 ## Docs Site Architecture
 Next.js 15 App Router, statically generated, built with `@panux-ui/react` itself (dogfooding). MDX via the chosen pipeline (see Open Decisions). Every example is live, runnable, and forkable. Props tables generate from TypeScript source via `react-docgen-typescript` at build time — never hand-written, never drifts.
@@ -94,6 +95,7 @@ Next.js 15 App Router, statically generated, built with `@panux-ui/react` itself
 /                        Landing page
 /docs/getting-started    Installation, Next.js/Vite/Remix setup, ThemeProvider wiring, first component
 /docs/theming            Token reference, color scales, dark mode, custom themes, CSS var reference
+/docs/components         Index — searchable card grid, one card per component with a live miniature preview
 /docs/components/[slug]  One page per component
 /docs/hooks/[slug]       One page per public hook
 /docs/patterns           Composition recipes: forms, data tables, auth flows, dashboards, modals-in-modals
@@ -106,7 +108,7 @@ Next.js 15 App Router, statically generated, built with `@panux-ui/react` itself
 ```
 
 ### Top Nav & Sidebar IA
-**Top nav** — left: logo + main menu (Docs, Blog, Guides). Right: version dropdown, search bar, GitHub icon, theme toggler. Below the top nav, a tab view with two tabs: **Get Started** and **Components**.
+**Top nav** — left: logo + main menu (Docs, Blog, Guides). Right: version dropdown, search bar, GitHub icon, theme toggler. Below the top nav, a tab row switching doc sections: **Get Started · Components · Styling · Theming**.
 
 **Get Started sidebar** — Overview (Installation, Migration, CLI); Frameworks (Next JS (App), Next JS (Pages), Vite).
 
@@ -115,21 +117,11 @@ Next.js 15 App Router, statically generated, built with `@panux-ui/react` itself
 Every component page carries a right-rail on-page table of contents, auto-generated from its own section headings.
 
 ### Every Component Page Requires
-Follows the Chakra UI documentation pattern (house standard — see `apps/docs/app/components/Example.tsx` and `ComponentDemos.tsx` for the reference implementation), in this order:
-1. **H1 title + one-line description.** Top-right controls: Source link, Storybook link, Recipe link, Copy Page dropdown.
-2. **Usage** — import statement + base markup, one primary example in an `Example` (Preview/Code toggle) block: live rendered output by default, exact source on the Code tab, a Copy button.
-3. **Examples** (`## Examples`) — one `### <Axis>` subsection per prop/variant axis (e.g. Sizes, Variants, Colors), each with a one-line description of the prop and a gallery `Example` rendering **every value of that axis side by side, live** — not a single interactive example with a dropdown, and not just prose describing the options.
-4. **Customization** — how to extend via the CLI-generated recipe: Adding a new variant, Adding a new size, Changing the default size (`defaultVariants.size`), Changing the default variant (`defaultVariants.variant`).
-5. **Props** — auto-generated table per sub-component, columns **Prop / Default / Type** (+ description); inherited HTML props acknowledged via a footer note, not literally enumerated (see `PropsTable.tsx`); never hand-written.
-6. A keyboard interactions table (interactive components only).
-7. A data attributes table.
-8. Accessibility notes.
-9. Composition recipes (real-world usage combining this component with others).
-10. A styling section (className/recipes/CSS vars).
-11. Links to source + the Storybook story.
-12. **Footer** — Previous/Next pagination links to sibling components (sidebar order).
+**The full spec lives in `.claude/context/docs-page-pattern.md` — read it before writing or editing any docs page.** It defines the docs shell, the `/docs/components` index card grid, the component page section catalog and order, the `Example` block contract, the hook page anatomy, and the per-page QA checklist that blocks merge.
 
-A component isn't done until its page has all of these — see `CLAUDE.md` §Per-Component Deliverable Checklist. When adding a new component's docs page, copy the pattern from an existing one (e.g. `apps/docs/content/docs/components/text.mdx` + its `Example` components in `ComponentDemos.tsx`) rather than inventing a new structure.
+In brief, in order: header (title, one-line description, status badge, Source/Recipe/Storybook/Copy Page controls) · Usage (import + base markup + primary live example) · `## Examples` with one `###` subsection per prop axis, each rendering **every value side by side, live** · Ref · Customization (add a variant, add a size, change default size, change default variant) · auto-generated Props tables · Data Attributes · CSS Variables · Keyboard Interactions · Accessibility · Composition · Styling · prev/next footer, with a right-rail TOC throughout.
+
+Structure and depth match Chakra UI / Ant Design; **visual design must not** (`design-system.md` §Originality Requirement). A component isn't done until its page has all of it and a card on the components index — see `CLAUDE.md` §Per-Component Deliverable Checklist. Copy the pattern from an existing page (`apps/docs/content/docs/components/container.mdx` + `ComponentDemos.tsx`) rather than inventing a new structure.
 
 ### Design & Quality Gates (every page, every component — blocks merge)
 - **Code previews**: every code block (Code tab, inline snippets, customization examples) is syntax-highlighted (Shiki/`rehype-pretty-code`) — covering JSX/TSX, JS/TS, bash/CLI, JSON. No plain monochrome code. Every block has a working copy-to-clipboard button. The Preview/Code toggle must actually switch between a live rendered preview and the highlighted source — never a static screenshot.
@@ -164,6 +156,12 @@ Note: `apps/docs` runs on **Next.js 16**, not 15 — the Fumadocs versions compa
 11. Data and Time
 12. Utilities
 
-Within a phase, complete one component fully — implementation, recipe, tests, a11y test, Storybook story, MDX docs page (per §Every Component Page Requires), changeset, QA checklist (all previews render/interactive, all code blocks highlighted, copy button works, light+dark correct, no console errors, props table matches API, prev/next wired) — before starting the next component in that category. Checkpoint/review after each component, and after each phase, before proceeding.
+### How a phase runs
 
-Don't reorder without discussing impact — later phases assume earlier primitives exist (every Overlay component depends on the Popover/focus-trap/dismissable foundation from Phase 0 step 3 / Phase 7).
+1. **`/phase-plan`** (architect) opens the phase: build order, the shared foundations to build once up front, a per-component brief, token/contract impact, test strategy, exit criteria. **Approved before any component work starts.**
+2. Build the phase's **shared foundations** first — a token tier, hook, or recipe fragment that several components in the phase need is built once, not re-derived per component.
+3. For each component in order: **`/component <Name>`** — `/create-plan` → approve → `/implement` → `/review-implementation` → `/docs` → `/e2e-qa` → `/issues` → **`/checkpoint`**.
+4. Complete one component fully before starting the next — implementation, recipe, tests, a11y test, Storybook story, MDX docs page (per `docs-page-pattern.md`), index card, export, changeset. `/checkpoint` returns **GO / NO-GO** on real command output; a NO-GO stops the line until it's fixed.
+5. At the end of the phase, run **`/checkpoint`** again as the phase gate, then update `.claude/PROGRESS.md`, then `/ship`.
+
+An unverified gate item counts as a failed one. Don't reorder phases without discussing impact — later phases assume earlier primitives exist (every Overlay component depends on the Popover/focus-trap/dismissable foundation from Phase 0 step 3 / Phase 7).

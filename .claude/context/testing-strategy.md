@@ -34,6 +34,26 @@ Vitest + React Testing Library for unit/interaction tests. `axe-core` (via `jest
 - Zero axe violations in both default and every documented variant state (open/closed/disabled/error)
 - SSR smoke test: `renderToString`/`renderToStaticMarkup` doesn't throw and doesn't touch `window` at module scope
 
+## Gates — when tests actually run
+
+Testing is **phase by phase**, not saved for the end. Two gates, both run by `/checkpoint` (architect subagent):
+
+**Component gate** — after every component, before the next one starts:
+
+| Gate | Command / evidence |
+|---|---|
+| Typecheck | `pnpm typecheck` exit 0 |
+| Lint | `pnpm lint` exit 0 |
+| Unit + interaction | `pnpm test` exit 0, with the Must-Have Tests above present |
+| a11y | `<Component>.a11y.test.tsx` green, zero violations |
+| Build | `pnpm build` exit 0 (packages **and** apps) |
+| Docs page | `docs-page-pattern.md` §7 checklist, walked against the running site |
+| Storybook | story renders, variant gallery present |
+
+**Phase gate** — after the last component of a category, before the next phase: everything above across the whole phase, plus a full docs-site axe pass over every page the phase added, plus the batched changeset.
+
+Rules: evidence is the actual command output, never a recollection. **A gate item with no evidence is "Not verified", which is a failure, not a pass.** A NO-GO stops the line — fix, re-run the failed step, re-gate. Don't defer a red test to "later in the phase"; later never comes with a clean diff.
+
 ## Manual QA Checklist (per component, before release)
 - VoiceOver (macOS/iOS Safari) and NVDA (Windows/Chrome) pass through the documented screen-reader behavior
 - Keyboard-only pass — no mouse — through every interactive state

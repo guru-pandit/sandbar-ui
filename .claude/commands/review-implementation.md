@@ -1,6 +1,6 @@
 # /review-implementation
 
-**Agents**: Test Engineer → Security Reviewer → Code Reviewer | **Phases**: 3–5 of 6
+**Agents**: Test Engineer → Security Reviewer → Code Reviewer | **Steps**: 3–5 of the `/component` pipeline
 
 ## Trigger
 Run after `/implement` is complete.
