@@ -1,0 +1,69 @@
+---
+title: Flex
+description: The general-purpose flexbox container — direction, align, justify, gap, all token-driven.
+---
+
+```tsx
+import { Flex } from '@sandbar-ui/react';
+```
+
+`Flex` is the full flexbox escape hatch. Reach for `Stack` instead for the common vertical/horizontal list case — `Flex` is for layouts that need `justify` or a reversed direction.
+
+## Usage
+
+<FlexUsageExample />
+
+## Examples
+
+### Direction
+
+Use the `direction` prop to control the flex axis, including reversed directions `Stack` doesn't expose.
+
+<FlexDirectionExample />
+
+### Justify
+
+Use the `justify` prop to distribute children along the main axis.
+
+<FlexJustifyExample />
+
+## Customization
+
+- **Adding a new variant** (e.g. a new `justify` value): add a step to the relevant `variants` block in `Flex.css.ts`'s `flexRecipe`.
+- **Adding a new `gap` size**: add a step to `variants.gap`, reading from `staticVars.space` — never a literal pixel value.
+- **Changing the default direction/variant**: set `defaultVariants` in the recipe (currently `direction: 'row'`, `align: 'stretch'`, `justify: 'start'`, `gap: 'none'`, `wrap: false`) — the recipe is the single source of truth, not a prop default in `Flex.tsx`.
+
+## Props
+
+<PropsTable component="Flex" />
+
+## Keyboard interactions
+
+None — `Flex` is a non-interactive layout primitive.
+
+## Data attributes
+
+None of its own.
+
+## Accessibility
+
+`Flex` has no semantics of its own — it's a visual flex wrapper. Reversed directions (`row-reverse`/`column-reverse`) change visual order but not DOM/reading order, so screen-reader and keyboard tab order can diverge from what's shown — avoid a reversed direction for content where visual and reading order both matter.
+
+## Composition
+
+A toolbar row that pushes an action to the far edge:
+
+```tsx
+<Flex justify="between" align="center" gap="md">
+  <Heading level={2} size="md">
+    Section title
+  </Heading>
+  <Button>Add item</Button>
+</Flex>
+```
+
+## Styling
+
+Every variant (`direction`, `align`, `justify`, `gap`, `wrap`) is a vanilla-extract recipe variant reading from the static token contract — see `Flex.css.ts`. Override with `className`/`style` for anything the variants don't cover.
+
+[Source](https://github.com/sandbar-ui/sandbar-ui/tree/main/packages/react/src/Flex) · [Storybook](https://storybook.sandbar-ui.design/?path=/story/sandbarui-layout-flex--default)
