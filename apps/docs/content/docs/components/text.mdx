@@ -31,6 +31,35 @@ Use the `color` prop to change the text color. Every value reads a semantic toke
 
 <TextColorsExample />
 
+## Customization
+
+- **Adding a new `size`/`weight`/`color`**: add a step to the relevant `variants` block in `Text.css.ts`'s `textRecipe`.
+- **Changing the default `size`/`weight`/`color`**: set `defaultVariants` in the recipe (currently `size: 'md'`, `weight: 'regular'`, `color: 'default'`) — not a prop default in `Text.tsx`.
+
 ## Props
 
 <PropsTable component="Text" />
+
+## Data attributes
+
+`Text` sets none of its own — visual state (size/weight/color) is expressed via recipe variants/class names, not data attributes, since none of it is runtime *state*.
+
+## Accessibility
+
+`Text` renders a `<span>` by default — inline, no implicit block semantics. Use `as="p"` for a genuine paragraph so screen readers announce paragraph boundaries correctly; don't rely on `Text`'s default element for body copy that should read as a paragraph.
+
+## Composition
+
+A muted helper/caption line under a form field, using `as="p"` for correct block semantics:
+
+```tsx
+<Text as="p" size="sm" color="muted">
+  We'll never share your email.
+</Text>
+```
+
+## Styling
+
+`size`, `weight`, and `color` are all vanilla-extract recipe variants reading from the static/color token contracts (`packages/tokens`) — see `Text.css.ts`. `color`'s values read semantic tokens (`fg.default`, `fg.muted`, `accent.text`, `danger.text`), so they follow the active theme automatically.
+
+[Source](https://github.com/sandbar-ui/sandbar-ui/tree/main/packages/react/src/Text) · [Storybook](https://storybook.sandbar-ui.design/?path=/story/sandbarui-typography-text--default)

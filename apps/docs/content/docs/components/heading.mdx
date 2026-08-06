@@ -27,10 +27,47 @@ Use the `size` prop to change the visual size, independent of `level`.
 
 <HeadingSizesExample />
 
+### Weights
+
+Use the `weight` prop to change the font weight.
+
+<HeadingWeightsExample />
+
+### Colors
+
+Use the `color` prop to change the text color. Every value reads a semantic token, so it automatically follows the active theme (`light`/`dark`/`contrast`).
+
+<HeadingColorsExample />
+
+## Customization
+
+- **Adding a new `size`/`weight`/`color`**: add a step to the relevant `variants` block in `Heading.css.ts`'s `headingRecipe`.
+- **Changing the default `size`/`weight`/`color`**: set `defaultVariants` in the recipe (currently `size: 'md'`, `weight: 'semibold'`, `color: 'default'`) — not a prop default in `Heading.tsx`.
+
 ## Props
 
 <PropsTable component="Heading" />
 
-## Accessibility notes
+## Data attributes
+
+`Heading` sets none of its own — visual state (size/weight/color) is expressed via recipe variants/class names, not data attributes, since none of it is runtime *state*.
+
+## Accessibility
 
 Keep heading levels sequential in the surrounding page (don't skip from `h1` to `h4`) — `Heading` renders whatever `level` you pass without validating document order, since that's a page-composition concern, not something a single component can enforce.
+
+## Composition
+
+A page header where the semantic level and the visual size deliberately diverge — a document-correct `h1` styled smaller than the hero text above it:
+
+```tsx
+<Heading level={1} size="lg">
+  Getting Started
+</Heading>
+```
+
+## Styling
+
+`size`, `weight`, and `color` are all vanilla-extract recipe variants reading from the static/color token contracts (`packages/tokens`) — see `Heading.css.ts`. `color`'s values read semantic tokens (`fg.default`, `fg.muted`, `accent.text`), so they follow the active theme automatically.
+
+[Source](https://github.com/sandbar-ui/sandbar-ui/tree/main/packages/react/src/Heading) · [Storybook](https://storybook.sandbar-ui.design/?path=/story/sandbarui-typography-heading--default)

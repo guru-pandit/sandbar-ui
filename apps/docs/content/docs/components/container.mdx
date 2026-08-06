@@ -13,10 +13,38 @@ Use the `size` prop to change the max-width breakpoint.
 
 <ContainerUsageExample />
 
+## Customization
+
+- **Adding a new `size`**: add a step to `Container.css.ts`'s `containerRecipe`'s `variants.size` block with its own `maxWidth`.
+- **Changing the default `size`**: set `defaultVariants.size` in the recipe (currently `lg`) — don't default it in `Container.tsx`'s props instead, or the recipe and the component drift out of sync.
+
 ## Props
 
 <PropsTable component="Container" />
 
+## Data attributes
+
+`Container` sets none of its own — it's a non-interactive layout primitive.
+
+## Accessibility
+
+`Container` has no semantics of its own — it's a visual max-width/centering wrapper, not a landmark. If the content it wraps needs a landmark role, apply that via `as`/`asChild` (e.g. `<Container as="main">`) rather than expecting `Container` to imply one.
+
+## Composition
+
+The standard page shell — a `Container` wrapping page content, itself often inside a full-width `Box`/header:
+
+```tsx
+<Box as="main" style={{ width: '100%' }}>
+  <Container size="lg">
+    <Heading level={1}>Page title</Heading>
+    <Text>Page content.</Text>
+  </Container>
+</Box>
+```
+
 ## Styling
 
 `size` maps to a `max-width` breakpoint. These are currently literal pixel values, not tokens — `packages/tokens` doesn't have a breakpoint scale yet (see `Container.css.ts`); promoting them to real tokens is tracked for whenever a second component needs the same values.
+
+[Source](https://github.com/sandbar-ui/sandbar-ui/tree/main/packages/react/src/Container) · [Storybook](https://storybook.sandbar-ui.design/?path=/story/sandbarui-layout-container--default)

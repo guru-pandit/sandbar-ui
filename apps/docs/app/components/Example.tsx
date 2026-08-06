@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, type CSSProperties, type ReactNode } from 'react';
+import { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
+import { highlightCode, type HighlightLang } from '../../lib/highlight';
 
 const tabButtonStyle = (active: boolean): CSSProperties => ({
   padding: '8px 14px',
@@ -20,9 +21,30 @@ const tabButtonStyle = (active: boolean): CSSProperties => ({
  * one-off. See .claude/context/architecture.md §Every Component Page Must
  * Contain and design-system.md.
  */
-export function Example({ code, children }: { code: string; children: ReactNode }) {
+export function Example({
+  code,
+  lang = 'tsx',
+  children,
+}: {
+  code: string;
+  /** Language for syntax highlighting. @default 'tsx' */
+  lang?: HighlightLang;
+  children: ReactNode;
+}) {
   const [tab, setTab] = useState<'preview' | 'code'>('preview');
   const [copied, setCopied] = useState(false);
+  const [html, setHtml] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    setHtml(null);
+    highlightCode(code, lang).then((result) => {
+      if (!cancelled) setHtml(result);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [code, lang]);
 
   const handleCopy = async () => {
     try {
@@ -36,6 +58,14 @@ export function Example({ code, children }: { code: string; children: ReactNode 
 
   return (
     <div
+      // `not-prose` (Fumadocs/Tailwind Typography's own escape hatch — see
+      // the "shiki ... not-prose ..." class Fumadocs puts on its own code
+      // blocks) opts the whole example out of the MDX article's prose
+      // typography reset. Without it, `.prose h1/h2/.../p` rules override
+      // every Heading/Text recipe variant (size/weight/color) rendered
+      // inside a doc page's live preview — every value looked identical
+      // regardless of which variant was passed.
+      className="not-prose"
       style={{
         border: '1px solid var(--sandbar-border-default)',
         borderRadius: 'var(--sandbar-radius-md)',
@@ -90,6 +120,14 @@ export function Example({ code, children }: { code: string; children: ReactNode 
         >
           {children}
         </div>
+      ) : html ? (
+        // `html` is Shiki's own sanitized output for a hardcoded source
+        // string authored in ComponentDemos.tsx — never consumer/user input.
+        // See .claude/context/security-baseline.md.
+        <div
+          style={{ margin: 0, padding: 16, overflow: 'auto', fontSize: 13 }}
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
       ) : (
         <pre
           style={{

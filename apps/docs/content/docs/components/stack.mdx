@@ -25,6 +25,12 @@ Use the `gap` prop to change the spacing between children.
 
 <StackGapExample />
 
+## Customization
+
+- **Adding a new variant** (e.g. a new `align` value): add a step to the relevant `variants` block in `Stack.css.ts`'s `stackRecipe`.
+- **Adding a new `gap` size**: add a step to `variants.gap`, reading from `staticVars.space` — never a literal pixel value, so it stays token-driven.
+- **Changing the default size/variant**: set `defaultVariants` in the recipe (currently `direction: 'vertical'`, `gap: 'md'`, `align: 'stretch'`, `wrap: false`) — the recipe is the single source of truth, not a prop default in `Stack.tsx`.
+
 ## Props
 
 <PropsTable component="Stack" />
@@ -37,6 +43,27 @@ None — `Stack` is a non-interactive layout primitive.
 
 None of its own.
 
+## Accessibility
+
+`Stack` has no semantics of its own — it's a visual flex wrapper. It doesn't reorder DOM/reading order regardless of `direction`, so switching `direction="horizontal"` never creates a mismatch between visual order and screen-reader order (unlike CSS `flex-direction: row-reverse`, which `Stack` doesn't expose).
+
+## Composition
+
+A horizontal stack for a common list-item layout (avatar + name + action), nested inside a vertical stack of rows:
+
+```tsx
+<Stack gap="sm">
+  {items.map((item) => (
+    <Stack key={item.id} direction="horizontal" gap="md" align="center">
+      <Avatar src={item.avatarUrl} />
+      <Text>{item.name}</Text>
+    </Stack>
+  ))}
+</Stack>
+```
+
 ## Styling
 
 Every variant (`direction`, `gap`, `align`, `wrap`) is a vanilla-extract recipe variant reading from the static token contract (`packages/tokens`'s `space` scale) — see `Stack.css.ts`. Override with `className` for anything the variants don't cover; there is no `justify` prop yet (added when a real usage need surfaces one, not preemptively).
+
+[Source](https://github.com/sandbar-ui/sandbar-ui/tree/main/packages/react/src/Stack) · [Storybook](https://storybook.sandbar-ui.design/?path=/story/sandbarui-layout-stack--default)

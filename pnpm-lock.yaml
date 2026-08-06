@@ -62,6 +62,9 @@ importers:
       react-dom:
         specifier: ^19.2.8
         version: 19.2.8(react@19.2.8)
+      shiki:
+        specifier: ^4.3.1
+        version: 4.3.1
     devDependencies:
       '@types/node':
         specifier: ^22.10.5
@@ -115,6 +118,9 @@ importers:
       '@sandbar-ui/react':
         specifier: workspace:*
         version: link:../../packages/react
+      '@sandbar-ui/tokens':
+        specifier: workspace:*
+        version: link:../../packages/tokens
       react:
         specifier: ^19.2.8
         version: 19.2.8
@@ -131,6 +137,9 @@ importers:
       '@types/react-dom':
         specifier: ^19.0.2
         version: 19.2.3(@types/react@19.2.17)
+      '@vanilla-extract/vite-plugin':
+        specifier: ^5.2.5
+        version: 5.2.5(@types/node@22.20.1)(esbuild@0.28.1)(vite@8.1.5(@types/node@22.20.1)(esbuild@0.28.1)(yaml@2.9.0))(yaml@2.9.0)
       '@vitejs/plugin-react':
         specifier: ^6.0.4
         version: 6.0.4(vite@8.1.5(@types/node@22.20.1)(esbuild@0.28.1)(yaml@2.9.0))

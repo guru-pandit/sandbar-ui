@@ -1,0 +1,33 @@
+/*
+ * Shiki emits --shiki-light/--shiki-dark (per token) and --shiki-light-bg/
+ * --shiki-dark-bg (on the <pre>) — defaultColor: false in lib/highlight.ts
+ * and source.config.ts. Both color AND background must switch off the same
+ * signal (our own data-theme attribute), overriding Fumadocs' own
+ * next-themes-driven `bg-fd-card` background with `!important` — Fumadocs'
+ * site chrome (sidebar/nav) isn't wired to @sandbar-ui/react's
+ * ThemeProvider (see apps/docs/app/layout.tsx's comment), so leaving the
+ * background on Fumadocs' own mechanism let dark-mode (near-white) text
+ * land on a background that never actually switched, making it nearly
+ * invisible. Contrast mode has no separate Shiki theme — it reuses light,
+ * matching primitiveColors.contrast === primitiveColors.light (see
+ * packages/tokens/src/primitives/colors.ts).
+ */
+.shiki {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg) !important;
+  font-family: var(--sandbar-font-family-mono);
+}
+
+.shiki span {
+  color: var(--shiki-light);
+  background-color: transparent !important;
+}
+
+.sandbar-ui-theme[data-theme='dark'] .shiki {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg) !important;
+}
+
+.sandbar-ui-theme[data-theme='dark'] .shiki span {
+  color: var(--shiki-dark);
+}

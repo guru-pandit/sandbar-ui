@@ -11,6 +11,34 @@ import { Center } from '@sandbar-ui/react';
 
 <CenterUsageExample />
 
+## Customization
+
+`Center` has a single boolean variant, `inline` (`display: flex` vs `display: inline-flex`). To add a new variant, extend `Center.css.ts`'s `centerRecipe`'s `variants` block; to change the default, set `defaultVariants.inline` there — never override via a prop default in `Center.tsx`, which would drift from the recipe's own source of truth.
+
 ## Props
 
 <PropsTable component="Center" />
+
+## Data attributes
+
+`Center` sets none of its own — it's a non-interactive layout primitive.
+
+## Accessibility
+
+`Center` has no semantics of its own — it renders a `<div>` (or whatever `as`/`asChild` resolves to) with no role. Centering is purely visual; it doesn't affect reading order or focus order, so it never needs an ARIA role.
+
+## Composition
+
+Centering a single piece of content inside a fixed-size container, e.g. an empty-state icon:
+
+```tsx
+<Center style={{ width: 64, height: 64 }}>
+  <Icon name="inbox" />
+</Center>
+```
+
+## Styling
+
+`inline` is the only recipe variant (see `Center.css.ts`); `display`/`alignItems`/`justifyContent` are fixed in the recipe's `base` and aren't meant to be overridden via `className` — if you need different alignment, reach for `Stack`/`Flex` instead, which expose it as a variant.
+
+[Source](https://github.com/sandbar-ui/sandbar-ui/tree/main/packages/react/src/Center) · [Storybook](https://storybook.sandbar-ui.design/?path=/story/sandbarui-layout-center--default)

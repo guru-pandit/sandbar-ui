@@ -7,13 +7,23 @@ description: The minimal polymorphic primitive every layout component builds on.
 import { Box } from '@sandbar-ui/react';
 ```
 
-`Box` renders a `<div>` by default, or any element/component via `as`, or onto its single child via `asChild`. It has no styling of its own — see the Layout components (Phase 5) for the real spacing/sizing token API built on top of it.
+`Box` renders a `<div>` by default, or any element/component via `as`, or onto its single child via `asChild`. It has no styling of its own — see `Center`/`Container`/`Stack` for the token-driven spacing/sizing recipes built on top of it.
 
 ## Usage
 
+<BoxUsageExample />
+
+## Examples
+
+### As
+
 Use the `as` prop to change the rendered element.
 
-<BoxUsageExample />
+<BoxAsExample />
+
+## Customization
+
+`Box` has no recipe and no variants — it's a bare `as`/`asChild` primitive by design, not a partial deliverable. There's nothing to extend via `sandbar add box`; styling is entirely the consumer's (`className`/`style`, or a component built on top of `Box`).
 
 ## Props
 
@@ -23,10 +33,14 @@ Use the `as` prop to change the rendered element.
 
 `Box` sets none of its own — it's a structural primitive, not a stateful component.
 
+## Accessibility
+
+`Box` carries no implicit role or semantics beyond whatever `as` you render it as — choosing a landmark element (`section`, `article`, `nav`, `aside`) is the same accessibility decision as writing that tag by hand. Give a `section`/`article` used as a landmark an accessible name (`aria-label` or `aria-labelledby`) the same way you would for a plain HTML element.
+
 ## Composition
 
 ```tsx
-<Box as="section" data-testid="panel">
+<Box as="section" aria-label="Panel">
   content
 </Box>
 
@@ -34,3 +48,9 @@ Use the `as` prop to change the rendered element.
   <a href="/docs">content</a>
 </Box>
 ```
+
+## Styling
+
+`Box` has no `.css.ts` recipe — it forwards `className`/`style` straight through, so every override is a plain CSS/token decision at the call site, not a variant to pick from.
+
+[Source](https://github.com/sandbar-ui/sandbar-ui/tree/main/packages/react/src/Box) · [Storybook](https://storybook.sandbar-ui.design/?path=/story/sandbarui-layout-box--default)
