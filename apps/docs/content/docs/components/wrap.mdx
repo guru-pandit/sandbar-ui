@@ -1,0 +1,57 @@
+---
+title: Wrap
+description: A flex container that always wraps — the standard layout for tag/chip lists.
+---
+
+```tsx
+import { Wrap } from '@sandbar-ui/react';
+```
+
+## Usage
+
+<WrapUsageExample />
+
+## Examples
+
+### Gap
+
+`gap` spaces both items and wrapped rows in one declaration (CSS `gap`, not margin) — there's no separate row/column gap prop to reconcile.
+
+<WrapGapExample />
+
+## Customization
+
+- **Adding a new `gap`/`align` step**: add a step to the relevant `variants` block in `Wrap.css.ts`'s `wrapRecipe`.
+- **Changing the default**: set `defaultVariants` in the recipe (currently `gap: 'sm'`, `align: 'start'`).
+
+## Props
+
+<PropsTable component="Wrap" />
+
+## Data attributes
+
+None of its own.
+
+## Accessibility
+
+`Wrap` has no semantics of its own — it's a visual flex wrapper. If its children form a list of equivalent items (e.g. a tag list), consider whether a native `<ul>`/`<li>` structure (via `as="ul"` and rendering `as="li"` children) better conveys that to assistive technology than a generic `<div>`.
+
+## Composition
+
+A filter chip list that grows with an unknown number of active filters:
+
+```tsx
+<Wrap gap="sm">
+  {activeFilters.map((filter) => (
+    <Tag key={filter.id} onRemove={() => removeFilter(filter.id)}>
+      {filter.label}
+    </Tag>
+  ))}
+</Wrap>
+```
+
+## Styling
+
+`gap` and `align` are vanilla-extract recipe variants reading from the static token contract — see `Wrap.css.ts`. Override with `className`/`style` for anything the variants don't cover.
+
+[Source](https://github.com/sandbar-ui/sandbar-ui/tree/main/packages/react/src/Wrap) · [Storybook](https://storybook.sandbar-ui.design/?path=/story/sandbarui-layout-wrap--default)
