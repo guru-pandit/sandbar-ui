@@ -1,0 +1,58 @@
+---
+title: Bleed
+description: Pulls content past a padded parent's edge via negative margin.
+---
+
+```tsx
+import { Bleed } from '@sandbar-ui/react';
+```
+
+## Usage
+
+Use `Bleed` to let content span edge-to-edge inside a padded container — e.g. a full-width image inside a `Container`.
+
+<BleedUsageExample />
+
+## Examples
+
+### Inline
+
+Use the `inline` prop to control how far `Bleed` cancels the parent's horizontal padding. Defaults to `md`, matching `Container`'s own `space['4']` padding.
+
+<BleedInlineExample />
+
+## Customization
+
+- **Adding a new `inline`/`block` step**: add a step to the relevant `variants` block in `Bleed.css.ts`'s `bleedRecipe`, using `calc(<token> * -1)` — never a literal negative pixel value.
+- **Changing the default size**: set `defaultVariants` in the recipe (currently `inline: 'md'`, `block: 'none'`) — the recipe is the single source of truth, not a prop default in `Bleed.tsx`.
+
+## Props
+
+<PropsTable component="Bleed" />
+
+## Data attributes
+
+None of its own.
+
+## Accessibility
+
+`Bleed` has no semantics of its own — it's a visual negative-margin wrapper. It doesn't change reading/tab order, only visual position.
+
+## Composition
+
+A full-bleed image inside an otherwise-padded card:
+
+```tsx
+<Box style={{ padding: 16 }}>
+  <Bleed inline="md" block="md">
+    <img src="/photo.jpg" alt="" style={{ width: '100%', display: 'block' }} />
+  </Bleed>
+  <Text>Caption text stays within the padded area.</Text>
+</Box>
+```
+
+## Styling
+
+Both `inline` and `block` are vanilla-extract recipe variants reading from the static token contract (`packages/tokens`'s `space` scale) via `calc(token * -1)` — see `Bleed.css.ts`. Override with `className`/`style` for anything the variants don't cover.
+
+[Source](https://github.com/sandbar-ui/sandbar-ui/tree/main/packages/react/src/Bleed) · [Storybook](https://storybook.sandbar-ui.design/?path=/story/sandbarui-layout-bleed--default)
