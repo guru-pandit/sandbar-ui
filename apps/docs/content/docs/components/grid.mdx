@@ -1,0 +1,64 @@
+---
+title: Grid
+description: A CSS grid container — the general escape hatch for template areas, explicit rows, and child spans.
+---
+
+```tsx
+import { Grid } from '@sandbar-ui/react';
+```
+
+Reach for `SimpleGrid` instead for the common "N equal-width columns" case — `Grid` is for layouts that need template areas, explicit row tracks, or child `gridColumn`/`gridRow` spans.
+
+## Usage
+
+<GridUsageExample />
+
+## Examples
+
+### Columns
+
+`columns` is a genuinely open-ended integer, not a preset step, so it's a plain prop applied via inline style rather than a recipe variant (the same reasoning as `AspectRatio`'s `ratio`).
+
+<GridColumnsExample />
+
+## Customization
+
+- **Adding a new `gap`/`align` step**: add a step to the relevant `variants` block in `Grid.css.ts`'s `gridRecipe`.
+- **Changing the default**: set `defaultVariants` in the recipe (currently `gap: 'md'`, `align: 'stretch'`).
+- Column layout beyond equal-width tracks (template areas, explicit row sizing, spans) is a plain `style`/`className` override — `Grid` doesn't wrap every CSS grid property in a prop.
+
+## Props
+
+<PropsTable component="Grid" />
+
+## Data attributes
+
+None of its own.
+
+## Accessibility
+
+`Grid` has no semantics of its own — it's a visual layout container, not a landmark or a table. It doesn't reorder DOM/reading order; a CSS `order`/`grid-area` placement that visually reorders content can still diverge from reading order, so keep visual and DOM order aligned for anything read sequentially.
+
+## Composition
+
+A dashboard layout combining `Grid`'s explicit tracks with `SimpleGrid`'s equal-width convenience for a card row nested inside:
+
+```tsx
+<Grid columns={4} gap="lg">
+  <Card style={{ gridColumn: 'span 3' }}>Main panel</Card>
+  <Card>Sidebar</Card>
+  <Box style={{ gridColumn: '1 / -1' }}>
+    <SimpleGrid columns={3} gap="md">
+      <Stat label="Users" value="1.2k" />
+      <Stat label="Revenue" value="$42k" />
+      <Stat label="Churn" value="1.1%" />
+    </SimpleGrid>
+  </Box>
+</Grid>
+```
+
+## Styling
+
+`gap`/`align` are vanilla-extract recipe variants reading from the static token contract; `columns` is a dynamic inline style — see `Grid.css.ts`/`Grid.tsx`. Override with `className`/`style` for template areas, row tracks, and child spans.
+
+[Source](https://github.com/sandbar-ui/sandbar-ui/tree/main/packages/react/src/Grid) · [Storybook](https://storybook.sandbar-ui.design/?path=/story/sandbarui-layout-grid--default)
