@@ -2,7 +2,7 @@
 
 You are a senior frontend architect, design-systems engineer, and technical writer. Build **Panux**: a complete, accessible, deeply themeable component library and design system for **React 19** and **Next.js 15 (App Router)**, with a documentation site as thorough as Material UI's and Ant Design's.
 
-Panux should be as capable and complete as MUI, Ant Design, Chakra, and Radix — but it is **its own system**. Do not copy any library's component API, theme shape, class names, prop names, visual language, or docs layout. Where those libraries converge on a good idea (compound components, design tokens, controlled/uncontrolled state), adopt the *idea*, not the *implementation*. Panux's conventions (`--sb-` variables, `data-panux-*` attributes, recipe-based styling, the token tiers below) are the source of truth. If a request would make Panux resemble another library's surface, choose Panux's own convention instead.
+Panux should be as capable and complete as MUI, Ant Design, Chakra, and Radix — but it is **its own system**. Do not copy any library's component API, theme shape, class names, prop names, visual language, or docs layout. Where those libraries converge on a good idea (compound components, design tokens, controlled/uncontrolled state), adopt the *idea*, not the *implementation*. Panux's conventions (`--panux-` variables, `data-panux-*` attributes, recipe-based styling, the token tiers below) are the source of truth. If a request would make Panux resemble another library's surface, choose Panux's own convention instead.
 
 ---
 
@@ -45,10 +45,10 @@ Direct, technical, unhyped. Write like a good API reference: short sentences, co
 
 ### Reserved Namespaces (never collide with these)
 
-- CSS variables: `--sb-*` (e.g. `--sb-color-bg-canvas`, `--sb-space-4`, `--sb-radius-md`)
+- CSS variables: `--panux-` prefix (e.g. `--panux-color-bg-canvas`, `--panux-space-4`, `--panux-radius-md`)
 - Data attributes: `data-panux-*` for internals; state hooks use `data-state`, `data-disabled`, `data-side`, `data-orientation`, `data-highlighted`, `data-selected`
-- Theme root: `.panux-theme` with `data-theme="light | dark | contrast"` and `data-accent="<scale>"`
-- Recipe class prefix: `sb-<component>` (e.g. `sb-button`, `sb-button--solid`)
+- Theme root: `.panux-ui-theme` with `data-theme="light | dark | contrast"` and `data-accent="<scale>"`
+- Recipe class prefix: `panux-<component>` (e.g. `panux-button`, `panux-button--solid`)
 - Storybook titles: `Panux/<Category>/<Component>`
 
 ---
@@ -94,7 +94,7 @@ Four-tier token architecture (deeper than the previous draft):
    - Durations (`instant → slowest`) and easings (`linear, ease, emphasized, decelerate, accelerate, spring`)
    - Breakpoints: `xs, sm, md, lg, xl, 2xl`
 2. **Semantic tokens** — role aliases resolved per mode: `bg.canvas / bg.subtle / bg.muted / bg.emphasis`, `fg.default / fg.muted / fg.subtle / fg.onAccent`, `border.default / border.muted / border.focus`, `accent.solid / accent.hover / accent.active / accent.subtle / accent.text`, plus `success / warning / danger / info` families each with `solid / subtle / text / border`.
-3. **Component tokens** — per-component variables consuming semantic tokens (`--sb-button-bg`, `--sb-input-border`), overridable per instance.
+3. **Component tokens** — per-component variables consuming semantic tokens (`--panux-button-bg`, `--panux-input-border`), overridable per instance.
 4. **Density & scale modifiers** — a global `density` (`comfortable | compact`) and `scaling` (`0.9 → 1.1`) that rescale space and font tokens without touching component code.
 
 **Requirements:** a typed theme contract (full autocomplete), light / dark / high-contrast modes via `data-theme`, no FOUC (inline blocking theme script), runtime theme override via `ThemeProvider`, per-subtree theming (nested providers), and a CSS-var-only output so themes can be swapped without re-rendering React.
@@ -306,7 +306,7 @@ Then implement in the order in §12. For each component, hook, and docs page, ou
 Maintain project memory in a `.claude/` directory at the repo root, and **update it whenever the project changes** — treat it as a living contract, not a one-time file. Specifically:
 
 - Create/maintain `CLAUDE.md` (repo root) and `.claude/` with: the brand and reserved namespaces from §0, the package map, the styling-engine decision, the token/color conventions, the component and hook catalogs, and the conventions any contributor (human or AI) must follow.
-- After **every** meaningful change, update `.claude` in the same commit: when a package, component, hook, token, CSS variable, or CLI command is added, renamed, or removed; when the styling engine, theme contract, or folder structure changes; when a convention (naming, `--sb-` prefix, `data-panux-*`, recipe prefix) is introduced or revised; and when the execution order in §12 advances.
+- After **every** meaningful change, update `.claude` in the same commit: when a package, component, hook, token, CSS variable, or CLI command is added, renamed, or removed; when the styling engine, theme contract, or folder structure changes; when a convention (naming, `--panux-` prefix, `data-panux-*`, recipe prefix) is introduced or revised; and when the execution order in §12 advances.
 - Keep a short **changelog / decisions log** inside `.claude` (or link the ADR) so the current state of the system is always reconstructable from it alone.
 - If the library name, scope (`@panux-ui`), domain, or any reserved namespace ever changes again, update `.claude` first, then propagate the rename across the codebase — `.claude` is the source of truth for these values.
 - Add a repo check (lint or CI note) reminding contributors that PRs touching public API, tokens, or structure must also update `.claude`.
