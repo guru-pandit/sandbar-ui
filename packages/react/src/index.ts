@@ -13,10 +13,18 @@ export { Placeholder } from './Placeholder';
 export { ThemeProvider, useTheme, type ThemeProviderProps } from './ThemeProvider/ThemeProvider';
 export { ThemeScript } from './ThemeProvider/ThemeScript';
 
+export { AspectRatio, type AspectRatioProps } from './AspectRatio/AspectRatio';
+export { Bleed, type BleedProps } from './Bleed/Bleed';
 export { Box, type BoxProps } from './Box/Box';
 export { Stack, type StackProps } from './Stack/Stack';
 export { Container, type ContainerProps } from './Container/Container';
 export { Center, type CenterProps } from './Center/Center';
+export { Flex, type FlexProps } from './Flex/Flex';
+export { Float, type FloatProps } from './Float/Float';
+export { Grid, type GridProps } from './Grid/Grid';
+export { Group, type GroupProps } from './Group/Group';
+export { SimpleGrid, type SimpleGridProps } from './SimpleGrid/SimpleGrid';
+export { Wrap, type WrapProps } from './Wrap/Wrap';
 export { Text, type TextProps } from './Text/Text';
 export { Heading, type HeadingProps } from './Heading/Heading';
 
