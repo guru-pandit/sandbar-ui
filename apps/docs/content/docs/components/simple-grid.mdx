@@ -1,0 +1,58 @@
+---
+title: SimpleGrid
+description: The common "N equal-width columns" grid, with an optional responsive auto-fit mode.
+---
+
+```tsx
+import { SimpleGrid } from '@sandbar-ui/react';
+```
+
+Reach for `Grid` instead when a layout needs template areas, explicit row tracks, or child spans — `SimpleGrid` only covers the equal-width-columns case.
+
+## Usage
+
+<SimpleGridUsageExample />
+
+## Examples
+
+### Columns
+
+`columns` is a genuinely open-ended integer, not a preset step, so it's a plain prop applied via inline style rather than a recipe variant (the same reasoning as `AspectRatio`'s `ratio`).
+
+<SimpleGridColumnsExample />
+
+## Customization
+
+- **Adding a new `gap` step**: add a step to `variants.gap` in `SimpleGrid.css.ts`'s `simpleGridRecipe`, reading from `staticVars.space`.
+- **Changing the default `gap`**: set `defaultVariants.gap` in the recipe (currently `md`).
+- For a responsive column count with no explicit breakpoints, use `minChildWidth` instead of `columns` — each column is at least that wide, wrapping to fewer columns as the container shrinks. `columns` takes priority if both are set.
+
+## Props
+
+<PropsTable component="SimpleGrid" />
+
+## Data attributes
+
+None of its own.
+
+## Accessibility
+
+`SimpleGrid` has no semantics of its own — it's a visual layout container. It doesn't reorder DOM/reading order.
+
+## Composition
+
+A responsive card grid with no explicit breakpoints, via `minChildWidth`:
+
+```tsx
+<SimpleGrid minChildWidth="240px" gap="md">
+  {products.map((product) => (
+    <Card key={product.id}>{product.name}</Card>
+  ))}
+</SimpleGrid>
+```
+
+## Styling
+
+`gap` is a vanilla-extract recipe variant reading from the static token contract; `columns`/`minChildWidth` are dynamic inline styles — see `SimpleGrid.css.ts`/`SimpleGrid.tsx`. Override with `className`/`style` for anything the variants don't cover.
+
+[Source](https://github.com/sandbar-ui/sandbar-ui/tree/main/packages/react/src/SimpleGrid) · [Storybook](https://storybook.sandbar-ui.design/?path=/story/sandbarui-layout-simplegrid--default)
