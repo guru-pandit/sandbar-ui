@@ -1,0 +1,59 @@
+---
+title: Float
+description: Absolutely-positions a child at a corner of its parent — e.g. a status dot on an avatar.
+---
+
+```tsx
+import { Float } from '@sandbar-ui/react';
+```
+
+## Usage
+
+`Float`'s parent must itself establish a positioning context (`position: relative` or similar) — `Float` can't set that on the parent for you.
+
+<FloatUsageExample />
+
+## Examples
+
+### Placement
+
+Use the `placement` prop to pin `Float` to any of the four corners. Uses logical inline-start/end, so it flips correctly under `dir="rtl"`.
+
+<FloatPlacementExample />
+
+## Customization
+
+- **Adding a new `placement`**: `Float.css.ts`'s `floatRecipe` generates its corner styles from a `compoundVariants` map keyed by placement × offset — add the new placement to the `CORNER_PULL` map and it's included automatically.
+- **Adding a new `offset` step**: add a step to the `OFFSET_TOKEN` map, reading from `staticVars.space`.
+- **Changing the default**: set `defaultVariants` in the recipe (currently `placement: 'top-end'`, `offset: 'sm'`).
+
+## Props
+
+<PropsTable component="Float" />
+
+## Data attributes
+
+None of its own.
+
+## Accessibility
+
+`Float` positions content only — it carries no role or semantics. A purely decorative float (e.g. a status dot with no independent meaning) should be `aria-hidden="true"`; a float that conveys information on its own (e.g. a count badge) needs its own accessible name.
+
+## Composition
+
+A status dot pinned to an `Avatar`'s corner:
+
+```tsx
+<Box style={{ position: 'relative', width: 'fit-content' }}>
+  <Avatar src="/user.jpg" />
+  <Float placement="bottom-end" aria-hidden="true">
+    <Box style={{ width: 10, height: 10, borderRadius: '50%', background: 'var(--sandbar-success-solid)' }} />
+  </Float>
+</Box>
+```
+
+## Styling
+
+`placement` and `offset` are vanilla-extract recipe variants — real styles live in `compoundVariants` since the active `inset*` property depends on which corner is selected (see the comment in `Float.css.ts`). Override with `className`/`style` for anything the variants don't cover.
+
+[Source](https://github.com/sandbar-ui/sandbar-ui/tree/main/packages/react/src/Float) · [Storybook](https://storybook.sandbar-ui.design/?path=/story/sandbarui-layout-float--default)
